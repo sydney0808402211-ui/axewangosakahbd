@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>大阪 6 天 5 夜 · 旅遊行程｜日本橋住宿 · 大阪周遊卡 · 環球影城</title>
+  <title>宏逸大阪生日旅行 · 6 天 5 夜卡片式行程</title>
   <style>
     :root {
       --bg: #f5f5f7;
       --card-bg: #ffffff;
       --accent: #ff715b;
       --accent-soft: #ffe3dd;
-      --text-main: #222222;
-      --text-muted: #666666;
-      --border-soft: #e0e0e0;
-      --radius-lg: 18px;
-      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --accent-deep: #ff4c3a;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --radius-lg: 20px;
+      --shadow-soft: 0 14px 36px rgba(15, 23, 42, 0.12);
     }
 
     * {
@@ -25,40 +26,47 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background: radial-gradient(circle at top, #ffffff 0, #f5f5f7 50%, #eceff4 100%);
+      background: radial-gradient(circle at top, #ffffff 0, #f5f5f7 50%, #e5edf7 100%);
       color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
+    }
+
+    .app-shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 18px 32px;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      z-index: 20;
+      background: rgba(245, 245, 247, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
     }
 
     .nav {
-      max-width: 1040px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 12px 20px;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
-      row-gap: 6px;
     }
 
     .logo {
-      font-weight: 700;
-      letter-spacing: 0.08em;
       font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
     }
@@ -66,34 +74,37 @@
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      font-size: 13px;
+      gap: 8px;
+      font-size: 12px;
     }
 
     .nav-links a {
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 999px;
-      transition: background 0.2s ease, color 0.2s ease;
+      background: #ffffff;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      color: var(--text-muted);
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.15s ease, transform 0.15s ease;
     }
 
     .nav-links a:hover {
       background: var(--accent-soft);
-      color: var(--accent);
+      color: var(--accent-deep);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+      transform: translateY(-1px);
     }
 
     .hero {
-      max-width: 1040px;
-      margin: 32px auto 0;
-      padding: 24px 20px 8px;
+      margin-top: 18px;
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: 18px;
       align-items: center;
     }
 
-    .hero-text h1 {
-      font-size: clamp(28px, 3vw, 34px);
-      margin-bottom: 10px;
+    .hero-left h1 {
+      font-size: clamp(26px, 3vw, 30px);
+      margin-bottom: 8px;
     }
 
     .hero-tag {
@@ -103,95 +114,93 @@
       padding: 4px 10px;
       border-radius: 999px;
       background: var(--accent-soft);
-      color: var(--accent);
+      color: var(--accent-deep);
       font-size: 12px;
       margin-bottom: 10px;
     }
 
     .hero-sub {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .hero-meta {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      font-size: 13px;
+      color: #4b5563;
+      margin-bottom: 14px;
     }
 
     .hero-meta strong {
-      color: var(--accent);
+      color: var(--accent-deep);
     }
 
-    .hero-btns {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    .btn-primary, .btn-ghost {
-      font-size: 14px;
-      padding: 8px 16px;
+    .btn-primary, .btn-secondary {
+      font-size: 13px;
+      padding: 8px 14px;
       border-radius: 999px;
       border: 1px solid transparent;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #ff9c7b);
       color: #ffffff;
-      box-shadow: 0 10px 25px rgba(255, 113, 91, 0.35);
+      box-shadow: 0 12px 30px rgba(255, 113, 91, 0.5);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(255, 113, 91, 0.45);
+      box-shadow: 0 16px 36px rgba(255, 113, 91, 0.65);
     }
 
-    .btn-ghost {
-      background: rgba(255, 255, 255, 0.8);
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.92);
       border-color: var(--border-soft);
       color: var(--text-main);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     }
 
-    .btn-ghost:hover {
+    .btn-secondary:hover {
       background: #ffffff;
       transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+      border-color: #d1d5db;
     }
 
-    .hero-card {
-      background: radial-gradient(circle at top left, #ffe6df 0, #ffece6 30%, #ffffff 100%);
+    .hero-right {
+      background: radial-gradient(circle at top left, #ffe6df 0, #ffece6 34%, #ffffff 100%);
       border-radius: 26px;
-      padding: 18px 18px 16px;
+      padding: 16px 16px 14px;
       box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(248, 250, 252, 0.95);
     }
 
-    .hero-card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
+    .hero-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 8px;
+      font-size: 12px;
     }
 
     .chip {
-      font-size: 11px;
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .hero-card-main {
-      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.98);
+      font-size: 11px;
     }
 
     .hero-city {
@@ -205,175 +214,162 @@
       color: var(--text-muted);
     }
 
-    .hero-highlight {
-      margin-top: 8px;
+    .hero-bullets {
+      margin-top: 10px;
       font-size: 12px;
-      color: #4b5563;
+      color: #374151;
+      display: grid;
+      gap: 4px;
     }
 
-    .hero-highlight strong {
-      color: var(--accent);
+    .hero-bullets span::before {
+      content: "• ";
+      color: var(--accent-deep);
     }
 
-    .hero-badges {
+    .hero-tags {
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 10px;
       font-size: 11px;
     }
 
-    .hero-badge {
-      padding: 3px 8px;
+    .hero-tag-pill {
+      padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.98);
     }
 
     main {
-      max-width: 1040px;
-      margin: 12px auto 40px;
-      padding: 0 20px 24px;
+      margin-top: 24px;
     }
 
-    section {
-      margin-top: 28px;
-    }
-
-    .section-header {
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 12px;
-      gap: 8px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
-    .section-header h2 {
-      font-size: 20px;
-    }
-
-    .section-header span {
-      font-size: 13px;
+    .section-title span {
+      font-size: 12px;
       color: var(--text-muted);
     }
 
-    .day-grid {
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .day-card {
+    .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
       padding: 14px 14px 12px;
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(229, 231, 235, 0.9);
     }
 
-    .day-label {
+    .card-header {
+      margin-bottom: 8px;
+    }
+
+    .card-label {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--accent);
+      color: var(--accent-deep);
       margin-bottom: 2px;
     }
 
-    .day-title {
-      font-size: 16px;
+    .card-title {
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 6px;
     }
 
-    .day-meta {
+    .card-sub {
       font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-top: 2px;
     }
 
-    .day-transport {
-      font-size: 12px;
-      color: #4b5563;
-      margin-bottom: 4px;
-    }
-
-    .plan-list {
-      list-style: none;
+    .card-body {
       font-size: 13px;
+      color: #374151;
+      margin-top: 6px;
+    }
+
+    .card-body p + p {
       margin-top: 4px;
     }
 
-    .plan-list li {
-      display: grid;
-      grid-template-columns: 78px minmax(0, 1fr);
+    .card-list {
+      margin-top: 6px;
+      padding-left: 16px;
+    }
+
+    .card-list li {
+      margin-bottom: 3px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
-      padding: 3px 0;
-      align-items: flex-start;
+      margin-top: 8px;
+      font-size: 11px;
     }
 
-    .plan-time {
-      color: var(--text-muted);
-      font-size: 12px;
+    .badge {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #4b5563;
     }
 
-    .plan-desc strong {
-      font-weight: 600;
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 11px;
+      margin-top: 6px;
     }
 
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-    }
-
-    .tip-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    .pill-link span {
       font-size: 13px;
     }
 
-    .tip-card h3 {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .tip-card ul {
-      margin-left: 16px;
-    }
-
-    .tip-card li {
-      margin-bottom: 4px;
-    }
-
-    .about {
-      background: var(--card-bg);
-      border-radius: 22px;
-      padding: 16px 16px 12px;
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
-      font-size: 13px;
-    }
-
-    .about h3 {
-      font-size: 15px;
-      margin-bottom: 6px;
+    .card-image {
+      width: 100%;
+      border-radius: 16px;
+      margin-top: 8px;
+      display: block;
+      object-fit: cover;
+      max-height: 260px;
     }
 
     .info-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 4px;
+      font-size: 12px;
+      margin-top: 6px;
     }
 
     .info-table th,
     .info-table td {
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      padding: 6px 8px;
+      border: 1px solid rgba(229, 231, 235, 0.98);
+      padding: 5px 6px;
       text-align: left;
     }
 
@@ -385,13 +381,72 @@
       background: #fafafa;
     }
 
-    footer {
-      max-width: 1040px;
-      margin: 0 auto 24px;
-      padding: 0 20px;
+    .timeline {
+      margin-top: 6px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 6px;
+      align-items: flex-start;
+      font-size: 12px;
+    }
+
+    .time {
+      color: var(--text-muted);
+    }
+
+    .activity strong {
+      font-weight: 600;
+    }
+
+    details {
+      margin-top: 6px;
+      border-radius: 12px;
+      background: #f9fafb;
+      padding: 6px 8px;
+      font-size: 12px;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    summary::marker,
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary span {
       font-size: 11px;
       color: var(--text-muted);
+      margin-left: 4px;
+      font-weight: 400;
+    }
+
+    details[open] summary {
+      color: var(--accent-deep);
+    }
+
+    details[open] {
+      background: #fef3f2;
+    }
+
+    details > div {
+      margin-top: 6px;
+    }
+
+    footer {
+      margin-top: 16px;
+      font-size: 11px;
       text-align: center;
+      color: var(--text-muted);
     }
 
     @media (max-width: 768px) {
@@ -399,699 +454,647 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero {
-        padding-top: 18px;
+      .hero-right {
+        order: -1;
       }
 
+      .app-shell {
+        padding-inline: 14px;
+      }
       .nav {
-        padding-inline: 16px;
-      }
-
-      main {
-        padding-inline: 16px;
+        padding-inline: 14px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 導覽列 -->
   <header>
     <nav class="nav">
-      <div class="logo">OSAKA TRIP GUIDE</div>
+      <div class="logo">AXE OSAKA BIRTHDAY TRIP</div>
       <div class="nav-links">
-        <a href="#itinerary">行程</a>
-        <a href="#stay">住宿</a>
-        <a href="#weather">天氣 & 穿搭</a>
-        <a href="#usj">USJ 攻略</a>
-        <a href="#tips">小提醒</a>
-        <a href="#flight">機票</a>
-        <a href="#about">關於</a>
+        <a href="#cards-itinerary">行程卡片</a>
+        <a href="#cards-stay">住宿 & 周邊</a>
+        <a href="#cards-umeda">梅田逛街</a>
+        <a href="#cards-usj">USJ</a>
+        <a href="#cards-tips">小提醒</a>
+        <a href="#cards-flight">機票</a>
       </div>
     </nav>
   </header>
 
-  <!-- 首屏區 -->
-  <section class="hero" id="home">
-    <div class="hero-text">
-      <div class="hero-tag">
-        <span>🎂</span><span>大阪 6 天 5 夜 · 王宏逸生日旅行</span>
-      </div>
-      <h1>大阪 6 天 5 夜 · 日本橋住宿 · 大阪周遊卡 + 環球影城</h1>
-      <p class="hero-sub">
-        住在日本橋，到難波、梅田、港區、環球影城都很方便。兩天玩滿大阪周遊卡、一整天留給環球影城，晚上再去逛街、看海、喝酒聊天。
-      </p>
-      <p class="hero-meta">
-        行程日期：<strong>2025/12/6（六）— 12/11（四）</strong><br />
-        這是一趟送給「台灣摔角顏值巔峰」王宏逸的生日之旅，希望宏逸可以在大阪，確切感受到小肥豬滿滿的愛。
-      </p>
-      <div class="hero-btns">
-        <a href="#itinerary" class="btn-primary">
-          直接看行程
-          <span>↓</span>
-        </a>
-        <a href="#stay" class="btn-ghost">
-          看住宿 & 機場交通
-        </a>
-      </div>
-    </div>
-
-    <aside class="hero-card">
-      <div class="hero-card-title">
-        <span>旅程摘要</span>
-        <span class="chip">大阪 · 日本橋據點</span>
-      </div>
-      <div class="hero-card-main">
-        <div class="hero-city">大阪 6 天 5 夜</div>
-        <div class="hero-dates">
-          基地：日本橋 / 難波一帶 · 主要活動：市區觀光 + 港區 + 環球影城 + 摔角主題巡禮
+  <div class="app-shell">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span>🎂</span><span>宏逸 29 歲生日 · 大阪 6 天 5 夜</span>
         </div>
-        <p class="hero-highlight">
-          <strong>亮點：</strong>兩天玩滿大阪周遊卡（大阪城、今昔館、空中庭園、通天閣、港區），再加一整天環球影城，外加摔角周邊店、摔角酒吧，以及大量可以耍帥拍照的景點。
+        <h1>宏逸的大阪生日旅行 · 日本橋基地 · 周遊卡 + 環球影城</h1>
+        <p class="hero-sub">
+          住在日本橋，到難波、梅田、港區、環球影城都很近。兩天玩滿大阪周遊卡、一整天給環球影城，再加上摔角主題巡禮，讓壽星一路被行程和小肥豬的愛包圍。
         </p>
-      </div>
-      <div class="hero-badges">
-        <span class="hero-badge">✔ 住宿在日本橋，走路就能到難波</span>
-        <span class="hero-badge">✔ 大阪周遊卡兩日券 · 交通＋景點 CP 值高</span>
-        <span class="hero-badge">✔ USJ 一日滿滿行程＋聖誕限定夜間秀</span>
-        <span class="hero-badge">✔ 每日交通費 & 已付款項目一目了然</span>
-      </div>
-    </aside>
-  </section>
-
-  <main>
-    <!-- 住宿資訊 -->
-    <section id="stay">
-      <div class="section-header">
-        <h2>住宿資訊 & 機場交通</h2>
-        <span>Grants Arita Nipponbashi · 已預約並付款完成</span>
+        <p class="hero-meta">
+          行程日期：<strong>2025/12/6（六）— 12/11（四）</strong><br />
+          定位：<strong>送給「台灣摔角顏值巔峰」王宏逸的一趟生日專屬旅行</strong>，從景點到逛街動線，都是幫你精選過的快樂路線。
+        </p>
+        <div class="hero-buttons">
+          <a class="btn-primary" href="#cards-itinerary">打開全部行程卡片 ⤵</a>
+          <a class="btn-secondary" href="#cards-stay">先看住宿 & 機場交通</a>
+        </div>
       </div>
 
-      <article class="about">
-        <h3>Grants Arita Nipponbashi · 單臥室公寓</h3>
-        <p>
-          <strong>地址：</strong><br />
-          大阪, 中央区日本橋2-18-17<br />
-          542-0073 大阪府大阪市中央区日本橋2丁目18-17
-        </p>
-        <p>
-          <strong>Google 地圖：</strong>
-          <a href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17" target="_blank" rel="noopener">
-            開啟住宿位置導航（地圖連結）
-          </a>
-        </p>
-        <p>
-          <strong>訂房狀態：</strong><br />
-          Booking 預約，<span style="color:#d90429;">已付款 ✔</span>
-        </p>
-        <p>
-          <strong>入住 / 退房時間：</strong><br />
-          入住：2025 年 12 月 6 日（六） 16:00～22:00<br />
-          退房：2025 年 12 月 11 日（四） 10:00 前
-        </p>
-        <p>
-          <strong>機場往返交通（南海電鐵）：</strong><br />
-          關西機場 → 南海難波站：約 35 分鐘（南海機場線，約 11 站）<br />
-          南海難波站 → 住宿：步行約 8 分鐘可抵達住宿地點。
-        </p>
-        <p style="font-size:12px;color:#666;">
-          如要放上實際飯店照片，可以在這裡加上：<br />
-          <code>&lt;img src="你的飯店圖片網址" alt="Grants Arita Nipponbashi 外觀" style="max-width:100%;border-radius:16px;margin-top:8px;" /&gt;</code>
-        </p>
-      </article>
+      <aside class="hero-right">
+        <div class="hero-card-header">
+          <span>旅程摘要</span>
+          <span class="chip">Base：日本橋・難波生活圈</span>
+        </div>
+        <div>
+          <div class="hero-city">大阪 6 天 5 夜</div>
+          <div class="hero-dates">Day 1 抵達 · Day 2–3 大阪周遊卡 · Day 4 USJ · Day 5 港區 · Day 6 回家</div>
+          <div class="hero-bullets">
+            <span>日本橋住宿，走路就能到難波、黑門市場、電器街。</span>
+            <span>兩日大阪周遊卡把大阪城、空中庭園、通天閣、港區一次玩完。</span>
+            <span>環球影城排一整天，聖誕夜間秀 & 瑪利歐世界一次滿足。</span>
+          </div>
+          <div class="hero-tags">
+            <div class="hero-tag-pill">#BirthdayTrip</div>
+            <div class="hero-tag-pill">#OnitsukaTiger</div>
+            <div class="hero-tag-pill">#ProWrestlingRoute</div>
+            <div class="hero-tag-pill">#USJ</div>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <!-- 天氣 & 穿搭 -->
-    <section id="weather">
-      <div class="section-header">
-        <h2>大阪 12/6～12/11 天氣預報 & 穿搭攻略</h2>
-        <span>大約 3～14°C，早晚偏冷，適合洋蔥式穿搭</span>
-      </div>
+    <!-- 行程卡片 -->
+    <main>
+      <section id="cards-itinerary">
+        <div class="section-title">
+          <h2>📅 行程卡片 · 6 天快速總覽</h2>
+          <span>點開「展開詳細」可以看到從出門到回家的完整動線</span>
+        </div>
 
-      <article class="about">
-        <h3>🌤️ 大阪 12/6～12/11 天氣預報（推測）</h3>
-        <table class="info-table">
-          <thead>
-            <tr>
-              <th>日期</th>
-              <th>星期</th>
-              <th>最高溫</th>
-              <th>最低溫</th>
-              <th>天氣推測</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>12/6（六）</td>
-              <td>六</td>
-              <td>14°C</td>
-              <td>7°C</td>
-              <td>多雲偶晴，早晚涼</td>
-            </tr>
-            <tr>
-              <td>12/7（日）</td>
-              <td>日</td>
-              <td>11°C</td>
-              <td>4°C</td>
-              <td>陰天或小雨可能，偏冷</td>
-            </tr>
-            <tr>
-              <td>12/8（一）</td>
-              <td>一</td>
-              <td>11°C</td>
-              <td>3°C</td>
-              <td>陰天或小雨可能，偏冷</td>
-            </tr>
-            <tr>
-              <td>12/9（二）</td>
-              <td>二</td>
-              <td>11°C</td>
-              <td>4°C</td>
-              <td>陰天或小雨可能，偏冷</td>
-            </tr>
-            <tr>
-              <td>12/10（三）</td>
-              <td>三</td>
-              <td>11°C</td>
-              <td>4°C</td>
-              <td>陰天或小雨可能，偏冷</td>
-            </tr>
-            <tr>
-              <td>12/11（四）</td>
-              <td>四</td>
-              <td>12°C</td>
-              <td>6°C</td>
-              <td>多雲，稍回暖</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card-grid">
+          <!-- Day 1 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 1 · 12/6（六）</div>
+              <div class="card-title">抵達大阪 · 日本橋基地報到</div>
+              <div class="card-sub">桃園 → 關西機場 → 南海電鐵 → 難波 → 日本橋住宿</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">18:10–21:40</div>
+                  <div class="activity"><strong>桃園 → 關西機場</strong>（GK54）抵達後先補水、上洗手間。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">~22:00</div>
+                  <div class="activity"><strong>南海電鐵 Airport Express</strong>：關西空港 → 南海難波，約 45 分鐘。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">22:45–23:00</div>
+                  <div class="activity"><strong>難波 → 住宿</strong>：可步行 12–15 分鐘，或搭一小段地鐵到日本橋站再走。</div>
+                </div>
+              </div>
 
-        <br />
+              <details>
+                <summary>展開詳細 <span>（含票價與步行時間）</span></summary>
+                <div>
+                  <p>・關西空港 → 南海難波：搭南海電鐵 Airport Express，約 45 分鐘，車資約 970 円／人。</p>
+                  <p>・南海難波 → 住宿：</p>
+                  <ul class="card-list">
+                    <li><strong>方案 A：</strong>步行沿千日前通往日本橋方向，邊走邊熟悉難波街道。</li>
+                    <li><strong>方案 B：</strong>南海難波 → 地下接御堂筋/千日前線 → 日本橋站，出 8 號出口步行約 5–7 分鐘。</li>
+                  </ul>
+                  <p>Check in 後可以到樓下全家掃飲料、宵夜，順便當作「日本橋第一次巡邏」。</p>
+                </div>
+              </details>
+            </div>
+          </article>
 
-        <h3>👕 男女穿衣建議（洋蔥式穿搭）</h3>
-        <p>
-          <strong>👦 男生建議：</strong><br />
-          上身：發熱衣 + 長袖上衣 + 輕量羽絨服或保暖外套<br />
-          下身：長褲（牛仔褲或休閒褲）<br />
-          配件：圍巾、帽子（特別是去展望台或摩天輪時）<br />
-          鞋類：好走的運動鞋或靴子
-        </p>
-        <br />
-        <p>
-          <strong>👩 女生建議：</strong><br />
-          上身：發熱衣 + 毛衣或針織衫 + 防風外套或大衣<br />
-          下身：長褲或厚材質裙裝 + 保暖褲襪（如果穿裙子）<br />
-          配件：圍巾、毛帽、手套（怕冷的話可以帶）<br />
-          鞋類：舒適的靴子或運動鞋
-        </p>
-        <br />
-        <p>
-          <strong>✅ 特別提醒：</strong><br />
-          ・環球影城日（12/9）溫度偏低，建議穿：發熱衣 + 帽 T + 外套，方便在室內脫掉。<br />
-          ・海遊館、摩天輪位於港區，海邊風大，建議戴圍巾或防風外套。<br />
-          ・早晚溫差大，洋蔥式穿搭最適合，進入室內可脫外套。
-        </p>
-      </article>
-    </section>
+          <!-- Day 2 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 2 · 12/7（日）</div>
+              <div class="card-title">大阪周遊卡 Day 1 · 大阪城 + 今昔館 + 梅田逛街</div>
+              <div class="card-sub">經典市區景點 + 壽星梅田購物路線 + 道頓堀夜景</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">09:00–10:30</div>
+                  <div class="activity">
+                    <strong>大阪城天守閣</strong>：日本橋 →（千日前線）→ 谷町九丁目 →（谷町線）→ 谷町四丁目 → 步行進大阪城公園。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">11:00–12:00</div>
+                  <div class="activity">
+                    <strong>大阪生活今昔館</strong>：谷町線北上至天神橋筋六丁目，出站直結大樓。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">12:30–13:30</div>
+                  <div class="activity">
+                    <strong>天神橋筋商店街午餐</strong>：在地商店街自由覓食。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">14:00–15:00</div>
+                  <div class="activity">
+                    <strong>梅田空中庭園展望台</strong>：天神橋筋六丁目 → 東梅田 → 步行至空中庭園，周遊卡免費入場。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">15:00–18:00</div>
+                  <div class="activity">
+                    <strong>壽星專屬梅田逛街攻略</strong>：Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 & Zoff。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">晚上</div>
+                  <div class="activity">
+                    <strong>御堂筋線 梅田 → 難波</strong>，再走去道頓堀／心齋橋夜遊 + 晚餐，最後走回住宿。
+                  </div>
+                </div>
+              </div>
 
-    <!-- 行程區 -->
-    <section id="itinerary">
-      <div class="section-header">
-        <h2>行程總覽 Itinerary</h2>
-        <span>依照日期排好，每天抓大方向就好，現場可以彈性調整</span>
-      </div>
+              <details>
+                <summary>展開詳細 <span>（每一段怎麼搭）</span></summary>
+                <div>
+                  <p>・日本橋 → 大阪城：</p>
+                  <ul class="card-list">
+                    <li>日本橋（千日前線，往南巽）→ 谷町九丁目（1 站）。</li>
+                    <li>谷町九丁目 轉谷町線（往大日）→ 谷町四丁目（2 站）。</li>
+                    <li>從 1-B 或 9 號出口出站，步行約 15 分鐘抵達天守閣區域。</li>
+                  </ul>
+                  <p>・谷町四丁目 → 天神橋筋六丁目（今昔館）：</p>
+                  <ul class="card-list">
+                    <li>谷町線（往大日方向）一路北上到天神橋筋六丁目（約 5 站）。</li>
+                  </ul>
+                  <p>・天神橋筋六丁目 → 梅田空中庭園：</p>
+                  <ul class="card-list">
+                    <li>天神橋筋六丁目（谷町線往八尾南）→ 東梅田（2 站），出站後走地下街到大阪站方向。</li>
+                    <li>再依指標走到空中庭園所在的梅田藍天大廈。</li>
+                  </ul>
+                  <p>・梅田逛街 → 難波：</p>
+                  <ul class="card-list">
+                    <li>任何一個梅田站入口 → 御堂筋線（往中百舌鳥 / 天王寺方向）→ 難波（約 8 分鐘）。</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
 
-      <div class="day-grid">
-        <!-- Day 1 -->
-        <article class="day-card">
-          <div class="day-label">Day 1 · 12/6（六）</div>
-          <div class="day-title">抵達大阪 · 入住日本橋飯店</div>
-          <div class="day-meta">主題：順利抵達、熟悉周邊環境，保留體力給後面幾天</div>
-          <p class="day-transport">
-            ✈ 桃園 → 關西機場（飛機）→ 南海電鐵至難波，再步行約 8 分鐘至住宿，交通時間約 1 小時多一點。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">18:10–21:40</span>
-              <div class="plan-desc">
-                <strong>桃園 → 關西機場</strong>：抵達關西空港。依照班機時間出關，建議可以先到便利商店補水、買一點宵夜。
+          <!-- Day 3 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 3 · 12/8（一）</div>
+              <div class="card-title">大阪周遊卡 Day 2 · 通天閣 + 摔角周邊 + HARUKAS</div>
+              <div class="card-sub">新世界散步·摔角用品店·阿倍野展望台·難波夜逛</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">10:00–12:00</div>
+                  <div class="activity"><strong>通天閣</strong>：日本橋（堺筋線，往天下茶屋）→ 惠美須町（1 站）→ 步行 5 分鐘。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">11:30–12:00</div>
+                  <div class="activity"><strong>プロレスグッズ ウラカン・ラナ</strong>：從通天閣散步到日本橋 5 丁目，挖寶摔角周邊。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">12:00–14:00</div>
+                  <div class="activity"><strong>燒肉／壽喜燒午餐</strong>：新世界或難波一帶找店。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">15:00–16:00</div>
+                  <div class="activity"><strong>阿倍野 HARUKAS</strong>：惠美須町 / 動物園前 → 天王寺／阿倍野，逛百貨 + 看高樓景色。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">晚上</div>
+                  <div class="activity"><strong>難波 + ISAMI</strong>：天王寺 → 御堂筋線 → 難波，去 ISAMI 難波店看角力鞋和格鬥用品，之後逛街吃晚餐，再走回住宿。</div>
+                </div>
               </div>
-            </li>
-            <li>
-              <span class="plan-time">22:00 之後</span>
-              <div class="plan-desc">
-                <strong>前往飯店</strong>：搭乘南海電鐵至南海難波站，再步行約 8 分鐘抵達日本橋一帶。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">約 23:00</span>
-              <div class="plan-desc">
-                <strong>Grants Arita Nipponbashi Check-in</strong>：單臥室公寓，放好行李、簡單洗澡休息。
-              </div>
-            </li>
-          </ul>
-        </article>
 
-        <!-- Day 2 -->
-        <article class="day-card">
-          <div class="day-label">Day 2 · 12/7（日）</div>
-          <div class="day-title">大阪周遊卡 Day 1：大阪城 · 今昔館 · 梅田空中庭園</div>
-          <div class="day-meta">主題：經典市區觀光＋梅田黃昏夜景＋道頓堀夜遊</div>
-          <p class="day-transport">
-            🚇 主要移動：日本橋 ⇄ 大阪城 ⇄ 天神橋筋六丁目 ⇄ 梅田 ⇄ 難波，全程以大阪地下鐵（含大阪周遊卡可搭路線）為主，單日搭車時間加起來約 60～80 分鐘。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">09:00–10:30</span>
-              <div class="plan-desc">
-                <strong>大阪城天守閣</strong>：使用大阪周遊卡入場，順便拍服部平次風格照片，感受大阪代表性古城。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">11:00–12:00</span>
-              <div class="plan-desc">
-                <strong>大阪生活今昔館</strong>：用大阪周遊卡入場，走進還原舊時大阪街道的場景，很適合拍照。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">12:30–13:30</span>
-              <div class="plan-desc">
-                <strong>天神橋筋商店街午餐</strong>：邊逛邊找喜歡的小店用餐，感受在地商店街氛圍。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">14:00–15:00</span>
-              <div class="plan-desc">
-                <strong>梅田空中庭園展望台</strong>：大阪周遊卡免費入場，限 15:00 前，適合俯瞰整個城市的景色。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">15:00–18:00</span>
-              <div class="plan-desc">
-                <strong>梅田逛街</strong>：在梅田各大百貨、商場自由血拚、喝咖啡休息。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">18:00–18:30</span>
-              <div class="plan-desc">
-                <strong>御堂筋線 梅田 → 難波</strong>：搭地下鐵回到難波一帶。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">21:00 之後</span>
-              <div class="plan-desc">
-                <strong>道頓堀／心齋橋夜遊 + 晚餐</strong>：逛固力果跑跑人、唐吉訶德、藥妝店，順便找一間喜歡的店吃晚餐。
-              </div>
-            </li>
-          </ul>
-        </article>
+              <details>
+                <summary>展開詳細 <span>（路線與回程）</span></summary>
+                <div>
+                  <p>這一天大部分路線由大阪周遊卡支援：</p>
+                  <ul class="card-list">
+                    <li>日本橋 → 惠美須町：堺筋線 1 站。</li>
+                    <li>新世界 → 阿倍野 / 天王寺：可步行 15–20 分鐘，或從動物園前搭御堂筋線 1 站到天王寺。</li>
+                    <li>天王寺 → 難波：御堂筋線往千里中央方向，南行 3 站即達。</li>
+                  </ul>
+                  <p>晚上從難波逛回日本橋，就當作散步消化。</p>
+                </div>
+              </details>
+            </div>
+          </article>
 
-        <!-- Day 3 -->
-        <article class="day-card">
-          <div class="day-label">Day 3 · 12/8（一）</div>
-          <div class="day-title">大阪周遊卡 Day 2：通天閣 · 摔角周邊 · 阿倍野 HARUKAS</div>
-          <div class="day-meta">主題：新世界區散步＋通天閣＋摔角聖地巡禮</div>
-          <p class="day-transport">
-            🚇 主要移動：日本橋 → 通天閣 / 新世界 → 阿倍野 → 難波，地下鐵與步行為主，單日搭車時間約 40～60 分鐘，周遊卡可支援大部分路線。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">10:00–12:00</span>
-              <div class="plan-desc">
-                <strong>通天閣</strong>：使用大阪周遊卡，包含展望台、溜滑梯、Dive & Walk 等設施，從高處看新世界一帶。
+          <!-- Day 4 -->
+          <article class="card" id="cards-usj">
+            <div class="card-header">
+              <div class="card-label">Day 4 · 12/9（二）</div>
+              <div class="card-title">環球影城 USJ 一日遊</div>
+              <div class="card-sub">瑪利歐世界 + 刺激設施 + 聖誕夜間秀 · 全日樂園模式</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">07:00</div>
+                  <div class="activity"><strong>出發去 USJ</strong>：從住宿走到近鐵日本橋站。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">~08:00</div>
+                  <div class="activity"><strong>抵達環球城站</strong>：近鐵奈良線 → 阪神難波線直通 → 西九条 → JR 夢咲線 → Universal City。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">08:00–20:00</div>
+                  <div class="activity"><strong>USJ 一日遊</strong>：瑪利歐世界、好萊塢美夢、咚奇剛礦車、大白鯊、水世界、侏羅紀系列，視現場安排。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">晚上</div>
+                  <div class="activity"><strong>霍格華茲冬季燈光秀</strong>：留一段時間在城堡前看夜間表演，再撤退。</div>
+                </div>
               </div>
-            </li>
-            <li>
-              <span class="plan-time">11:30–12:00</span>
-              <div class="plan-desc">
-                <strong>プロレスグッズ ウラカン・ラナ</strong>：酷酷的摔角用品店，可以挖掘摔角周邊、小物。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">12:00–14:00</span>
-              <div class="plan-desc">
-                <strong>午餐：燒肉或壽喜燒</strong>：例如 和牛すき焼き おくを、朝からすき焼き らいと、大衆すき焼き北斗 等店，依現場心情選。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">15:00–16:00</span>
-              <div class="plan-desc">
-                <strong>阿倍野 HARUKAS</strong>：高樓景觀、大型百貨綜合體，可看風景、逛街、喝下午茶。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">晚上</span>
-              <div class="plan-desc">
-                <strong>難波夜逛</strong>：包含 Isami 難波店（角力鞋 / 格鬥用品）等，延續摔角主題路線。
-              </div>
-            </li>
-          </ul>
-        </article>
 
-        <!-- Day 4 -->
-        <article class="day-card">
-          <div class="day-label">Day 4 · 12/9（二）</div>
-          <div class="day-title">環球影城一日遊 USJ</div>
-          <div class="day-meta">主題：整天給環球影城，玩設施、逛園區、買周邊</div>
-          <p class="day-transport">
-            🚇 日本橋 → 近鐵日本橋站 → 尼崎（阪神）→ 西九條 → JR 夢咲線 → 環球城站，全程約 35 分鐘左右，不用中途換車，只需在西九條站轉到 JR 線。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">07:00</span>
-              <div class="plan-desc">
-                <strong>出發前往環球影城</strong>：步行約 700 公尺（約 11 分鐘）到近鐵日本橋站，搭近鐵奈良線往大阪難波方向，列車行經尼崎後會自動變成阪神難波線（不用換車），在西九條站下車，轉乘 JR 夢咲線到「環球城」站。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">08:00–20:00</span>
-              <div class="plan-desc">
-                <strong>環球影城一日遊</strong>：當天預計 8:00 開園、20:00 關園。可以先衝瑪利歐世界，或用 APP 抽整理券，再依照喜好安排以下設施：
-                <br />・<strong>AXE 推薦：</strong>好萊塢美夢、咚奇剛礦車、瑪利歐賽車
-                <br />・<strong>Sydney 推薦：</strong>大白鯊、水世界、侏羅紀公園
-                <br />刺激設施可以考慮走「單人通道（Single Rider）」，通常比一般排隊快很多；也可以視現場人潮調整。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">晚上</span>
-              <div class="plan-desc">
-                <strong>聖誕燈光秀《霍格華茲魔法之夜～冬季魔法》</strong>：晚上園區會有季節限定燈光表演，記得留一點體力，在城堡前一起感受聖誕氣氛。
-              </div>
-            </li>
-          </ul>
-        </article>
+              <details>
+                <summary>展開詳細 <span>（交通 + 玩樂小提示）</span></summary>
+                <div>
+                  <p><strong>交通路線：</strong></p>
+                  <ul class="card-list">
+                    <li>步行約 11 分鐘 → 近鐵日本橋站。</li>
+                    <li>近鐵日本橋 → （近鐵奈良線，往神戶 / 尼崎方向）→ 列車在尼崎後自動變成阪神難波線，<strong>不用下車</strong>。</li>
+                    <li>在西九条站下車 → 改搭 JR 夢咲線往桜島方向 → 在 Universal City 下車 → 步行 5 分鐘即達園區。</li>
+                  </ul>
+                  <p><strong>玩樂順序建議：</strong></p>
+                  <ul class="card-list">
+                    <li>入園後先衝瑪利歐世界，或用 APP 抽取整理券。</li>
+                    <li>AXE 派：好萊塢美夢、咚奇剛礦車、瑪利歐賽車優先排。</li>
+                    <li>Sydney 派：大白鯊、水世界表演、侏羅紀公園／飛天翼龍。</li>
+                    <li>可以視情況使用 Single Rider 單人通道，節省排隊時間。</li>
+                  </ul>
+                  <p><strong>園區地圖：</strong></p>
+                  <a class="pill-link" href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj" target="_blank" rel="noopener">
+                    <span>🗺️</span><span>開啟 USJ 官方互動地圖</span>
+                  </a>
+                  <p style="margin-top:6px;">
+                    小物建議：100 円硬幣（置物櫃）、輕便雨衣、小包包、充電寶。溫度偏低，穿發熱衣 + 帽 T + 外套，方便進室內時分層脫掉。
+                  </p>
+                </div>
+              </details>
+            </div>
+          </article>
 
-        <!-- Day 5 -->
-        <article class="day-card">
-          <div class="day-label">Day 5 · 12/10（三）</div>
-          <div class="day-title">港區一日：海遊館 · 天保山公園 · 摩天輪 · 摔角主題酒吧</div>
-          <div class="day-meta">主題：大阪港海風＋夜晚小酌</div>
-          <p class="day-transport">
-            🚇 日本橋 → 大阪港站（大阪 Metro 中央線），單趟約 20～30 分鐘；晚上再從大阪港返回難波 / 日本橋。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">09:00–10:00</span>
-              <div class="plan-desc">
-                <strong>日本橋 → 大阪港</strong>：搭地鐵前往大阪港站。
+          <!-- Day 5 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 5 · 12/10（三）</div>
+              <div class="card-title">港區海風 · 海遊館 + 天保山摩天輪 + Count 2.99</div>
+              <div class="card-sub">白天看鯨鯊 + 港邊散步，晚上摔角主題酒吧收尾</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">09:00–10:00</div>
+                  <div class="activity"><strong>日本橋 → 大阪港</strong>：日本橋（千日前線）→ 阿波座 → 轉中央線 → 大阪港站。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">10:00–12:00</div>
+                  <div class="activity"><strong>海遊館</strong>：大阪港站 1 號出口步行約 5 分鐘，看鯨鯊等海洋動物。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">12:00–13:00</div>
+                  <div class="activity"><strong>天保山商場午餐</strong>：海遊館旁商場覓食。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">13:00–15:00</div>
+                  <div class="activity"><strong>港區散步 + 天保山公園</strong>：慢慢走、拍照、看海。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">15:00–16:00</div>
+                  <div class="activity"><strong>天保山摩天輪</strong>：看整個港區與大阪灣景色。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">17:00–17:40</div>
+                  <div class="activity"><strong>回到難波 / 日本橋</strong>：反向搭中央線 + 御堂筋線。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">晚上</div>
+                  <div class="activity"><strong>Count 2.99 Bar</strong>：從住宿步行至摔角主題酒吧，小酌聊聊天再走回家。</div>
+                </div>
               </div>
-            </li>
-            <li>
-              <span class="plan-time">10:00–12:00</span>
-              <div class="plan-desc">
-                <strong>海遊館</strong>：人氣水族館，近距離看鯨鯊等海洋生物，也很好拍照。
-                <br />官方網站：
-                <a href="https://www.kaiyukan.com/" target="_blank" rel="noopener">
-                  https://www.kaiyukan.com/
+
+              <details>
+                <summary>展開詳細 <span>（海遊館資訊 & 酒吧位置）</span></summary>
+                <div>
+                  <p><strong>海遊館官方網站：</strong></p>
+                  <a class="pill-link" href="https://www.kaiyukan.com/" target="_blank" rel="noopener">
+                    <span>🌊</span><span>海遊館 KAIYUKAN 官方網站</span>
+                  </a>
+                  <p style="margin-top:6px;">・地址：大阪市港区海岸通 1-1-10，從大阪港站 1 號出口步行約 5 分鐘。</p>
+                  <p><strong>Count 2.99 Bar：</strong></p>
+                  <p>・位在千日前一帶，從日本橋站或難波站走路都會到。</p>
+                  <p>安排建議：先回住宿放戰利品與外套 → 再走去酒吧喝一點，最後步行回家，安全不趕場。</p>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Day 6 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 6 · 12/11（四）</div>
+              <div class="card-title">退房 · 回到桃園 · 旅程收尾</div>
+              <div class="card-sub">預留足夠時間移動，不趕、不慌、不遺漏東西</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">10:00 前</div>
+                  <div class="activity"><strong>退房</strong>：確認護照、手機、錢包、票券與戰利品全部收好。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">~13:00</div>
+                  <div class="activity"><strong>日本橋 → 南海難波 → 關西空港</strong>：可走路到難波，也可搭地鐵一小段，再轉南海電鐵。</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">14:50–17:10</div>
+                  <div class="activity"><strong>關西空港 → 桃園</strong>：GK55，正式結束這趟生日旅行。</div>
+                </div>
+              </div>
+
+              <details>
+                <summary>展開詳細 <span>（建議時間 & 機場節奏）</span></summary>
+                <div>
+                  <p>建議至少提早 3 小時抵達關西機場，預留退稅、排隊、最後買伴手禮與安檢時間。</p>
+                  <p>行程可以安排：退房 → 難波附近吃最後一餐 → 搭南海電鐵到機場 → 通關 → 在機場找位子坐著回顧這幾天的戰利品與照片。</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 住宿 & 周邊 -->
+      <section id="cards-stay">
+        <div class="section-title">
+          <h2>🏠 住宿 & 生活圈卡片</h2>
+          <span>日本橋據點 · 樓下有全家 · 10 分鐘到黑門市場</span>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Stay</div>
+              <div class="card-title">Grants Arita Nipponbashi · 單臥室公寓</div>
+              <div class="card-sub">地址：大阪市中央区日本橋 2-18-17 · Booking 已付款</div>
+            </div>
+            <div class="card-body">
+              <p><strong>入住：</strong>2025/12/6（六）16:00–22:00</p>
+              <p><strong>退房：</strong>2025/12/11（四）10:00 前</p>
+              <p><strong>Google 地圖：</strong>
+                <a class="pill-link" href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17" target="_blank" rel="noopener">
+                  <span>📍</span><span>開啟住宿位置導航</span>
                 </a>
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">12:00–13:00</span>
-              <div class="plan-desc">
-                <strong>天保山商場午餐</strong>：在館旁邊商場覓食，很多餐廳可以選擇。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">13:00–15:00</span>
-              <div class="plan-desc">
-                <strong>港區散步 + 天保山公園</strong>：沿著港邊散步，看看海景、拍拍照，放鬆步調。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">15:00–16:00</span>
-              <div class="plan-desc">
-                <strong>天保山摩天輪</strong>：搭摩天輪看整個大阪港一帶風景（若有搭配票券可善用）。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">17:00–17:40</span>
-              <div class="plan-desc">
-                <strong>移動回難波</strong>：從大阪港返回日本橋 / 難波。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">晚上</span>
-              <div class="plan-desc">
-                <strong>Count 2.99 Bar</strong>：摔角主題酒吧，延續整趟旅程的摔角主題，用小酒替這趟旅程收個尾。
-              </div>
-            </li>
-          </ul>
-        </article>
+              </p>
+              <p>機場來回路線：關西空港 ⇄ 南海難波（南海電鐵，約 35–45 分鐘）＋ 難波步行 12–15 分鐘抵達日本橋住宿。</p>
 
-        <!-- Day 6 -->
-        <article class="day-card">
-          <div class="day-label">Day 6 · 12/11（四）</div>
-          <div class="day-title">退房 · 回程 · 跟大阪說掰掰</div>
-          <div class="day-meta">主題：預留充足時間前往機場，不趕不慌</div>
-          <p class="day-transport">
-            ✈ 日本橋 → 南海難波站（步行）→ 南海電鐵至關西機場，搭車時間約 35 分鐘，建議預留多一點緩衝。
-          </p>
-          <ul class="plan-list">
-            <li>
-              <span class="plan-time">10:00 前</span>
-              <div class="plan-desc">
-                <strong>退房</strong>：確認行李、護照、票券、伴手禮都有帶好，辦理退房。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">～13:00</span>
-              <div class="plan-desc">
-                <strong>前往關西機場</strong>：從住宿走到南海難波站，搭南海電鐵至關西空港，抵達後辦理登機。
-              </div>
-            </li>
-            <li>
-              <span class="plan-time">14:50–17:10</span>
-              <div class="plan-desc">
-                <strong>關西機場 → 桃園</strong>：從關西機場第 1 航廈搭機返台，結束這趟大阪 6 天 5 夜小旅行。
-              </div>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
+              <!-- 飯店外觀圖片：請把你的外觀照片存在 images/hotel-exterior.jpg -->
+              <img src="images/hotel-exterior.jpg" alt="Grants Arita Nipponbashi 外觀" class="card-image" />
+            </div>
+          </article>
 
-    <!-- USJ 攻略 -->
-    <section id="usj">
-      <div class="section-header">
-        <h2>環球影城 USJ 攻略</h2>
-        <span>交通路線 + 玩樂優先順序 + 必備小物</span>
-      </div>
-
-      <div class="tips-grid">
-        <article class="tip-card">
-          <h3>從住宿前往 USJ 的交通</h3>
-          <ul>
-            <li>步行約 700 公尺（約 11 分鐘）到「近鐵日本橋站」。</li>
-            <li>搭乘近鐵奈良線往「大阪難波」方向。</li>
-            <li>列車開到「尼崎（阪神）」之後會自動變成阪神難波線，<strong>不用下車、也不用換車</strong>。</li>
-            <li>在「西九條」站下車，轉乘 JR 夢咲線。</li>
-            <li>搭到「環球城」站，下車後跟著人潮走進 USJ。</li>
-            <li>全程約 35 分鐘左右，交通非常直覺。</li>
-          </ul>
-        </article>
-
-        <article class="tip-card">
-          <h3>玩樂順序建議 & 設施偏好</h3>
-          <ul>
-            <li>預計營業時間：<strong>8:00 開園，20:00 關園</strong>。</li>
-            <li>開園前就到，可以選擇：
-              <ul>
-                <li>① 一開園就直衝「瑪利歐世界」，不用抽整理券。</li>
-                <li>② 用 APP 抽「瑪利歐世界」整理券，再依時間進場。</li>
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Neighborhood</div>
+              <div class="card-title">住宿周邊生活機能</div>
+              <div class="card-sub">便利商店・超市・車站位置整理</div>
+            </div>
+            <div class="card-body">
+              <p><strong>最近的車站：</strong>日本橋站（Osaka Metro 堺筋線 / 千日前線、近鐵日本橋站共構），步行約 5–7 分鐘。</p>
+              <p><strong>建議出口：</strong>靠近 8 號出口一帶，往住宿方向走最順。</p>
+              <p><strong>便利商店：</strong></p>
+              <ul class="card-list">
+                <li>全家 FamilyMart 日本橋二丁目店：幾乎就是「樓下全家」，買早餐、宵夜、飲料都靠它。</li>
+                <li>往日本橋站方向走，路上還會經過 7-11、Lawson 等。</li>
               </ul>
-            </li>
-            <li><strong>AXE 派：</strong>好萊塢美夢、咚奇剛礦車、瑪利歐賽車，一定要排上去。</li>
-            <li><strong>Sydney 派：</strong>大白鯊、水世界表演、侏羅紀公園系列，可以慢慢排。</li>
-            <li>刺激設施可以考慮走「單人通道（Single Rider）」，通常比一般排隊快很多。</li>
-            <li>當天記得依現場人潮調整，也要留時間逛商店、補充熱食和熱飲。</li>
-          </ul>
-        </article>
-
-        <article class="tip-card">
-          <h3>聖誕限定 & 必備小物</h3>
-          <ul>
-            <li>冬季有《霍格華茲魔法之夜～冬季魔法》燈光秀，晚上可以往哈利波特城堡附近移動卡位。</li>
-            <li>可以準備：
-              <ul>
-                <li>＞ 100 日圓硬幣（置物櫃可能會用到）。</li>
-                <li>＞ 輕便小包包（只帶當天需要的東西）。</li>
-                <li>＞ 輕便雨衣（遇到雨或水上設施時很好用）。</li>
+              <p><strong>超市 & 市場：</strong></p>
+              <ul class="card-list">
+                <li>黑門市場：步行約 8–10 分鐘，水果、熟食、壽司、飲料都能一次解決。</li>
+                <li>スーパー玉出（日本橋店）：步行約 6–8 分鐘，是關西名物平價超市，買零食和飲料很划算。</li>
               </ul>
-            </li>
-            <li>因為溫度偏低，建議穿發熱衣＋帽 T＋外套，方便進室內時分層脫掉。</li>
-          </ul>
+            </div>
+          </article>
+
+          <article class="card" id="cards-umeda">
+            <div class="card-header">
+              <div class="card-label">Map</div>
+              <div class="card-title">梅田逛街地圖</div>
+              <div class="card-sub">幫壽星規劃好的梅田購物主戰場</div>
+            </div>
+            <div class="card-body">
+              <p>這張地圖幫你把 Grand Front、LUCUA、阪急／阪神百貨、HEP FIVE 等位置全部標出來，實際逛街時可以對照著走。</p>
+              <!-- 梅田逛街地圖：請把圖片存成 images/umeda-shopping-map.jpg -->
+              <img src="images/umeda-shopping-map.jpg" alt="梅田逛街地圖" class="card-image" />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 梅田逛街專屬攻略 -->
+      <section>
+        <div class="section-title">
+          <h2>🛍️ 梅田逛街攻略 · 宏逸生日版</h2>
+          <span>鎖定男裝・鞋子・眼鏡・潮牌的逛街路線</span>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Route</div>
+              <div class="card-title">壽星專屬梅田動線</div>
+              <div class="card-sub">從空中庭園一路逛回 JR 大阪站周邊</div>
+            </div>
+            <div class="card-body">
+              <ol class="card-list" style="margin-left:18px;">
+                <li><strong>空中庭園 → Grand Front Osaka</strong><br />看完展望台後往大阪站北側走，先進 Grand Front 逛男裝、選物與咖啡店。</li>
+                <li><strong>Grand Front → LUCUA / LUCUA 1100</strong><br />接著往車站方向移動，LUCUA 偏女裝，<strong>LUCUA 1100</strong> 男生好逛很多。</li>
+                <li><strong>JR 大阪站 → 阪急梅田本店</strong><br />穿過車站往阪急方向，進百貨找 <strong>Onitsuka Tiger 專櫃</strong>，挑生日鞋。</li>
+                <li><strong>阪急 → 大丸梅田店</strong><br />再移動到大丸梅田，逛高級品牌與 <strong>Zoff</strong> 眼鏡店，找適合的鏡框或太陽眼鏡。</li>
+                <li><strong>收尾：唐吉訶德 梅田本店 or 阪神梅田本店</strong><br />最後去唐吉訶德買零食＆怪東西，或到阪神百貨地下街掃伴手禮。</li>
+              </ol>
+              <div class="badge-row">
+                <span class="badge">Grand Front Osaka</span>
+                <span class="badge">LUCUA / LUCUA 1100</span>
+                <span class="badge">Onitsuka Tiger（阪急）</span>
+                <span class="badge">Zoff 大丸梅田店</span>
+                <span class="badge">唐吉訶德 梅田本店</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Zones</div>
+              <div class="card-title">梅田各區定位小抄</div>
+              <div class="card-sub">逛累的時候看一下，決定下一站要去哪裡</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li><strong>Grand Front Osaka：</strong>新穎、設計感強，男裝品牌多，約會氣氛佳。</li>
+                <li><strong>LUCUA / LUCUA 1100：</strong>大型複合商場，女裝多、1100 男裝多，還有生活雜貨。</li>
+                <li><strong>KITTE 大阪：</strong>新開不久、裝潢好拍，適合中途喝咖啡休息。</li>
+                <li><strong>大丸梅田店：</strong>高級品牌、眼鏡店、甜點伴手禮集中點。</li>
+                <li><strong>阪急梅田本店：</strong>百貨界王者，Onitsuka Tiger 所在地，男生女生都好逛。</li>
+                <li><strong>Herbis：</strong>偏精品與成熟品牌，如果還有力氣可以去晃一圈。</li>
+                <li><strong>唐吉訶德 梅田本店：</strong>零食、藥妝、雜物一網打盡，適合當最後一站。</li>
+                <li><strong>HEP FIVE：</strong>年輕潮牌與紅色摩天輪，想拍有活力照片可以來。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 天氣 & Tips -->
+      <section id="cards-tips">
+        <div class="section-title">
+          <h2>🌤️ 天氣 & 穿搭 · 出發前小提醒</h2>
+          <span>約 3–14°C · 洋蔥式穿搭最安全</span>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Weather</div>
+              <div class="card-title">大阪 12/6–12/11 溫度預估</div>
+              <div class="card-sub">早晚偏冷，白天 11–14°C 左右</div>
+            </div>
+            <div class="card-body">
+              <table class="info-table">
+                <thead>
+                  <tr>
+                    <th>日期</th>
+                    <th>最高</th>
+                    <th>最低</th>
+                    <th>備註</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>12/6（六）</td><td>14°C</td><td>7°C</td><td>多雲偶晴，早晚涼</td></tr>
+                  <tr><td>12/7（日）</td><td>11°C</td><td>4°C</td><td>陰天或小雨，偏冷</td></tr>
+                  <tr><td>12/8（一）</td><td>11°C</td><td>3°C</td><td>陰天或小雨，偏冷</td></tr>
+                  <tr><td>12/9（二）</td><td>11°C</td><td>4°C</td><td>USJ 日，注意保暖</td></tr>
+                  <tr><td>12/10（三）</td><td>11°C</td><td>4°C</td><td>港區風大，注意防風</td></tr>
+                  <tr><td>12/11（四）</td><td>12°C</td><td>6°C</td><td>多雲，略回暖</td></tr>
+                </tbody>
+              </table>
+              <p style="margin-top:6px;"><strong>男生：</strong>發熱衣 + 長袖 + 輕量羽絨 / 防風外套，下身長褲，配圍巾與帽子。</p>
+              <p><strong>女生：</strong>發熱衣 + 毛衣 / 針織 + 外套，下身長褲或厚裙＋褲襪，怕冷可以加手套。</p>
+              <p>USJ＆海遊館那兩天都接近海邊或開闊空間，風會比較冷，記得帶好外套。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Check List</div>
+              <div class="card-title">每日交通費 & 票券小抄</div>
+              <div class="card-sub">已付項目＋大概交通預算</div>
+            </div>
+            <div class="card-body">
+              <table class="info-table">
+                <thead>
+                  <tr><th>天數</th><th>內容</th><th>估計車資</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Day 1</td><td>關西機場 → 難波 + 住宿</td><td>約 1,000–1,200 円</td></tr>
+                  <tr><td>Day 2</td><td>大阪城・今昔館・梅田・難波</td><td>周遊卡內含</td></tr>
+                  <tr><td>Day 3</td><td>通天閣・阿倍野・難波</td><td>周遊卡內含</td></tr>
+                  <tr><td>Day 4</td><td>日本橋 ⇄ USJ</td><td>約 850–900 円</td></tr>
+                  <tr><td>Day 5</td><td>日本橋 ⇄ 大阪港</td><td>約 600–800 円</td></tr>
+                  <tr><td>Day 6</td><td>日本橋 ⇄ 關西機場</td><td>約 1,000–1,200 円</td></tr>
+                </tbody>
+              </table>
+              <p style="margin-top:6px;"><strong>已付款：</strong>機票、住宿、網卡、大阪周遊卡兩日券、USJ 入場票都已完成，現場主要只要準備吃喝玩樂與購物預算。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 機票 -->
+      <section id="cards-flight">
+        <div class="section-title">
+          <h2>✈ 機票資訊 · GK54 / GK55</h2>
+          <span>預約訂單：HW7QYW · 手提 7kg + 托運 20kg</span>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Outbound</div>
+              <div class="card-title">去程 · 12/6（六）GK54</div>
+              <div class="card-sub">桃園 → 關西機場 第 1 航廈</div>
+            </div>
+            <div class="card-body">
+              <p>航班：<strong>GK54（Airbus A320）</strong></p>
+              <p>起飛：18:10（台北桃園）</p>
+              <p>抵達：21:40（關西機場 T1）</p>
+              <p>座位：<strong>8A、8B</strong></p>
+              <p>行李：手提 7kg + 托運 20kg</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Inbound</div>
+              <div class="card-title">回程 · 12/11（四）GK55</div>
+              <div class="card-sub">關西機場 第 1 航廈 → 桃園</div>
+            </div>
+            <div class="card-body">
+              <p>航班：<strong>GK55（Airbus A320）</strong></p>
+              <p>起飛：14:50（KIX T1）</p>
+              <p>抵達：17:10（台北桃園）</p>
+              <p>座位：<strong>9A、9B</strong></p>
+              <p>行李：手提 7kg + 托運 20kg</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 關於這趟旅程 -->
+      <section>
+        <div class="section-title">
+          <h2>💌 關於這趟旅程</h2>
+          <span>其實這整個網站，就是一封寫給壽星的生日卡片</span>
+        </div>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-label">About</div>
+            <div class="card-title">給台灣摔角顏值巔峰的 6 日大阪生日企劃</div>
+          </div>
+          <div class="card-body">
+            <p>
+              這趟大阪 6 天 5 夜，是小肥豬為王宏逸寫的一份實體版「生日企劃書」。
+              以日本橋住宿為中心，串起大阪周遊卡的經典景點、環球影城、港區海風、梅田逛街，還有摔角周邊店與摔角主題酒吧。
+            </p>
+            <p>
+              行程裡有你會喜歡的景點、會買到東西的店、會拍到帥照的角度，也刻意留下很多空白，可以隨時改變主意、走錯路、亂逛，最後還是會回到同一個基地。
+            </p>
+            <p>
+              希望你在大阪的每一天，都可以很具體地感受到：「有人很認真在替你準備這趟旅行，而且真的超級喜歡你。」  
+              這只是開始，之後如果有東京篇、京都篇、世界巡迴篇，網站可以一路升級，變成「王宏逸生日宇宙」的官方紀錄。
+            </p>
+          </div>
         </article>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- 準備重點 / 預算 / 交通 -->
-    <section id="tips">
-      <div class="section-header">
-        <h2>出發前小提醒 & 預算概念</h2>
-        <span>包含已付款項目 & 每日交通費粗估</span>
-      </div>
-
-      <div class="tips-grid">
-        <article class="tip-card">
-          <h3>已付款明細（每人）</h3>
-          <ul>
-            <li><strong>機票：</strong>NT$ 16,306 · 已付款完成</li>
-            <li><strong>住宿：</strong>NT$ 10,241 · 已付款完成</li>
-            <li><strong>網卡（ESIM + 實體 SIM）：</strong>NT$ 258（ESIM）、NT$ 379（實體）<br />11/5 已付款完成，Sydney 於 KKDAY 購入，11/25 已拿到。</li>
-            <li><strong>大阪周遊卷（兩日）：</strong>NT$ 2,001 · 11/19 已付款完成，並已收到憑證。</li>
-            <li><strong>環球影城入園票：</strong>NT$ 3,448 · 11/3 已付款完成，郵件已收到入場 QR Code。</li>
-          </ul>
-        </article>
-
-        <article class="tip-card">
-          <h3>每日交通費粗估（以一人、匯率約 1 日圓 ≈ 0.23 NTD）</h3>
-          <table class="info-table">
-            <thead>
-              <tr>
-                <th>天數</th>
-                <th>內容</th>
-                <th>日圓</th>
-                <th>約台幣</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Day 1</td>
-                <td>關西機場 → 難波（南海電鐵）＋一小段地鐵</td>
-                <td>約 1,200¥</td>
-                <td>約 NT$ 270</td>
-              </tr>
-              <tr>
-                <td>Day 2</td>
-                <td>市區移動：大阪城、今昔館、梅田、難波等（多數由大阪周遊卡支援）</td>
-                <td>已含在周遊卡</td>
-                <td>大阪周遊卡兩日券約 NT$ 2,001（平均每日約 1,000）</td>
-              </tr>
-              <tr>
-                <td>Day 3</td>
-                <td>日本橋 ⇄ 通天閣 ⇄ 阿倍野 ⇄ 難波（周遊卡支援）</td>
-                <td>已含在周遊卡</td>
-                <td>同上，平均每日約 NT$ 1,000</td>
-              </tr>
-              <tr>
-                <td>Day 4</td>
-                <td>日本橋 ⇄ 環球影城（近鐵＋阪神＋ JR）</td>
-                <td>約 1,000¥</td>
-                <td>約 NT$ 230</td>
-              </tr>
-              <tr>
-                <td>Day 5</td>
-                <td>日本橋 ⇄ 大阪港站（地鐵來回）</td>
-                <td>約 700¥</td>
-                <td>約 NT$ 160</td>
-              </tr>
-              <tr>
-                <td>Day 6</td>
-                <td>日本橋 → 難波 → 關西機場（南海電鐵）</td>
-                <td>約 1,000¥</td>
-                <td>約 NT$ 230</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size:12px;color:#666;margin-top:6px;">
-            ※ 以上為大致估算，實際金額會依搭乘路線、是否購買折扣票、匯率等略有差異，但可以當作預算抓大概用。
-          </p>
-        </article>
-
-        <article class="tip-card">
-          <h3>大阪周遊卡（Osaka Amazing Pass）補充資訊</h3>
-          <ul>
-            <li>這趟行程在 Day 2、Day 3 使用兩日券，把需要門票的景點集中在這兩天玩最划算。</li>
-            <li>周遊卡包含：許多地鐵、私鐵路線的「一日內無限次搭乘」，以及大阪城天守閣、今昔館、梅田空中庭園、通天閣、天保山摩天輪等多個景點免費或折扣。</li>
-            <li>詳細的「<strong>免費景點 & 優待清單</strong>」可以看官方網站：
-              <br />👉 <a href="https://osaka-amazing-pass.com/cht/service_free.html" target="_blank" rel="noopener">可使用設施一覽</a>
-            </li>
-            <li>如何使用、進站感應方式、注意事項：
-              <br />👉 <a href="https://osaka-amazing-pass.com/cht/howto_guide.html" target="_blank" rel="noopener">使用方法 & 指南</a>
-            </li>
-          </ul>
-        </article>
-
-        <article class="tip-card">
-          <h3>行李準備建議 & 行前筆記</h3>
-          <ul>
-            <li>好走的鞋子（比新鞋更重要）。</li>
-            <li>薄外套＋防風外套或大衣，配合 3～14°C 的溫差。</li>
-            <li>常備藥品、貼布、護膝等，逛街或排隊時會很感謝自己。</li>
-            <li>行動電源、充電線、日本插頭轉接頭。</li>
-            <li>可摺疊環保袋：逛超市、藥妝、書店很好用。</li>
-            <li>
-              詳細的打包清單、備忘事項，已整理在 Google 文件：
-              <br />👉
-              <a href="https://docs.google.com/document/d/1m9V2yH4teOhwyYqtaJeYy00iOJqka49aPOpss0SJvNo/edit?usp=sharing" target="_blank" rel="noopener">
-                查看完整行前準備文件（Google Docs）
-              </a>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- 機票資訊 -->
-    <section id="flight">
-      <div class="section-header">
-        <h2>機票資訊 Flight Info</h2>
-        <span>預約訂單：HW7QYW · 手提 7kg + 托運 20kg</span>
-      </div>
-
-      <article class="about">
-        <h3>去程：2025 年 12 月 6 日（週六）</h3>
-        <p>
-          航班號：<strong>GK54（Airbus A320）</strong><br />
-          起飛：下午 6:10（台北桃園）<br />
-          抵達：下午 9:40（關西機場 第 1 航廈）<br />
-          座位：<strong>8A、8B</strong><br />
-          行李：手提 7kg + 托運 20kg
-        </p>
-        <br />
-        <h3>回程：2025 年 12 月 11 日（週四）</h3>
-        <p>
-          航班號：<strong>GK55（Airbus A320）</strong><br />
-          起飛：下午 2:50（關西機場 第 1 航廈）<br />
-          抵達：下午 5:10（台北桃園）<br />
-          座位：<strong>9A、9B</strong><br />
-          行李：手提 7kg + 托運 20kg
-        </p>
-        <br />
-        <p>
-          建議：
-          <ul>
-            <li>去程至少提早 2 小時到桃園機場，辦理登機與托運行李。</li>
-            <li>回程建議 3 小時前抵達關西機場，預留退稅、購物與安檢時間。</li>
-          </ul>
-        </p>
-      </article>
-    </section>
-
-    <!-- 關於這趟旅行 / 關於我 -->
-    <section id="about">
-      <div class="section-header">
-        <h2>關於這趟旅程</h2>
-        <span>給台灣摔角顏值巔峰的一份生日禮物</span>
-      </div>
-
-      <article class="about">
-        <h3>這趟大阪 6 日旅程的定位</h3>
-        <p>
-          這份行程，是小肥豬送給「台灣摔角顏值巔峰」王宏逸的一趟生日之旅。
-          以日本橋住宿為中心，串聯「大阪周遊卡精華景點」＋「環球影城」＋「摔角主題巡禮」，
-          希望在不爆肝的前提下，把想拍、想逛、想吃、想買、想放空的時間都安排進來。<br /><br />
-          行程裡有宏逸會喜歡的景、喜歡的店、喜歡的主題（摔角、海景、夜景），也留了空間給兩個人慢慢走路、亂晃、一起決定晚餐要吃什麼。
-          希望你在大阪的每一天，都可以很自然地感受到：小肥豬有很認真在替你準備這趟旅程，而且真的超級喜歡你。<br /><br />
-          之後如果還有別的城市（例如東京、京都），也可以複製這個架構，變成「王宏逸世界巡迴生日旅行」的系列網站。
-        </p>
-      </article>
-    </section>
-  </main>
-
-  <footer>
-    大阪 6 天 5 夜 · 日本橋住宿 · 大阪周遊卡 · 環球影城 · 王宏逸生日旅行
-  </footer>
-
+    <footer>
+      宏逸大阪生日旅行 · 6 天 5 夜 · 日本橋基地 · 由小肥豬精心策劃
+    </footer>
+  </div>
 </body>
 </html>
