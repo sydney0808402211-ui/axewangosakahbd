@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
   <title>宏逸大阪生日旅行 · 6 天 5 夜卡片式行程</title>
+  <meta property="og:title" content="AXE 大阪生日旅行企劃書" />
+  <meta property="og:description" content="給台灣摔角顏值巔峰的 6 天 5 夜專屬行程，由小肥豬精心策劃。" />
+  <meta property="og:image" content="cover-image.jpg" /> 
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f4f1ea;
@@ -16,7 +25,9 @@
       --text-muted: #7b7266;
       --border-soft: #ded6c8;
       --radius-lg: 16px;
-      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.04);
+      /* 優化後的陰影，更有層次感 */
+      --shadow-soft: 0 4px 20px rgba(95, 75, 52, 0.08);
+      --shadow-hover: 0 8px 24px rgba(95, 75, 52, 0.12);
     }
 
     * {
@@ -25,18 +36,36 @@
       padding: 0;
     }
 
+    html {
+      /* 平滑捲動 */
+      scroll-behavior: smooth;
+      /* 避免連結跳轉時標題被 Header 擋住 */
+      scroll-padding-top: 80px;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
-        "Hiragino Sans", "PingFang TC", sans-serif;
+      /* 內文使用易讀的黑體 */
+      font-family: "Noto Sans TC", system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* 重要標題使用更有氣質的宋體 */
+    h1, h2, .logo, .hero-city, .intro-left-title, .card-label {
+      font-family: "Shippori Mincho", serif;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    /* 防止 Intro 畫面時背景捲動 */
+    body.has-intro {
+      overflow: hidden;
+      height: 100vh;
     }
 
     .app-shell {
@@ -66,9 +95,9 @@
     }
 
     .logo {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
+      font-size: 15px; /* 稍微加大 */
+      font-weight: 800;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent-deep);
     }
@@ -77,23 +106,44 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .nav-links a {
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
       background: rgba(252, 250, 246, 0.9);
       border: 1px solid rgba(222, 214, 200, 0.9);
       color: var(--text-muted);
-      transition: background 0.15s ease, color 0.15s ease,
-        border-color 0.15s ease;
+      transition: all 0.2s ease;
     }
 
     .nav-links a:hover {
       background: var(--accent-soft);
       color: var(--accent-deep);
       border-color: var(--accent-deep);
+    }
+
+    /* 手機版導覽列優化：橫向滑動 */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        width: 100%; /* 佔滿寬度 */
+      }
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-links a {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+      .nav {
+        gap: 8px;
+      }
     }
 
     .hero {
@@ -105,25 +155,27 @@
     }
 
     .hero-left h1 {
-      font-size: clamp(24px, 3vw, 28px);
+      font-size: clamp(26px, 3vw, 32px);
       margin-bottom: 10px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 3px 9px;
+      padding: 3px 10px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent-deep);
-      font-size: 11px;
+      font-size: 12px;
       margin-bottom: 10px;
+      font-weight: 500;
     }
 
     .hero-sub {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-muted);
       margin-bottom: 10px;
     }
@@ -131,7 +183,10 @@
     .hero-meta {
       font-size: 13px;
       color: var(--text-main);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.4);
+      padding: 10px;
+      border-radius: 8px;
     }
 
     .hero-meta strong {
@@ -146,8 +201,8 @@
 
     .btn-primary,
     .btn-secondary {
-      font-size: 12px;
-      padding: 7px 14px;
+      font-size: 13px;
+      padding: 8px 16px;
       border-radius: 999px;
       border: 1px solid transparent;
       display: inline-flex;
@@ -155,6 +210,7 @@
       gap: 6px;
       cursor: pointer;
       text-decoration: none;
+      transition: all 0.2s;
     }
 
     .btn-primary {
@@ -166,6 +222,7 @@
     .btn-primary:hover {
       background: #4a3a28;
       border-color: #4a3a28;
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
@@ -182,7 +239,7 @@
     .hero-right {
       background: var(--bg-soft);
       border-radius: 18px;
-      padding: 14px 14px 12px;
+      padding: 16px;
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(222, 214, 200, 0.9);
     }
@@ -206,7 +263,7 @@
     }
 
     .hero-city {
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -217,11 +274,11 @@
     }
 
     .hero-bullets {
-      margin-top: 8px;
-      font-size: 12px;
+      margin-top: 10px;
+      font-size: 13px;
       color: var(--text-main);
       display: grid;
-      gap: 4px;
+      gap: 6px;
     }
 
     .hero-bullets span::before {
@@ -231,7 +288,7 @@
     }
 
     .hero-tags {
-      margin-top: 8px;
+      margin-top: 12px;
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
@@ -247,117 +304,134 @@
     }
 
     main {
-      margin-top: 26px;
+      margin-top: 32px;
     }
 
     .section-title {
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 10px;
       flex-wrap: wrap;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
     }
 
     .section-title span {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: normal;
     }
 
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-      margin-bottom: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 12px 13px 11px;
+      padding: 16px;
       box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border-soft);
+      border: 1px solid rgba(255, 255, 255, 0.6); /* 增加邊框質感 */
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* 卡片互動效果 */
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
     }
 
     .card-header {
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-soft);
     }
 
     .card-label {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-deep);
-      margin-bottom: 2px;
-    }
-
-    .card-title {
-      font-size: 14px;
+      margin-bottom: 4px;
       font-weight: 600;
     }
 
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
     .card-sub {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
     .card-body {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-main);
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
     .card-body p + p {
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .card-list {
-      margin-top: 6px;
-      padding-left: 16px;
+      margin-top: 8px;
+      padding-left: 18px;
     }
 
     .card-list li {
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 11px;
     }
 
     .badge {
-      padding: 3px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
       background: #ebe4d8;
       color: var(--text-main);
+      font-weight: 500;
     }
 
     .pill-link {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 9px;
+      gap: 6px;
+      padding: 5px 12px;
       border-radius: 999px;
       background: #ebe4d8;
       color: var(--accent-deep);
-      font-size: 11px;
-      margin-top: 6px;
+      font-size: 12px;
+      margin-top: 8px;
+      transition: background 0.2s;
     }
-
-    .pill-link span {
-      font-size: 13px;
+    
+    .pill-link:hover {
+      background: var(--accent-soft);
     }
 
     .card-image {
       width: 100%;
       border-radius: 12px;
-      margin-top: 8px;
+      margin-top: 12px;
       display: block;
       object-fit: cover;
       max-height: 260px;
@@ -367,14 +441,14 @@
     .info-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
-      margin-top: 6px;
+      font-size: 13px;
+      margin-top: 8px;
     }
 
     .info-table th,
     .info-table td {
       border: 1px solid rgba(222, 214, 200, 0.9);
-      padding: 5px 6px;
+      padding: 6px 8px;
       text-align: left;
     }
 
@@ -387,34 +461,71 @@
     }
 
     .timeline {
-      margin-top: 6px;
+      margin-top: 8px;
       display: grid;
-      gap: 4px;
+      gap: 12px;
+      position: relative;
+    }
+    
+    /* 增加時間軸左側線條裝飾 */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: var(--border-soft);
+      z-index: 0;
     }
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 70px minmax(0, 1fr);
-      gap: 6px;
+      display: flex;
+      gap: 10px;
       align-items: flex-start;
-      font-size: 12px;
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* 時間軸圓點 */
+    .timeline-item::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+      margin-left: 3px;
+      border: 2px solid var(--card-bg);
     }
 
     .time {
       color: var(--text-muted);
+      font-size: 12px;
+      min-width: 80px;
+      font-feature-settings: "tnum";
+    }
+
+    .activity {
+      flex: 1;
     }
 
     .activity strong {
       font-weight: 600;
+      color: var(--accent-deep);
     }
 
+    /* 優化 Details 展開效果 */
     details {
-      margin-top: 6px;
+      margin-top: 10px;
       border-radius: 12px;
       background: #f7f4ee;
-      padding: 6px 8px;
-      font-size: 12px;
+      padding: 8px 12px;
+      font-size: 13px;
       border: 1px solid rgba(222, 214, 200, 0.9);
+      transition: background 0.2s;
     }
 
     summary {
@@ -422,6 +533,9 @@
       cursor: pointer;
       font-weight: 500;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     summary::marker,
@@ -435,22 +549,45 @@
       margin-left: 4px;
       font-weight: 400;
     }
+    
+    /* 自訂展開箭頭 */
+    summary::after {
+      content: "+";
+      font-size: 18px;
+      color: var(--accent-deep);
+      font-weight: bold;
+      transition: transform 0.2s;
+      line-height: 1;
+    }
 
     details[open] {
       background: #f0e6d8;
     }
+    
+    details[open] summary::after {
+      transform: rotate(45deg); /* 變成 X */
+    }
 
     details > div {
-      margin-top: 6px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     footer {
-      margin-top: 18px;
-      font-size: 11px;
+      margin-top: 32px;
+      font-size: 12px;
       text-align: center;
       color: var(--text-muted);
       border-top: 1px solid var(--border-soft);
-      padding-top: 10px;
+      padding-top: 20px;
+      font-family: "Shippori Mincho", serif;
     }
 
     /* ======= 生日 Intro 畫面 ======= */
@@ -477,44 +614,49 @@
       max-width: 900px;
       width: 100%;
       background: var(--card-bg);
-      border-radius: 18px;
+      border-radius: 20px;
       border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 18px 18px 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      padding: 24px;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 16px;
+      gap: 24px;
     }
 
     .intro-left-title {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent-deep);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
 
     .intro-left h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      letter-spacing: 0.06em;
+      font-size: 26px;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
     }
 
     .intro-left p {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-main);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .intro-left p.small {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
     .intro-left-bottom {
-      margin-top: 14px;
-      font-size: 12px;
+      margin-top: 18px;
+      font-size: 13px;
       color: var(--text-muted);
+      background: rgba(0,0,0,0.03);
+      padding: 8px 12px;
+      border-radius: 8px;
     }
 
     .intro-left-bottom strong {
@@ -522,16 +664,16 @@
     }
 
     .intro-actions {
-      margin-top: 14px;
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
       align-items: center;
     }
 
     .intro-meta-chip {
-      font-size: 11px;
-      padding: 3px 8px;
+      font-size: 12px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
@@ -541,15 +683,16 @@
     .intro-slider {
       position: relative;
       overflow: hidden;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid var(--border-soft);
       background: #111;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .intro-slider-track {
       display: flex;
       width: 100%;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .intro-slide {
@@ -566,51 +709,55 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      opacity: 0.9;
     }
 
     .intro-slider-controls {
       position: absolute;
-      inset: auto 0 8px 0;
+      inset: auto 0 12px 0;
       display: flex;
       justify-content: space-between;
-      padding: 0 10px;
+      padding: 0 16px;
       pointer-events: none;
     }
 
     .intro-arrow {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      border: 1px solid rgba(252, 250, 246, 0.85);
-      background: rgba(17, 17, 17, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fdfbf6;
-      font-size: 14px;
+      color: #fff;
+      font-size: 16px;
       cursor: pointer;
       pointer-events: auto;
+      transition: background 0.2s;
     }
 
     .intro-arrow:hover {
-      background: rgba(17, 17, 17, 0.7);
+      background: rgba(0, 0, 0, 0.8);
     }
 
     .intro-indicator {
       position: absolute;
-      bottom: 8px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 11px;
-      color: #fdfbf6;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 2px 8px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 4px 10px;
       border-radius: 999px;
+      backdrop-filter: blur(4px);
     }
 
     .intro-hide {
       opacity: 0;
-      transform: translateY(-8px);
+      transform: scale(0.95);
       pointer-events: none;
     }
 
@@ -624,20 +771,24 @@
       }
 
       .app-shell {
-        padding-inline: 14px;
+        padding-inline: 16px;
       }
       .nav {
-        padding-inline: 14px;
+        padding-inline: 16px;
       }
 
       .intro-inner {
         grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+      }
+      
+      .intro-left h1 {
+        font-size: 22px;
       }
     }
   </style>
 </head>
 <body class="has-intro">
-  <!-- 生日 Intro 畫面 -->
   <div id="intro-screen" class="intro-screen">
     <div class="intro-inner">
       <div class="intro-left">
@@ -664,7 +815,6 @@
       <div class="intro-right">
         <div class="intro-slider">
           <div class="intro-slider-track">
-            <!-- 寫真照（已上傳 axe-photo1~3.jpg） -->
             <div class="intro-slide">
               <img src="axe-photo1.jpg" alt="AXE 寫真 1" />
             </div>
@@ -687,7 +837,7 @@
 
   <header>
     <nav class="nav">
-      <div class="logo">AXE OSAKA BIRTHDAY TRIP</div>
+      <div class="logo">AXE OSAKA BIRTHDAY</div>
       <div class="nav-links">
         <a href="#cards-itinerary">行程卡片</a>
         <a href="#cards-stay">住宿 & 周邊</a>
@@ -701,7 +851,6 @@
   </header>
 
   <div class="app-shell">
-    <!-- Hero -->
     <section class="hero" id="top">
       <div class="hero-left">
         <div class="hero-tag">
@@ -754,7 +903,6 @@
       </aside>
     </section>
 
-    <!-- 行程卡片 -->
     <main>
       <section id="cards-itinerary">
         <div class="section-title">
@@ -763,7 +911,6 @@
         </div>
 
         <div class="card-grid">
-          <!-- Day 1 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 1 · 12/6（六）</div>
@@ -811,7 +958,6 @@
             </div>
           </article>
 
-          <!-- Day 2 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 2 · 12/7（日）</div>
@@ -930,7 +1076,6 @@
             </div>
           </article>
 
-          <!-- Day 3 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 3 · 12/8（一）</div>
@@ -989,7 +1134,6 @@
             </div>
           </article>
 
-          <!-- Day 4 -->
           <article class="card" id="cards-usj">
             <div class="card-header">
               <div class="card-label">Day 4 · 12/9（二）</div>
@@ -1064,7 +1208,6 @@
             </div>
           </article>
 
-          <!-- Day 5 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 5 · 12/10（三）</div>
@@ -1137,7 +1280,6 @@
             </div>
           </article>
 
-          <!-- Day 6 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 6 · 12/11（四）</div>
@@ -1179,7 +1321,6 @@
         </div>
       </section>
 
-      <!-- 住宿 & 周邊 -->
       <section id="cards-stay">
         <div class="section-title">
           <h2>🏠 住宿 & 生活圈卡片</h2>
@@ -1200,7 +1341,7 @@
                 <strong>Google 地圖：</strong>
                 <a
                   class="pill-link"
-                  href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17"
+                  href="https://www.google.com/maps/search/?api=1&query=大阪市中央区日本橋2-18-17"
                   target="_blank"
                   rel="noopener"
                 >
@@ -1209,7 +1350,6 @@
               </p>
               <p>機場來回路線：關西空港 ⇄ 南海難波（南海電鐵，約 35–45 分鐘）＋ 難波步行 12–15 分鐘抵達日本橋住宿。</p>
 
-              <!-- 飯店外觀圖片（可點開放大） -->
               <a href="hotel-exterior.jpg" target="_blank">
                 <img
                   src="hotel-exterior.jpg"
@@ -1253,7 +1393,6 @@
             </div>
             <div class="card-body">
               <p>這張地圖幫你把 Grand Front、LUCUA、阪急／阪神百貨、HEP FIVE 等位置全部標出來，實際逛街時可以對照著走。</p>
-              <!-- 梅田逛街地圖（可點開放大） -->
               <a href="umeda-shopping-map.jpg" target="_blank">
                 <img
                   src="umeda-shopping-map.jpg"
@@ -1266,7 +1405,6 @@
         </div>
       </section>
 
-      <!-- 梅田逛街專屬攻略 -->
       <section>
         <div class="section-title">
           <h2>🛍️ 梅田逛街攻略 · 宏逸生日版</h2>
@@ -1334,7 +1472,6 @@
         </div>
       </section>
 
-      <!-- 想吃點心清單 -->
       <section id="cards-snacks">
         <div class="section-title">
           <h2>🍰 想吃點心清單 · 甜點動線排好好的</h2>
@@ -1388,7 +1525,6 @@
         </div>
       </section>
 
-      <!-- 天氣 & Tips -->
       <section id="cards-tips">
         <div class="section-title">
           <h2>🌤️ 天氣 & 穿搭 · 出發前小提醒</h2>
@@ -1491,7 +1627,6 @@
         </div>
       </section>
 
-      <!-- 機票 -->
       <section id="cards-flight">
         <div class="section-title">
           <h2>✈ 機票資訊 · GK54 / GK55</h2>
@@ -1531,7 +1666,6 @@
         </div>
       </section>
 
-      <!-- 關於這趟旅程 -->
       <section>
         <div class="section-title">
           <h2>💌 關於這趟旅程</h2>
@@ -1624,6 +1758,7 @@
       if (enterBtn && intro) {
         enterBtn.addEventListener("click", () => {
           intro.classList.add("intro-hide");
+          // 移除 body 的 overflow:hidden 限制，恢復捲動
           setTimeout(() => {
             body.classList.remove("has-intro");
           }, 450);
