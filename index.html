@@ -3,16 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
   <title>宏逸大阪生日旅行 · 6 天 5 夜卡片式行程</title>
-  <meta property="og:title" content="AXE 大阪生日旅行企劃書" />
-  <meta property="og:description" content="給台灣摔角顏值巔峰的 6 天 5 夜專屬行程，由小肥豬精心策劃。" />
-  <meta property="og:image" content="cover-image.jpg" /> 
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --bg: #f4f1ea;
@@ -25,9 +16,7 @@
       --text-muted: #7b7266;
       --border-soft: #ded6c8;
       --radius-lg: 16px;
-      /* 優化後的陰影，更有層次感 */
-      --shadow-soft: 0 4px 20px rgba(95, 75, 52, 0.08);
-      --shadow-hover: 0 8px 24px rgba(95, 75, 52, 0.12);
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
 
     * {
@@ -36,36 +25,18 @@
       padding: 0;
     }
 
-    html {
-      /* 平滑捲動 */
-      scroll-behavior: smooth;
-      /* 避免連結跳轉時標題被 Header 擋住 */
-      scroll-padding-top: 80px;
-    }
-
     body {
-      /* 內文使用易讀的黑體 */
-      font-family: "Noto Sans TC", system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Hiragino Sans", "PingFang TC", sans-serif;
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 重要標題使用更有氣質的宋體 */
-    h1, h2, .logo, .hero-city, .intro-left-title, .card-label {
-      font-family: "Shippori Mincho", serif;
-    }
-
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    /* 防止 Intro 畫面時背景捲動 */
-    body.has-intro {
-      overflow: hidden;
-      height: 100vh;
     }
 
     .app-shell {
@@ -95,9 +66,9 @@
     }
 
     .logo {
-      font-size: 15px; /* 稍微加大 */
-      font-weight: 800;
-      letter-spacing: 0.1em;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent-deep);
     }
@@ -106,44 +77,23 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .nav-links a {
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: rgba(252, 250, 246, 0.9);
       border: 1px solid rgba(222, 214, 200, 0.9);
       color: var(--text-muted);
-      transition: all 0.2s ease;
+      transition: background 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease;
     }
 
     .nav-links a:hover {
       background: var(--accent-soft);
       color: var(--accent-deep);
       border-color: var(--accent-deep);
-    }
-
-    /* 手機版導覽列優化：橫向滑動 */
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        width: 100%; /* 佔滿寬度 */
-      }
-      .nav-links::-webkit-scrollbar {
-        display: none;
-      }
-      .nav-links a {
-        flex-shrink: 0;
-        white-space: nowrap;
-      }
-      .nav {
-        gap: 8px;
-      }
     }
 
     .hero {
@@ -155,27 +105,25 @@
     }
 
     .hero-left h1 {
-      font-size: clamp(26px, 3vw, 32px);
+      font-size: clamp(24px, 3vw, 28px);
       margin-bottom: 10px;
-      letter-spacing: 0.02em;
-      line-height: 1.4;
+      letter-spacing: 0.04em;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent-deep);
-      font-size: 12px;
+      font-size: 11px;
       margin-bottom: 10px;
-      font-weight: 500;
     }
 
     .hero-sub {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 10px;
     }
@@ -183,14 +131,23 @@
     .hero-meta {
       font-size: 13px;
       color: var(--text-main);
-      margin-bottom: 16px;
-      background: rgba(255,255,255,0.4);
-      padding: 10px;
-      border-radius: 8px;
+      margin-bottom: 8px;
     }
 
     .hero-meta strong {
       color: var(--accent-deep);
+    }
+
+    /* 倒數計時文字 */
+    #countdown {
+      font-size: 13px;
+      color: var(--accent-deep);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    #timer {
+      font-weight: 700;
     }
 
     .hero-buttons {
@@ -201,8 +158,8 @@
 
     .btn-primary,
     .btn-secondary {
-      font-size: 13px;
-      padding: 8px 16px;
+      font-size: 12px;
+      padding: 7px 14px;
       border-radius: 999px;
       border: 1px solid transparent;
       display: inline-flex;
@@ -210,7 +167,6 @@
       gap: 6px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s;
     }
 
     .btn-primary {
@@ -222,7 +178,6 @@
     .btn-primary:hover {
       background: #4a3a28;
       border-color: #4a3a28;
-      transform: translateY(-1px);
     }
 
     .btn-secondary {
@@ -239,7 +194,7 @@
     .hero-right {
       background: var(--bg-soft);
       border-radius: 18px;
-      padding: 16px;
+      padding: 14px 14px 12px;
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(222, 214, 200, 0.9);
     }
@@ -263,7 +218,7 @@
     }
 
     .hero-city {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -274,11 +229,11 @@
     }
 
     .hero-bullets {
-      margin-top: 10px;
-      font-size: 13px;
+      margin-top: 8px;
+      font-size: 12px;
       color: var(--text-main);
       display: grid;
-      gap: 6px;
+      gap: 4px;
     }
 
     .hero-bullets span::before {
@@ -288,7 +243,7 @@
     }
 
     .hero-tags {
-      margin-top: 12px;
+      margin-top: 8px;
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
@@ -304,134 +259,117 @@
     }
 
     main {
-      margin-top: 32px;
+      margin-top: 26px;
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 10px;
       flex-wrap: wrap;
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
     }
 
     .section-title span {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
-      font-family: "Noto Sans TC", sans-serif;
-      font-weight: normal;
     }
 
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 18px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 16px;
+      padding: 12px 13px 11px;
       box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255, 255, 255, 0.6); /* 增加邊框質感 */
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    /* 卡片互動效果 */
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
+      border: 1px solid var(--border-soft);
     }
 
     .card-header {
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed var(--border-soft);
+      margin-bottom: 6px;
     }
 
     .card-label {
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-deep);
-      margin-bottom: 4px;
-      font-weight: 600;
+      margin-bottom: 2px;
     }
 
     .card-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
     }
 
     .card-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
     .card-body {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-main);
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .card-body p + p {
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .card-list {
-      margin-top: 8px;
-      padding-left: 18px;
+      margin-top: 6px;
+      padding-left: 16px;
     }
 
     .card-list li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 11px;
     }
 
     .badge {
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
       background: #ebe4d8;
       color: var(--text-main);
-      font-weight: 500;
     }
 
     .pill-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
+      gap: 5px;
+      padding: 4px 9px;
       border-radius: 999px;
       background: #ebe4d8;
       color: var(--accent-deep);
-      font-size: 12px;
-      margin-top: 8px;
-      transition: background 0.2s;
+      font-size: 11px;
+      margin-top: 6px;
     }
-    
-    .pill-link:hover {
-      background: var(--accent-soft);
+
+    .pill-link span {
+      font-size: 13px;
     }
 
     .card-image {
       width: 100%;
       border-radius: 12px;
-      margin-top: 12px;
+      margin-top: 8px;
       display: block;
       object-fit: cover;
       max-height: 260px;
@@ -441,14 +379,14 @@
     .info-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 8px;
+      font-size: 12px;
+      margin-top: 6px;
     }
 
     .info-table th,
     .info-table td {
       border: 1px solid rgba(222, 214, 200, 0.9);
-      padding: 6px 8px;
+      padding: 5px 6px;
       text-align: left;
     }
 
@@ -461,71 +399,34 @@
     }
 
     .timeline {
-      margin-top: 8px;
+      margin-top: 6px;
       display: grid;
-      gap: 12px;
-      position: relative;
-    }
-    
-    /* 增加時間軸左側線條裝飾 */
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 6px;
-      bottom: 6px;
-      width: 1px;
-      background: var(--border-soft);
-      z-index: 0;
+      gap: 4px;
     }
 
     .timeline-item {
-      display: flex;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 6px;
       align-items: flex-start;
-      font-size: 13px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* 時間軸圓點 */
-    .timeline-item::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 6px;
-      flex-shrink: 0;
-      margin-left: 3px;
-      border: 2px solid var(--card-bg);
+      font-size: 12px;
     }
 
     .time {
       color: var(--text-muted);
-      font-size: 12px;
-      min-width: 80px;
-      font-feature-settings: "tnum";
-    }
-
-    .activity {
-      flex: 1;
     }
 
     .activity strong {
       font-weight: 600;
-      color: var(--accent-deep);
     }
 
-    /* 優化 Details 展開效果 */
     details {
-      margin-top: 10px;
+      margin-top: 6px;
       border-radius: 12px;
       background: #f7f4ee;
-      padding: 8px 12px;
-      font-size: 13px;
+      padding: 6px 8px;
+      font-size: 12px;
       border: 1px solid rgba(222, 214, 200, 0.9);
-      transition: background 0.2s;
     }
 
     summary {
@@ -533,9 +434,6 @@
       cursor: pointer;
       font-weight: 500;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
 
     summary::marker,
@@ -549,45 +447,22 @@
       margin-left: 4px;
       font-weight: 400;
     }
-    
-    /* 自訂展開箭頭 */
-    summary::after {
-      content: "+";
-      font-size: 18px;
-      color: var(--accent-deep);
-      font-weight: bold;
-      transition: transform 0.2s;
-      line-height: 1;
-    }
 
     details[open] {
       background: #f0e6d8;
     }
-    
-    details[open] summary::after {
-      transform: rotate(45deg); /* 變成 X */
-    }
 
     details > div {
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(0,0,0,0.05);
-      animation: fadeIn 0.3s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
+      margin-top: 6px;
     }
 
     footer {
-      margin-top: 32px;
-      font-size: 12px;
+      margin-top: 18px;
+      font-size: 11px;
       text-align: center;
       color: var(--text-muted);
       border-top: 1px solid var(--border-soft);
-      padding-top: 20px;
-      font-family: "Shippori Mincho", serif;
+      padding-top: 10px;
     }
 
     /* ======= 生日 Intro 畫面 ======= */
@@ -614,49 +489,44 @@
       max-width: 900px;
       width: 100%;
       background: var(--card-bg);
-      border-radius: 20px;
+      border-radius: 18px;
       border: 1px solid var(--border-soft);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 24px;
+      gap: 16px;
     }
 
     .intro-left-title {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent-deep);
-      margin-bottom: 8px;
-      font-weight: 700;
+      margin-bottom: 6px;
     }
 
     .intro-left h1 {
-      font-size: 26px;
-      margin-bottom: 14px;
-      letter-spacing: 0.04em;
-      line-height: 1.4;
+      font-size: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
     }
 
     .intro-left p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-main);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .intro-left p.small {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
     .intro-left-bottom {
-      margin-top: 18px;
-      font-size: 13px;
+      margin-top: 14px;
+      font-size: 12px;
       color: var(--text-muted);
-      background: rgba(0,0,0,0.03);
-      padding: 8px 12px;
-      border-radius: 8px;
     }
 
     .intro-left-bottom strong {
@@ -664,16 +534,16 @@
     }
 
     .intro-actions {
-      margin-top: 20px;
+      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
 
     .intro-meta-chip {
-      font-size: 12px;
-      padding: 4px 10px;
+      font-size: 11px;
+      padding: 3px 8px;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
       color: var(--text-muted);
@@ -683,16 +553,15 @@
     .intro-slider {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid var(--border-soft);
       background: #111;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .intro-slider-track {
       display: flex;
       width: 100%;
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 0.4s ease;
     }
 
     .intro-slide {
@@ -709,55 +578,51 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      opacity: 0.9;
     }
 
     .intro-slider-controls {
       position: absolute;
-      inset: auto 0 12px 0;
+      inset: auto 0 8px 0;
       display: flex;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 0 10px;
       pointer-events: none;
     }
 
     .intro-arrow {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
+      border: 1px solid rgba(252, 250, 246, 0.85);
+      background: rgba(17, 17, 17, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-size: 16px;
+      color: #fdfbf6;
+      font-size: 14px;
       cursor: pointer;
       pointer-events: auto;
-      transition: background 0.2s;
     }
 
     .intro-arrow:hover {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(17, 17, 17, 0.7);
     }
 
     .intro-indicator {
       position: absolute;
-      bottom: 12px;
+      bottom: 8px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 11px;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 4px 10px;
+      color: #fdfbf6;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 8px;
       border-radius: 999px;
-      backdrop-filter: blur(4px);
     }
 
     .intro-hide {
       opacity: 0;
-      transform: scale(0.95);
+      transform: translateY(-8px);
       pointer-events: none;
     }
 
@@ -771,24 +636,20 @@
       }
 
       .app-shell {
-        padding-inline: 16px;
+        padding-inline: 14px;
       }
       .nav {
-        padding-inline: 16px;
+        padding-inline: 14px;
       }
 
       .intro-inner {
         grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
-      }
-      
-      .intro-left h1 {
-        font-size: 22px;
       }
     }
   </style>
 </head>
 <body class="has-intro">
+  <!-- 生日 Intro 畫面 -->
   <div id="intro-screen" class="intro-screen">
     <div class="intro-inner">
       <div class="intro-left">
@@ -815,6 +676,7 @@
       <div class="intro-right">
         <div class="intro-slider">
           <div class="intro-slider-track">
+            <!-- 寫真照（已上傳 axe-photo1~3.jpg） -->
             <div class="intro-slide">
               <img src="axe-photo1.jpg" alt="AXE 寫真 1" />
             </div>
@@ -837,7 +699,7 @@
 
   <header>
     <nav class="nav">
-      <div class="logo">AXE OSAKA BIRTHDAY</div>
+      <div class="logo">AXE OSAKA BIRTHDAY TRIP</div>
       <div class="nav-links">
         <a href="#cards-itinerary">行程卡片</a>
         <a href="#cards-stay">住宿 & 周邊</a>
@@ -846,11 +708,13 @@
         <a href="#cards-usj">USJ</a>
         <a href="#cards-tips">小提醒</a>
         <a href="#cards-flight">機票</a>
+        <a href="#cards-coupon">兌換券</a>
       </div>
     </nav>
   </header>
 
   <div class="app-shell">
+    <!-- Hero -->
     <section class="hero" id="top">
       <div class="hero-left">
         <div class="hero-tag">
@@ -864,6 +728,12 @@
           行程日期：<strong>2025/12/6（六）— 12/11（四）</strong><br />
           定位：<strong>送給「台灣摔角顏值巔峰」王宏逸的一趟生日專屬旅行</strong>，從景點到逛街動線，都是幫你精選過的快樂路線。
         </p>
+
+        <!-- 倒數計時區 -->
+        <div id="countdown">
+          距離出發還有：<span id="timer">計算中...</span>
+        </div>
+
         <div class="hero-buttons">
           <a class="btn-primary" href="#cards-itinerary">打開全部行程卡片 ⤵</a>
           <a class="btn-secondary" href="#cards-stay">先看住宿 & 機場交通</a>
@@ -903,6 +773,7 @@
       </aside>
     </section>
 
+    <!-- 行程卡片 -->
     <main>
       <section id="cards-itinerary">
         <div class="section-title">
@@ -911,6 +782,7 @@
         </div>
 
         <div class="card-grid">
+          <!-- Day 1 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 1 · 12/6（六）</div>
@@ -958,6 +830,7 @@
             </div>
           </article>
 
+          <!-- Day 2 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 2 · 12/7（日）</div>
@@ -1076,6 +949,7 @@
             </div>
           </article>
 
+          <!-- Day 3 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 3 · 12/8（一）</div>
@@ -1134,6 +1008,7 @@
             </div>
           </article>
 
+          <!-- Day 4 -->
           <article class="card" id="cards-usj">
             <div class="card-header">
               <div class="card-label">Day 4 · 12/9（二）</div>
@@ -1208,6 +1083,7 @@
             </div>
           </article>
 
+          <!-- Day 5 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 5 · 12/10（三）</div>
@@ -1280,6 +1156,7 @@
             </div>
           </article>
 
+          <!-- Day 6 -->
           <article class="card">
             <div class="card-header">
               <div class="card-label">Day 6 · 12/11（四）</div>
@@ -1321,6 +1198,7 @@
         </div>
       </section>
 
+      <!-- 住宿 & 周邊 -->
       <section id="cards-stay">
         <div class="section-title">
           <h2>🏠 住宿 & 生活圈卡片</h2>
@@ -1341,7 +1219,7 @@
                 <strong>Google 地圖：</strong>
                 <a
                   class="pill-link"
-                  href="https://www.google.com/maps/search/?api=1&query=大阪市中央区日本橋2-18-17"
+                  href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17"
                   target="_blank"
                   rel="noopener"
                 >
@@ -1350,6 +1228,7 @@
               </p>
               <p>機場來回路線：關西空港 ⇄ 南海難波（南海電鐵，約 35–45 分鐘）＋ 難波步行 12–15 分鐘抵達日本橋住宿。</p>
 
+              <!-- 飯店外觀圖片（可點開放大） -->
               <a href="hotel-exterior.jpg" target="_blank">
                 <img
                   src="hotel-exterior.jpg"
@@ -1393,6 +1272,7 @@
             </div>
             <div class="card-body">
               <p>這張地圖幫你把 Grand Front、LUCUA、阪急／阪神百貨、HEP FIVE 等位置全部標出來，實際逛街時可以對照著走。</p>
+              <!-- 梅田逛街地圖（可點開放大） -->
               <a href="umeda-shopping-map.jpg" target="_blank">
                 <img
                   src="umeda-shopping-map.jpg"
@@ -1405,6 +1285,7 @@
         </div>
       </section>
 
+      <!-- 梅田逛街專屬攻略 -->
       <section>
         <div class="section-title">
           <h2>🛍️ 梅田逛街攻略 · 宏逸生日版</h2>
@@ -1426,7 +1307,7 @@
                 </li>
                 <li>
                   <strong>Grand Front → LUCUA / LUCUA 1100</strong><br />接著往車站方向移動，LUCUA
-                  偏女裝，<strong>LUCUA 1100</strong> 男生好逛很多。
+                  偏女裝，<strong>LUCUA 1100</strong> 男裝多，還有生活雜貨。
                 </li>
                 <li>
                   <strong>JR 大阪站 → 阪急梅田本店</strong><br />穿過車站往阪急方向，進百貨找
@@ -1472,6 +1353,7 @@
         </div>
       </section>
 
+      <!-- 想吃點心清單 -->
       <section id="cards-snacks">
         <div class="section-title">
           <h2>🍰 想吃點心清單 · 甜點動線排好好的</h2>
@@ -1525,6 +1407,7 @@
         </div>
       </section>
 
+      <!-- 天氣 & Tips -->
       <section id="cards-tips">
         <div class="section-title">
           <h2>🌤️ 天氣 & 穿搭 · 出發前小提醒</h2>
@@ -1627,6 +1510,7 @@
         </div>
       </section>
 
+      <!-- 機票 -->
       <section id="cards-flight">
         <div class="section-title">
           <h2>✈ 機票資訊 · GK54 / GK55</h2>
@@ -1666,6 +1550,35 @@
         </div>
       </section>
 
+      <!-- 兌換券 -->
+      <section id="cards-coupon">
+        <div class="section-title">
+          <h2>🎟 生日專屬兌換券</h2>
+          <span>這張卡片，只對「王宏逸」本人有效</span>
+        </div>
+
+        <article class="card">
+          <div class="card-header">
+            <div class="card-label">Coupon</div>
+            <div class="card-title">宏逸大阪生日旅行 · 專屬服務券</div>
+          </div>
+          <div class="card-body">
+            <p>使用方式：只要在大阪的任何一個時刻，開口提出需求，就可以無條件兌換以下任一項服務（或自行加碼組合）。</p>
+            <ul class="card-list">
+              <li>👐 <strong>排隊按摩券：</strong>在 USJ、景點或任何排隊現場，可要求「肩頸放鬆服務」一次。</li>
+              <li>🧭 <strong>迷路不生氣券：</strong>不管今天 Google Map 轉了幾圈，只要最後有走到，都不生氣，頂多笑你兩句。</li>
+              <li>🍜 <strong>多點一道沒關係券：</strong>遇到很想吃的東西，可以說「想吃」就加點，事後不會被念。</li>
+              <li>💋 <strong>隨時可以親一下券：</strong>在不違反日本法律和社會觀感的前提下，可隨時兌換一個擁抱或親親。</li>
+              <li>🛋 <strong>旅程後續回顧券：</strong>回台灣後，如果某天突然很想念大阪，可以指定一晚一起看照片＋講幹話的「回顧夜」。</li>
+            </ul>
+            <p style="margin-top:8px;">
+              <strong>備註：</strong>本券不得轉讓，但可以無限次使用，效期為「直到你不想跟我出去玩為止（也就是理論上永久有效）」。
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- 關於這趟旅程 -->
       <section>
         <div class="section-title">
           <h2>💌 關於這趟旅程</h2>
@@ -1698,6 +1611,9 @@
       宏逸大阪生日旅行 · 6 天 5 夜 · 日本橋基地 · 由小肥豬精心策劃
     </footer>
   </div>
+
+  <!-- 彩帶效果套件（CDN） -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1755,17 +1671,51 @@
         );
       }
 
+      // Intro 進入按鈕：彩帶 + 關閉 Intro
       if (enterBtn && intro) {
         enterBtn.addEventListener("click", () => {
+          // 彩帶特效（大地色系）
+          if (typeof confetti === "function") {
+            confetti({
+              particleCount: 150,
+              spread: 70,
+              origin: { y: 0.6 },
+              colors: ["#8b6b4a", "#e4d7c3", "#5f4b34", "#ffffff"],
+            });
+          }
+
           intro.classList.add("intro-hide");
-          // 移除 body 的 overflow:hidden 限制，恢復捲動
           setTimeout(() => {
             body.classList.remove("has-intro");
           }, 450);
         });
       }
 
-      // 初始化
+      // ===== 倒數計時器 =====
+      function updateCountdown() {
+        const timerEl = document.getElementById("timer");
+        if (!timerEl) return;
+
+        const target = new Date("2025-12-06T18:10:00+08:00").getTime();
+        const now = Date.now();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          timerEl.innerText = "旅程進行中（或已結束）！";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        timerEl.innerText = `${days} 天 ${hours} 小時 ${minutes} 分`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000); // 每分鐘更新
+
+      // 初始化 Slider
       updateSlider();
     });
   </script>
