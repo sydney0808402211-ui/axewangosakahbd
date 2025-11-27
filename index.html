@@ -400,53 +400,52 @@
 
      /* 時間軸：加上直線 + 節點 */
 
-    .timeline {
-      margin-top: 6px;
-      display: grid;
-      gap: 8px;
-      position: relative;
-      padding-left: 12px;      /* 留空給左側直線 */
-    }
+/* —— 無印風·時間軸 —— */
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 2px;
-      bottom: 4px;
-      width: 1px;
-      background: rgba(139, 107, 74, 0.3); /* 大地色系直線 */
-    }
+.timeline {
+  margin-top: 10px;
+  display: grid;
+  gap: 14px;
+  position: relative;
+  padding-left: 22px; /* 左邊空出更多距離，避免遮字 */
+}
 
-    .timeline-item {
-      position: relative;
-      display: grid;
-      grid-template-columns: 70px minmax(0, 1fr);
-      gap: 6px;
-      align-items: flex-start;
-      font-size: 12px;
-    }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;     /* 垂直線位置 */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(139, 107, 74, 0.25); /* 大地色・淡線 */
+}
 
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 2px;
-      top: 5px;
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #f4f1ea; /* 背景色 */
-      border: 1px solid rgba(139, 107, 74, 0.6); /* 節點 */
-    }
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
 
-    .time {
-      color: var(--text-muted);
-      padding-left: 6px; /* 時間數字往右移一點，避免撞到節點 */
-    }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 6px;      /* 對齊左側直線 */
+  top: 4px;
 
-    .time {
-      color: var(--text-muted);
-    }
+  /* 方圓型節點（圓角矩形） */
+  width: 8px;
+  height: 8px;
+  background: #8b6b4a;  /* 大地色・實心 */
+  border-radius: 2px;
+}
+
+.time {
+  color: var(--text-muted);
+  padding-left: 4px;
+}
 
     .activity strong {
       font-weight: 600;
