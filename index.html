@@ -398,21 +398,24 @@
       background: #f7f2ea;
     }/* —— 無印良品風 · 超穩定版細長刻度時間軸 —— */
 
+/* —— 無印良品風 · 超穩定版細長刻度時間軸 —— */
+
 .timeline {
   margin-top: 10px;
   display: grid;
   gap: 18px;
   position: relative;
 
-  /* 左邊直線專區，右邊內容不會靠近 */
-  padding-left: 72px;   /* ！！大幅往右移！！ */
+  /* 修正：將內容區塊整體往右推，讓時間欄位（100px）有足夠空間 */
+  padding-left: 120px;   /* 從 72px 調整為 120px，提供更多空間 */
 }
 
 /* 主直線（手帳風淡線） */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 32px;           /* 主線非常靠左，不會碰到文字 */
+  /* 修正：將主線設定在時間欄位右側，使其與右側內容對齊 */
+  left: 100px;           /* 讓它貼著 100px 寬度的時間欄右邊 */
   top: 0;
   bottom: 0;
   width: 2px;
@@ -437,7 +440,7 @@
   content: "";
   position: absolute;
 
-  left: 26px;       /* 超靠左 */
+  left: 90px;       /* 修正：貼著主線左側，形成刻度 */
   top: 11px;
   width: 14px;      /* 更像手帳的長刻度 */
   height: 2px;
@@ -448,9 +451,13 @@
 /* 時間數字：完全獨立，不會再擠到線 */
 .time {
   color: var(--text-muted);
-  padding-left: 10px;
+  /* 修正：移除左側內邊距，讓它靠左對齊 100px 的時間欄位 */
+  padding-left: 0;
   font-weight: 500;
+  /* 優化：讓時間靠右對齊，更像手帳的「對齊刻度」設計 */
+  text-align: right;
 }
+
 
     .activity strong {
       font-weight: 600;
