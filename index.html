@@ -396,57 +396,60 @@
 
     .info-table tbody tr:nth-child(even) {
       background: #f7f2ea;
-    }
-
-  /* —— 無印手帳風·細刻度時間軸（完全不擋字版） —— */
+    }/* —— 無印良品風 · 超穩定版細長刻度時間軸 —— */
 
 .timeline {
   margin-top: 10px;
   display: grid;
-  gap: 16px;
+  gap: 18px;
   position: relative;
 
-  /* 整體往右縮一點，左邊給時間軸玩 */
-  padding-left: 30px;
+  /* 左邊直線專區，右邊內容不會靠近 */
+  padding-left: 72px;   /* ！！大幅往右移！！ */
 }
 
-/* 左側主直線：靠最左邊，不碰時間文字 */
+/* 主直線（手帳風淡線） */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 10px;          /* 線在整個卡片左側 */
+  left: 32px;           /* 主線非常靠左，不會碰到文字 */
   top: 0;
   bottom: 0;
-  width: 1.5px;
-  background: rgba(139, 107, 74, 0.28); /* 大地色淡線 */
+  width: 2px;
+  background: rgba(139, 107, 74, 0.25);
 }
 
+/* 每一行的版面配置 */
 .timeline-item {
   position: relative;
   display: grid;
-  /* 把「時間欄」再加寬一點，文字更往右 */
-  grid-template-columns: 80px minmax(0, 1fr);
-  gap: 10px;
-  font-size: 13px;
-  line-height: 1.6;
+
+  /* 時間欄寬度（右移後不會再貼到線） */
+  grid-template-columns: 100px 1fr;
+
+  gap: 12px;
+  line-height: 1.65;
+  font-size: 14px;
 }
 
-/* 細長小刻度：完全待在線旁邊，不靠近時間數字 */
+/* 小刻度：不會碰到時間文字 */
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: 6px;          /* 緊貼主直線，遠離時間文字 */
-  top: 9px;
-  width: 10px;        /* 細長水平刻度 */
+
+  left: 26px;       /* 超靠左 */
+  top: 11px;
+  width: 14px;      /* 更像手帳的長刻度 */
   height: 2px;
   background: #8b6b4a;
   border-radius: 2px;
 }
 
-/* 時間數字整欄往右移，離開刻度安全距離 */
+/* 時間數字：完全獨立，不會再擠到線 */
 .time {
   color: var(--text-muted);
-  padding-left: 8px;   /* 把時間數字再往右推一點 */
+  padding-left: 10px;
+  font-weight: 500;
 }
 
     .activity strong {
