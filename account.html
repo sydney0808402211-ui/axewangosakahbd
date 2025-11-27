@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大阪生日旅行 · 記帳小本本</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --bg-soft: #f7f4ee;
+      --card-bg: #fcfaf6;
+      --accent: #8b6b4a;
+      --accent-soft: #e4d7c3;
+      --accent-deep: #5f4b34;
+      --text-main: #3a3125;
+      --text-muted: #7b7266;
+      --border-soft: #ded6c8;
+      --radius-lg: 14px;
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Hiragino Sans", "PingFang TC", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(244, 241, 234, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(222, 214, 200, 0.9);
+    }
+
+    .nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .nav-links a {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(252, 250, 246, 0.9);
+      border: 1px solid rgba(222, 214, 200, 0.9);
+      color: var(--text-muted);
+    }
+    .nav-links a:hover {
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      border-color: var(--accent-deep);
+    }
+
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 18px 16px 28px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .summary-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .summary-total strong {
+      font-size: 16px;
+      color: var(--accent-deep);
+    }
+
+    .btn-reset {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #faf6ef;
+      padding: 5px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .btn-reset:hover {
+      background: #f0e6d8;
+      color: var(--accent-deep);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 10px 11px 12px;
+      font-size: 13px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-weight: 600;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .total-line {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--accent-deep);
+      font-weight: 600;
+    }
+
+    .entries {
+      margin-top: 6px;
+      border-top: 1px solid rgba(222, 214, 200, 0.8);
+      padding-top: 4px;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .entry-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) 70px;
+      gap: 4px;
+      margin-bottom: 3px;
+    }
+
+    .entry-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .entry-amount {
+      text-align: right;
+    }
+
+    .add-form {
+      margin-top: 6px;
+      border-top: 1px dashed rgba(222, 214, 200, 0.9);
+      padding-top: 5px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) 80px 62px;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .add-form input {
+      width: 100%;
+      padding: 4px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: #fdfbf7;
+      font-size: 12px;
+    }
+
+    .btn-add {
+      padding: 5px 0;
+      border-radius: 999px;
+      border: 1px solid var(--accent-deep);
+      background: var(--accent-deep);
+      color: #fdfbf7;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn-add:hover {
+      background: #4a3a28;
+      border-color: #4a3a28;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .add-form {
+        grid-template-columns: minmax(0, 1.5fr) 72px 58px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">OSAKA TRIP · ACCOUNT</div>
+      <div class="nav-links">
+        <a href="index.html">← 回行程頁</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <h1>大阪生日旅行 · 記帳小本本</h1>
+    <p class="subtitle">
+      以「天」為單位記帳，只需要填「項目」與「金額」，系統會自動幫你算出當日與整趟旅程目前總額。資料會存在同一支手機 / 瀏覽器裡，不怕重整就不見。
+    </p>
+
+    <div class="summary-bar">
+      <div class="summary-total">
+        目前旅程累計花費：
+        <strong>¥ <span id="grand-total">0</span></strong>
+      </div>
+      <button class="btn-reset" id="reset-all">重設所有紀錄</button>
+    </div>
+
+    <section class="cards" id="day-cards">
+      <!-- 卡片會由 JS 產生 -->
+    </section>
+
+    <p class="hint">
+      小提示：建議把「一起吃的一餐」視為共同支出，用這個記；若有「他請你」或「你請他」的，可以另外自己記在其他 App 做 AA 分帳。
+    </p>
+
+    <footer>
+      宏逸大阪生日旅行 · 記帳頁 · 資料儲存在瀏覽器（localStorage）
+    </footer>
+  </main>
+
+  <script>
+    // 每天的設定
+    const days = [
+      { id: "day1", label: "Day 1 · 12/6（六）", note: "抵達大阪 · 機場 & 難波周邊" },
+      { id: "day2", label: "Day 2 · 12/7（日）", note: "大阪城 · 今昔館 · 天神橋 · 梅田" },
+      { id: "day3", label: "Day 3 · 12/8（一）", note: "通天閣 · 摔角用品 · HARUKAS" },
+      { id: "day4", label: "Day 4 · 12/9（二）", note: "環球影城 USJ 一日遊" },
+      { id: "day5", label: "Day 5 · 12/10（三）", note: "海遊館 · 天保山 · Count 2.99" },
+      { id: "day6", label: "Day 6 · 12/11（四）", note: "退房 · 回台灣" },
+    ];
+
+    const STORAGE_KEY = "osaka_trip_expenses_v1";
+
+    function loadData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return {};
+        return JSON.parse(raw);
+      } catch (e) {
+        console.warn("讀取記帳資料失敗", e);
+        return {};
+      }
+    }
+
+    function saveData(data) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        console.warn("儲存記帳資料失敗", e);
+      }
+    }
+
+    function formatAmount(num) {
+      return num.toLocaleString("ja-JP", { maximumFractionDigits: 0 });
+    }
+
+    function render() {
+      const container = document.getElementById("day-cards");
+      const data = loadData();
+      container.innerHTML = "";
+
+      let grandTotal = 0;
+
+      days.forEach((day) => {
+        const entries = data[day.id] || [];
+        const dayTotal = entries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
+        grandTotal += dayTotal;
+
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">${day.label}</div>
+            <div class="card-sub">${day.note}</div>
+          </div>
+          <div class="total-line">當日合計：¥ <span class="day-total">${formatAmount(dayTotal)}</span></div>
+          <div class="entries" id="${day.id}-entries"></div>
+          <form class="add-form" data-day="${day.id}">
+            <input type="text" name="item" placeholder="項目（例：午餐・貝果・USJ locker）" autocomplete="off" />
+            <input type="number" name="amount" placeholder="金額" inputmode="numeric" />
+            <button type="submit" class="btn-add">新增</button>
+          </form>
+        `;
+
+        container.appendChild(card);
+
+        const listEl = card.querySelector(`#${day.id}-entries`);
+        entries.forEach((e) => {
+          const row = document.createElement("div");
+          row.className = "entry-row";
+          row.innerHTML = `
+            <div class="entry-name">${e.item || "（未命名）"}</div>
+            <div class="entry-amount">¥ ${formatAmount(Number(e.amount) || 0)}</div>
+          `;
+          listEl.appendChild(row);
+        });
+      });
+
+      document.getElementById("grand-total").textContent = formatAmount(grandTotal);
+    }
+
+    function setupEvents() {
+      const container = document.getElementById("day-cards");
+
+      // 新增紀錄
+      container.addEventListener("submit", (e) => {
+        if (!(e.target instanceof HTMLFormElement)) return;
+        e.preventDefault();
+
+        const form = e.target;
+        const dayId = form.getAttribute("data-day");
+        const itemInput = form.querySelector('input[name="item"]');
+        const amountInput = form.querySelector('input[name="amount"]');
+
+        const item = itemInput.value.trim();
+        const amount = Number(amountInput.value);
+
+        if (!dayId || !amount || isNaN(amount)) {
+          alert("請至少輸入金額（項目名稱可以先隨便打也沒關係）");
+          return;
+        }
+
+        const data = loadData();
+        if (!Array.isArray(data[dayId])) data[dayId] = [];
+        data[dayId].push({ item, amount });
+        saveData(data);
+
+        itemInput.value = "";
+        amountInput.value = "";
+
+        render();
+      });
+
+      // 重設全部
+      const resetBtn = document.getElementById("reset-all");
+      resetBtn.addEventListener("click", () => {
+        if (!confirm("確定要刪除所有記帳紀錄嗎？（無法復原）")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        render();
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      render();
+      setupEvents();
+    });
+  </script>
+</body>
+</html>
