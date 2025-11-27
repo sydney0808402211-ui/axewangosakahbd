@@ -6,7 +6,6 @@
   <title>宏逸大阪生日旅行 · 6 天 5 夜卡片式行程</title>
   <style>
     :root {
-      /* 無印良品感：低飽和暖色系 */
       --bg: #f4f1ea;
       --bg-soft: #f7f4ee;
       --card-bg: #fcfaf6;
@@ -454,6 +453,167 @@
       padding-top: 10px;
     }
 
+    /* ======= 生日 Intro 畫面 ======= */
+
+    body.has-intro header,
+    body.has-intro .app-shell,
+    body.has-intro footer {
+      display: none;
+    }
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(244, 241, 234, 0.98);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .intro-inner {
+      max-width: 900px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 16px;
+    }
+
+    .intro-left-title {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 6px;
+    }
+
+    .intro-left h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .intro-left p {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .intro-left p.small {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .intro-left-bottom {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .intro-left-bottom strong {
+      color: var(--accent-deep);
+    }
+
+    .intro-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .intro-meta-chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      background: var(--bg-soft);
+    }
+
+    .intro-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: #111;
+    }
+
+    .intro-slider-track {
+      display: flex;
+      width: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .intro-slide {
+      min-width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    .intro-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .intro-slider-controls {
+      position: absolute;
+      inset: auto 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+    }
+
+    .intro-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(252, 250, 246, 0.85);
+      background: rgba(17, 17, 17, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fdfbf6;
+      font-size: 14px;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .intro-arrow:hover {
+      background: rgba(17, 17, 17, 0.7);
+    }
+
+    .intro-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #fdfbf6;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .intro-hide {
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+    }
+
     @media (max-width: 768px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -469,11 +629,62 @@
       .nav {
         padding-inline: 14px;
       }
+
+      .intro-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
-
 </head>
-<body>
+<body class="has-intro">
+  <!-- 生日 Intro 畫面 -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-inner">
+      <div class="intro-left">
+        <div class="intro-left-title">HAPPY BIRTHDAY</div>
+        <h1>生日快樂，台灣摔角顏值巔峰 AXE WANG</h1>
+        <p>
+          這一次，不只是去大阪玩，而是專門為你寫的一整份「生日旅行企劃」。<br />
+          先看幾張你的寫真，讓壽星本人先帥一輪，等你準備好，再一起打開後面的行程手帳。
+        </p>
+        <p class="small">
+          日本橋當基地、梅田當伸展台、USJ 當遊樂場，最後再用海邊和摔角主題酒吧收尾。<br />
+          每一站、每一條路線、每一個甜點，都是小肥豬替你排好的生日關卡。
+        </p>
+        <div class="intro-left-bottom">
+          <strong>任務提示：</strong>先滑完幾張寫真暖身一下，然後按下「開始生日旅行」，就會進入詳細行程頁。
+        </div>
+
+        <div class="intro-actions">
+          <button id="enter-trip-btn" class="btn-primary">開始生日旅行 →</button>
+          <span class="intro-meta-chip">大阪 · 6 天 5 夜 · 日本橋基地</span>
+        </div>
+      </div>
+
+      <div class="intro-right">
+        <div class="intro-slider">
+          <div class="intro-slider-track">
+            <!-- 寫真照（已上傳 axe-photo1~3.jpg） -->
+            <div class="intro-slide">
+              <img src="axe-photo1.jpg" alt="AXE 寫真 1" />
+            </div>
+            <div class="intro-slide">
+              <img src="axe-photo2.jpg" alt="AXE 寫真 2" />
+            </div>
+            <div class="intro-slide">
+              <img src="axe-photo3.jpg" alt="AXE 寫真 3" />
+            </div>
+          </div>
+          <div class="intro-slider-controls">
+            <button id="intro-prev" class="intro-arrow" type="button">‹</button>
+            <button id="intro-next" class="intro-arrow" type="button">›</button>
+          </div>
+          <div class="intro-indicator">左右滑動或點箭頭看寫真</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header>
     <nav class="nav">
       <div class="logo">AXE OSAKA BIRTHDAY TRIP</div>
@@ -481,7 +692,7 @@
         <a href="#cards-itinerary">行程卡片</a>
         <a href="#cards-stay">住宿 & 周邊</a>
         <a href="#cards-umeda">梅田逛街</a>
-         <a href="#cards-snacks">點心</a>
+        <a href="#cards-snacks">點心</a>
         <a href="#cards-usj">USJ</a>
         <a href="#cards-tips">小提醒</a>
         <a href="#cards-flight">機票</a>
@@ -507,7 +718,12 @@
         <div class="hero-buttons">
           <a class="btn-primary" href="#cards-itinerary">打開全部行程卡片 ⤵</a>
           <a class="btn-secondary" href="#cards-stay">先看住宿 & 機場交通</a>
-          <a class="btn-secondary" href="https://docs.google.com/document/d/1m9V2yH4teOhwyYqtaJeYy00iOJqka49aPOpss0SJvNo/edit?usp=sharing" target="_blank" rel="noopener">
+          <a
+            class="btn-secondary"
+            href="https://docs.google.com/document/d/1m9V2yH4teOhwyYqtaJeYy00iOJqka49aPOpss0SJvNo/edit?usp=sharing"
+            target="_blank"
+            rel="noopener"
+          >
             行前備忘 Google Doc
           </a>
         </div>
@@ -520,7 +736,9 @@
         </div>
         <div>
           <div class="hero-city">大阪 6 天 5 夜</div>
-          <div class="hero-dates">Day 1 抵達 · Day 2–3 大阪周遊卡 · Day 4 USJ · Day 5 港區 · Day 6 回家</div>
+          <div class="hero-dates">
+            Day 1 抵達 · Day 2–3 大阪周遊卡 · Day 4 USJ · Day 5 港區 · Day 6 回家
+          </div>
           <div class="hero-bullets">
             <span>日本橋住宿，走路就能到難波、黑門市場、電器街。</span>
             <span>兩日大阪周遊卡把大阪城、空中庭園、通天閣、港區一次玩完。</span>
@@ -556,15 +774,22 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="time">18:10–21:40</div>
-                  <div class="activity"><strong>桃園 → 關西機場</strong>（GK54）抵達後先補水、上洗手間。</div>
+                  <div class="activity">
+                    <strong>桃園 → 關西機場</strong>（GK54）抵達後先補水、上洗手間。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">~22:00</div>
-                  <div class="activity"><strong>南海電鐵 Airport Express</strong>：關西空港 → 南海難波，約 45 分鐘。</div>
+                  <div class="activity">
+                    <strong>南海電鐵 Airport Express</strong
+                    >：關西空港 → 南海難波，約 45 分鐘。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">22:45–23:00</div>
-                  <div class="activity"><strong>難波 → 住宿</strong>：可步行 12–15 分鐘，或搭一小段地鐵到日本橋站再走。</div>
+                  <div class="activity">
+                    <strong>難波 → 住宿</strong>：可步行 12–15 分鐘，或搭一小段地鐵到日本橋站再走。
+                  </div>
                 </div>
               </div>
 
@@ -575,7 +800,10 @@
                   <p>・南海難波 → 住宿：</p>
                   <ul class="card-list">
                     <li><strong>方案 A：</strong>步行沿千日前通往日本橋方向，邊走邊熟悉難波街道。</li>
-                    <li><strong>方案 B：</strong>南海難波 → 地下接御堂筋/千日前線 → 日本橋站，出 8 號出口步行約 5–7 分鐘。</li>
+                    <li>
+                      <strong>方案 B：</strong
+                      >南海難波 → 地下接御堂筋/千日前線 → 日本橋站，出 8 號出口步行約 5–7 分鐘。
+                    </li>
                   </ul>
                   <p>Check in 後可以到樓下全家掃飲料、宵夜，順便當作「日本橋第一次巡邏」。</p>
                 </div>
@@ -583,113 +811,124 @@
             </div>
           </article>
 
-         <!-- Day 2 -->
-<article class="card">
-  <div class="card-header">
-    <div class="card-label">Day 2 · 12/7（日）</div>
-    <div class="card-title">大阪周遊卡 Day 1 · 大阪城 + 今昔館 + 天神橋美食 + 梅田逛街</div>
-    <div class="card-sub">經典市區景點 + 壽星梅田購物路線 + 天神橋吃好吃滿</div>
-  </div>
-  <div class="card-body">
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="time">09:00–10:30</div>
-        <div class="activity">
-          <strong>大阪城天守閣</strong>：日本橋 →（千日前線）→ 谷町九丁目 →（谷町線）→ 谷町四丁目 → 步行進大阪城公園。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">11:00–12:00</div>
-        <div class="activity">
-          <strong>大阪生活今昔館</strong>：谷町線北上至天神橋筋六丁目，出站直結大樓。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">12:00–13:30</div>
-        <div class="activity">
-          <strong>天神橋筋商店街午餐 + 小吃</strong>：在地鰻魚飯、可樂餅、章魚燒任選組合，吃到開心再出發。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">13:30–14:00</div>
-        <div class="activity">
-          <strong>大阪天滿宮小景點</strong>：從天神橋步行到大阪天滿宮，順便參拜學問之神、拍拍照片。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">14:00–15:00</div>
-        <div class="activity">
-          <strong>梅田空中庭園展望台</strong>：從天滿 / 南森町一帶搭地鐵往梅田，周遊卡免費入場。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:00–18:00</div>
-        <div class="activity">
-          <strong>壽星專屬梅田逛街攻略</strong>：Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 & Zoff，再視體力安排 grenier 布丁等甜點。
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">晚上</div>
-        <div class="activity">
-          <strong>御堂筋線 梅田 → 難波</strong>，再走去道頓堀／心齋橋夜遊 + 晚餐，有體力就順路買 LE CROISSANT 可頌，最後走回住宿。
-        </div>
-      </div>
-    </div>
+          <!-- Day 2 -->
+          <article class="card">
+            <div class="card-header">
+              <div class="card-label">Day 2 · 12/7（日）</div>
+              <div class="card-title">
+                大阪周遊卡 Day 1 · 大阪城 + 今昔館 + 天神橋美食 + 梅田逛街
+              </div>
+              <div class="card-sub">經典市區景點 + 壽星梅田購物路線 + 天神橋吃好吃滿</div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time">09:00–10:30</div>
+                  <div class="activity">
+                    <strong>大阪城天守閣</strong>：日本橋 →（千日前線）→ 谷町九丁目 →（谷町線）→
+                    谷町四丁目 → 步行進大阪城公園。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">11:00–12:00</div>
+                  <div class="activity">
+                    <strong>大阪生活今昔館</strong>：谷町線北上至天神橋筋六丁目，出站直結大樓。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">12:00–13:30</div>
+                  <div class="activity">
+                    <strong>天神橋筋商店街午餐 + 小吃</strong>：在地鰻魚飯、可樂餅、章魚燒任選組合，吃到開心再出發。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">13:30–14:00</div>
+                  <div class="activity">
+                    <strong>大阪天滿宮小景點</strong>：從天神橋步行到大阪天滿宮，順便參拜學問之神、拍拍照片。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">14:00–15:00</div>
+                  <div class="activity">
+                    <strong>梅田空中庭園展望台</strong>：從天滿 / 南森町一帶搭地鐵往梅田，周遊卡免費入場。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">15:00–18:00</div>
+                  <div class="activity">
+                    <strong>壽星專屬梅田逛街攻略</strong
+                    >：Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &
+                    Zoff，再視體力安排 grenier 布丁等甜點。
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time">晚上</div>
+                  <div class="activity">
+                    <strong>御堂筋線 梅田 → 難波</strong
+                    >，再走去道頓堀／心齋橋夜遊 + 晚餐，有體力就順路買 LE CROISSANT
+                    可頌，最後走回住宿。
+                  </div>
+                </div>
+              </div>
 
-    <details>
-      <summary>展開詳細 <span>（地鐵路線 + 午餐選擇 + 大阪天滿宮）</span></summary>
-      <div>
-        <p><strong>日本橋 → 大阪城天守閣：</strong></p>
-        <ul class="card-list">
-          <li>日本橋（千日前線，往南巽）→ 谷町九丁目（1 站）。</li>
-          <li>谷町九丁目 轉谷町線（往大日）→ 谷町四丁目（2 站）。</li>
-          <li>從出口步行約 15 分鐘進入大阪城公園，前往天守閣。</li>
-        </ul>
+              <details>
+                <summary>展開詳細 <span>（地鐵路線 + 午餐選擇 + 大阪天滿宮）</span></summary>
+                <div>
+                  <p><strong>日本橋 → 大阪城天守閣：</strong></p>
+                  <ul class="card-list">
+                    <li>日本橋（千日前線，往南巽）→ 谷町九丁目（1 站）。</li>
+                    <li>谷町九丁目 轉谷町線（往大日）→ 谷町四丁目（2 站）。</li>
+                    <li>從出口步行約 15 分鐘進入大阪城公園，前往天守閣。</li>
+                  </ul>
 
-        <p><strong>大阪城 → 今昔館：</strong></p>
-        <ul class="card-list">
-          <li>谷町四丁目 → 谷町線（往大日方向）→ 天神橋筋六丁目，今昔館就位在同一棟大樓內。</li>
-        </ul>
+                  <p><strong>大阪城 → 今昔館：</strong></p>
+                  <ul class="card-list">
+                    <li>谷町四丁目 → 谷町線（往大日方向）→ 天神橋筋六丁目，今昔館就位在同一棟大樓內。</li>
+                  </ul>
 
-        <p><strong>今昔館周邊午餐 & 小吃推薦（天滿・天神橋筋一帶）：</strong></p>
-        <ul class="card-list">
-          <li>
-            <strong>炭燒鰻魚魚伊 天五店（炭焼きうなぎの魚伊 天五店）</strong><br />
-            地址：大阪府大阪市北区天神橋5-5-5<br />
-            交通：JR「天滿站」步行約 5 分鐘；Osaka Metro 谷町線「天神橋筋六丁目站」步行約 7 分鐘。<br />
-            官網：
-            <a href="https://www.sumiyaki-unagi.com/" target="_blank" rel="noopener">https://www.sumiyaki-unagi.com/</a>
-          </li>
-          <li>
-            <strong>章魚燒 UMAI屋（たこ焼き うまい屋）</strong><br />
-            地址：大阪府大阪市北区浪花町4-21<br />
-            交通：谷町線「天神橋筋六丁目站」步行約 3 分鐘；JR「天滿站」步行約 5 分鐘。<br />
-            適合當作「午餐後散步再加一份小吃」。
-          </li>
-          <li>
-            <strong>天神橋 中村屋</strong><br />
-            地址：大阪府大阪市北区天神橋2-3-21<br />
-            交通：Osaka Metro 谷町線「南森町站」步行約 2 分鐘。<br />
-            走到南森町一帶時，可以順便買可樂餅或炸物當路上點心。
-          </li>
-        </ul>
+                  <p><strong>今昔館周邊午餐 & 小吃推薦（天滿・天神橋筋一帶）：</strong></p>
+                  <ul class="card-list">
+                    <li>
+                      <strong>炭燒鰻魚魚伊 天五店（炭焼きうなぎの魚伊 天五店）</strong><br />
+                      地址：大阪府大阪市北区天神橋5-5-5<br />
+                      交通：JR「天滿站」步行約 5 分鐘；Osaka Metro 谷町線「天神橋筋六丁目站」步行約
+                      7 分鐘。<br />
+                      官網：
+                      <a href="https://www.sumiyaki-unagi.com/" target="_blank" rel="noopener"
+                        >https://www.sumiyaki-unagi.com/</a
+                      >
+                    </li>
+                    <li>
+                      <strong>章魚燒 UMAI屋（たこ焼き うまい屋）</strong><br />
+                      地址：大阪府大阪市北区浪花町4-21<br />
+                      交通：谷町線「天神橋筋六丁目站」步行約 3 分鐘；JR「天滿站」步行約 5 分鐘。<br />
+                      適合當作「午餐後散步再加一份小吃」。
+                    </li>
+                    <li>
+                      <strong>天神橋 中村屋</strong><br />
+                      地址：大阪府大阪市北区天神橋2-3-21<br />
+                      交通：Osaka Metro 谷町線「南森町站」步行約 2 分鐘。<br />
+                      走到南森町一帶時，可以順便買可樂餅或炸物當路上點心。
+                    </li>
+                  </ul>
 
-        <p><strong>大阪天滿宮（大阪天満宮）：</strong></p>
-        <ul class="card-list">
-          <li>地址：2 Chome-1-8 Tenjinbashi, Kita Ward, Osaka, 530-0041 日本。</li>
-          <li>供奉學問之神菅原道真，是學生與考生會來祈求學業・考試的熱門神社。</li>
-          <li>從天神橋筋商店街一帶步行即可到達，吃飽後散步過去剛剛好。</li>
-        </ul>
+                  <p><strong>大阪天滿宮（大阪天満宮）：</strong></p>
+                  <ul class="card-list">
+                    <li>地址：2 Chome-1-8 Tenjinbashi, Kita Ward, Osaka, 530-0041 日本。</li>
+                    <li>供奉學問之神菅原道真，是學生與考生會來祈求學業・考試的熱門神社。</li>
+                    <li>從天神橋筋商店街一帶步行即可到達，吃飽後散步過去剛剛好。</li>
+                  </ul>
 
-        <p><strong>大阪天滿宮 → 梅田：</strong></p>
-        <ul class="card-list">
-          <li>從南森町站搭谷町線或堺筋線 → 在東梅田 / 扇町等站轉乘，依當天狀況選最順的動線即可。</li>
-        </ul>
-      </div>
-    </details>
-  </div>
-</article>
-
+                  <p><strong>大阪天滿宮 → 梅田：</strong></p>
+                  <ul class="card-list">
+                    <li>
+                      從南森町站搭谷町線或堺筋線 → 在東梅田 / 扇町等站轉乘，依當天狀況選最順的動線即可。
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
 
           <!-- Day 3 -->
           <article class="card">
@@ -702,23 +941,34 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="time">10:00–12:00</div>
-                  <div class="activity"><strong>通天閣</strong>：日本橋（堺筋線，往天下茶屋）→ 惠美須町（1 站）→ 步行 5 分鐘。</div>
+                  <div class="activity">
+                    <strong>通天閣</strong>：日本橋（堺筋線，往天下茶屋）→ 惠美須町（1 站）→ 步行 5 分鐘。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">11:30–12:00</div>
-                  <div class="activity"><strong>プロレスグッズ ウラカン・ラナ</strong>：從通天閣散步到日本橋 5 丁目，挖寶摔角周邊。</div>
+                  <div class="activity">
+                    <strong>プロレスグッズ ウラカン・ラナ</strong
+                    >：從通天閣散步到日本橋 5 丁目，挖寶摔角周邊。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">12:00–14:00</div>
-                  <div class="activity"><strong>燒肉／壽喜燒午餐</strong>：新世界或難波一帶找店。</div>
+                  <div class="activity">
+                    <strong>燒肉／壽喜燒午餐</strong>：新世界或難波一帶找店。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">15:00–16:00</div>
-                  <div class="activity"><strong>阿倍野 HARUKAS</strong>：惠美須町 / 動物園前 → 天王寺／阿倍野，逛百貨 + 看高樓景色。</div>
+                  <div class="activity">
+                    <strong>阿倍野 HARUKAS</strong>：惠美須町 / 動物園前 → 天王寺／阿倍野，逛百貨 + 看高樓景色。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">晚上</div>
-                  <div class="activity"><strong>難波 + ISAMI</strong>：天王寺 → 御堂筋線 → 難波，去 ISAMI 難波店看角力鞋和格鬥用品，之後逛街吃晚餐，再走回住宿。</div>
+                  <div class="activity">
+                    <strong>難波 + ISAMI</strong>：天王寺 → 御堂筋線 → 難波，去 ISAMI 難波店看角力鞋和格鬥用品，之後逛街吃晚餐，再走回住宿。
+                  </div>
                 </div>
               </div>
 
@@ -728,7 +978,9 @@
                   <p>這一天大部分路線由大阪周遊卡支援：</p>
                   <ul class="card-list">
                     <li>日本橋 → 惠美須町：堺筋線 1 站。</li>
-                    <li>新世界 → 阿倍野 / 天王寺：可步行 15–20 分鐘，或從動物園前搭御堂筋線 1 站到天王寺。</li>
+                    <li>
+                      新世界 → 阿倍野 / 天王寺：可步行 15–20 分鐘，或從動物園前搭御堂筋線 1 站到天王寺。
+                    </li>
                     <li>天王寺 → 難波：御堂筋線往千里中央方向，南行 3 站即達。</li>
                   </ul>
                   <p>晚上從難波逛回日本橋，就當作散步消化。</p>
@@ -748,19 +1000,29 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="time">07:00</div>
-                  <div class="activity"><strong>出發去 USJ</strong>：從住宿走到近鐵日本橋站。</div>
+                  <div class="activity">
+                    <strong>出發去 USJ</strong>：從住宿走到近鐵日本橋站。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">~08:00</div>
-                  <div class="activity"><strong>抵達環球城站</strong>：近鐵奈良線 → 阪神難波線直通 → 西九条 → JR 夢咲線 → Universal City。</div>
+                  <div class="activity">
+                    <strong>抵達環球城站</strong
+                    >：近鐵奈良線 → 阪神難波線直通 → 西九条 → JR 夢咲線 → Universal City。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">08:00–20:00</div>
-                  <div class="activity"><strong>USJ 一日遊</strong>：瑪利歐世界、好萊塢美夢、咚奇剛礦車、大白鯊、水世界、侏羅紀系列，視現場安排。</div>
+                  <div class="activity">
+                    <strong>USJ 一日遊</strong
+                    >：瑪利歐世界、好萊塢美夢、咚奇剛礦車、大白鯊、水世界、侏羅紀系列，視現場安排。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">晚上</div>
-                  <div class="activity"><strong>霍格華茲冬季燈光秀</strong>：留一段時間在城堡前看夜間表演，再撤退。</div>
+                  <div class="activity">
+                    <strong>霍格華茲冬季燈光秀</strong>：留一段時間在城堡前看夜間表演，再撤退。
+                  </div>
                 </div>
               </div>
 
@@ -770,8 +1032,13 @@
                   <p><strong>交通路線：</strong></p>
                   <ul class="card-list">
                     <li>步行約 11 分鐘 → 近鐵日本橋站。</li>
-                    <li>近鐵日本橋 → （近鐵奈良線，往神戶 / 尼崎方向）→ 列車在尼崎後自動變成阪神難波線，<strong>不用下車</strong>。</li>
-                    <li>在西九条站下車 → 改搭 JR 夢咲線往桜島方向 → 在 Universal City 下車 → 步行 5 分鐘即達園區。</li>
+                    <li>
+                      近鐵日本橋 → （近鐵奈良線，往神戶 / 尼崎方向）→ 列車在尼崎後自動變成阪神難波線，<strong>不用下車</strong>。
+                    </li>
+                    <li>
+                      在西九条站下車 → 改搭 JR 夢咲線往桜島方向 → 在 Universal City 下車 → 步行
+                      5 分鐘即達園區。
+                    </li>
                   </ul>
                   <p><strong>玩樂順序建議：</strong></p>
                   <ul class="card-list">
@@ -781,7 +1048,12 @@
                     <li>可以視情況使用 Single Rider 單人通道，節省排隊時間。</li>
                   </ul>
                   <p><strong>園區地圖：</strong></p>
-                  <a class="pill-link" href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj" target="_blank" rel="noopener">
+                  <a
+                    class="pill-link"
+                    href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <span>🗺️</span><span>開啟 USJ 官方互動地圖</span>
                   </a>
                   <p style="margin-top:6px;">
@@ -803,31 +1075,44 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="time">09:00–10:00</div>
-                  <div class="activity"><strong>日本橋 → 大阪港</strong>：日本橋（千日前線）→ 阿波座 → 轉中央線 → 大阪港站。</div>
+                  <div class="activity">
+                    <strong>日本橋 → 大阪港</strong>：日本橋（千日前線）→ 阿波座 → 轉中央線 → 大阪港站。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">10:00–12:00</div>
-                  <div class="activity"><strong>海遊館</strong>：大阪港站 1 號出口步行約 5 分鐘，看鯨鯊等海洋動物。</div>
+                  <div class="activity">
+                    <strong>海遊館</strong>：大阪港站 1 號出口步行約 5 分鐘，看鯨鯊等海洋動物。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">12:00–13:00</div>
-                  <div class="activity"><strong>天保山商場午餐</strong>：海遊館旁商場覓食。</div>
+                  <div class="activity">
+                    <strong>天保山商場午餐</strong>：海遊館旁商場覓食。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">13:00–15:00</div>
-                  <div class="activity"><strong>港區散步 + 天保山公園</strong>：慢慢走、拍照、看海。</div>
+                  <div class="activity">
+                    <strong>港區散步 + 天保山公園</strong>：慢慢走、拍照、看海。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">15:00–16:00</div>
-                  <div class="activity"><strong>天保山摩天輪</strong>：看整個港區與大阪灣景色。</div>
+                  <div class="activity">
+                    <strong>天保山摩天輪</strong>：看整個港區與大阪灣景色。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">17:00–17:40</div>
-                  <div class="activity"><strong>回到難波 / 日本橋</strong>：反向搭中央線 + 御堂筋線。</div>
+                  <div class="activity">
+                    <strong>回到難波 / 日本橋</strong>：反向搭中央線 + 御堂筋線。</div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">晚上</div>
-                  <div class="activity"><strong>Count 2.99 Bar</strong>：從住宿步行至摔角主題酒吧，小酌聊聊天再走回家。</div>
+                  <div class="activity">
+                    <strong>Count 2.99 Bar</strong>：從住宿步行至摔角主題酒吧，小酌聊聊天再走回家。
+                  </div>
                 </div>
               </div>
 
@@ -835,7 +1120,12 @@
                 <summary>展開詳細 <span>（海遊館資訊 & 酒吧位置）</span></summary>
                 <div>
                   <p><strong>海遊館官方網站：</strong></p>
-                  <a class="pill-link" href="https://www.kaiyukan.com/" target="_blank" rel="noopener">
+                  <a
+                    class="pill-link"
+                    href="https://www.kaiyukan.com/"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <span>🌊</span><span>海遊館 KAIYUKAN 官方網站</span>
                   </a>
                   <p style="margin-top:6px;">・地址：大阪市港区海岸通 1-1-10，從大阪港站 1 號出口步行約 5 分鐘。</p>
@@ -858,15 +1148,22 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <div class="time">10:00 前</div>
-                  <div class="activity"><strong>退房</strong>：確認護照、手機、錢包、票券與戰利品全部收好。</div>
+                  <div class="activity">
+                    <strong>退房</strong>：確認護照、手機、錢包、票券與戰利品全部收好。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">~13:00</div>
-                  <div class="activity"><strong>日本橋 → 南海難波 → 關西空港</strong>：可走路到難波，也可搭地鐵一小段，再轉南海電鐵。</div>
+                  <div class="activity">
+                    <strong>日本橋 → 南海難波 → 關西空港</strong
+                    >：可走路到難波，也可搭地鐵一小段，再轉南海電鐵。
+                  </div>
                 </div>
                 <div class="timeline-item">
                   <div class="time">14:50–17:10</div>
-                  <div class="activity"><strong>關西空港 → 桃園</strong>：GK55，正式結束這趟生日旅行。</div>
+                  <div class="activity">
+                    <strong>關西空港 → 桃園</strong>：GK55，正式結束這趟生日旅行。
+                  </div>
                 </div>
               </div>
 
@@ -899,15 +1196,27 @@
             <div class="card-body">
               <p><strong>入住：</strong>2025/12/6（六）16:00–22:00</p>
               <p><strong>退房：</strong>2025/12/11（四）10:00 前</p>
-              <p><strong>Google 地圖：</strong>
-                <a class="pill-link" href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17" target="_blank" rel="noopener">
+              <p>
+                <strong>Google 地圖：</strong>
+                <a
+                  class="pill-link"
+                  href="https://www.google.com/maps?q=542-0073+大阪府大阪市中央区日本橋2丁目18-17"
+                  target="_blank"
+                  rel="noopener"
+                >
                   <span>📍</span><span>開啟住宿位置導航</span>
                 </a>
               </p>
               <p>機場來回路線：關西空港 ⇄ 南海難波（南海電鐵，約 35–45 分鐘）＋ 難波步行 12–15 分鐘抵達日本橋住宿。</p>
 
-              <!-- 飯店外觀圖片 -->
-              <img src="hotel-exterior.jpg" alt="Grants Arita Nipponbashi 外觀" class="card-image" />
+              <!-- 飯店外觀圖片（可點開放大） -->
+              <a href="hotel-exterior.jpg" target="_blank">
+                <img
+                  src="hotel-exterior.jpg"
+                  alt="Grants Arita Nipponbashi 外觀"
+                  class="card-image"
+                />
+              </a>
             </div>
           </article>
 
@@ -918,7 +1227,10 @@
               <div class="card-sub">便利商店・超市・車站位置整理</div>
             </div>
             <div class="card-body">
-              <p><strong>最近的車站：</strong>日本橋站（Osaka Metro 堺筋線 / 千日前線、近鐵日本橋站共構），步行約 5–7 分鐘。</p>
+              <p>
+                <strong>最近的車站：</strong>日本橋站（Osaka Metro 堺筋線 / 千日前線、近鐵日本橋站共構），步行約
+                5–7 分鐘。
+              </p>
               <p><strong>建議出口：</strong>靠近 8 號出口一帶，往住宿方向走最順。</p>
               <p><strong>便利商店：</strong></p>
               <ul class="card-list">
@@ -941,10 +1253,14 @@
             </div>
             <div class="card-body">
               <p>這張地圖幫你把 Grand Front、LUCUA、阪急／阪神百貨、HEP FIVE 等位置全部標出來，實際逛街時可以對照著走。</p>
-              <!-- 梅田逛街地圖 -->
-             <a href="umeda-shopping-map.jpg" target="_blank">
-  <img src="umeda-shopping-map.jpg" alt="梅田逛街地圖" class="card-image" />
-</a>
+              <!-- 梅田逛街地圖（可點開放大） -->
+              <a href="umeda-shopping-map.jpg" target="_blank">
+                <img
+                  src="umeda-shopping-map.jpg"
+                  alt="梅田逛街地圖"
+                  class="card-image"
+                />
+              </a>
             </div>
           </article>
         </div>
@@ -966,11 +1282,25 @@
             </div>
             <div class="card-body">
               <ol class="card-list" style="margin-left:18px;">
-                <li><strong>空中庭園 → Grand Front Osaka</strong><br />看完展望台後往大阪站北側走，先進 Grand Front 逛男裝、選物與咖啡店。</li>
-                <li><strong>Grand Front → LUCUA / LUCUA 1100</strong><br />接著往車站方向移動，LUCUA 偏女裝，<strong>LUCUA 1100</strong> 男生好逛很多。</li>
-                <li><strong>JR 大阪站 → 阪急梅田本店</strong><br />穿過車站往阪急方向，進百貨找 <strong>Onitsuka Tiger 專櫃</strong>，挑生日鞋。</li>
-                <li><strong>阪急 → 大丸梅田店</strong><br />再移動到大丸梅田，逛高級品牌與 <strong>Zoff</strong> 眼鏡店，找適合的鏡框或太陽眼鏡。</li>
-                <li><strong>收尾：唐吉訶德 梅田本店 or 阪神梅田本店</strong><br />最後去唐吉訶德買零食＆怪東西，或到阪神百貨地下街掃伴手禮。</li>
+                <li>
+                  <strong>空中庭園 → Grand Front Osaka</strong><br />看完展望台後往大阪站北側走，先進 Grand
+                  Front 逛男裝、選物與咖啡店。
+                </li>
+                <li>
+                  <strong>Grand Front → LUCUA / LUCUA 1100</strong><br />接著往車站方向移動，LUCUA
+                  偏女裝，<strong>LUCUA 1100</strong> 男生好逛很多。
+                </li>
+                <li>
+                  <strong>JR 大阪站 → 阪急梅田本店</strong><br />穿過車站往阪急方向，進百貨找
+                  <strong>Onitsuka Tiger 專櫃</strong>，挑生日鞋。
+                </li>
+                <li>
+                  <strong>阪急 → 大丸梅田店</strong><br />再移動到大丸梅田，逛高級品牌與
+                  <strong>Zoff</strong> 眼鏡店，找適合的鏡框或太陽眼鏡。
+                </li>
+                <li>
+                  <strong>收尾：唐吉訶德 梅田本店 or 阪神梅田本店</strong><br />最後去唐吉訶德買零食＆怪東西，或到阪神百貨地下街掃伴手禮。
+                </li>
               </ol>
               <div class="badge-row">
                 <span class="badge">Grand Front Osaka</span>
@@ -1003,6 +1333,7 @@
           </article>
         </div>
       </section>
+
       <!-- 想吃點心清單 -->
       <section id="cards-snacks">
         <div class="section-title">
@@ -1042,12 +1373,15 @@
                   （梅田地下街 / 大阪站一帶）<br />
                   <strong>推薦安排：</strong>
                   <span>🟦 Day 2 下午（梅田逛街中途休息時）</span><br />
-                  下午在 Grand Front、LUCUA、阪急百貨一帶逛到一半的時候，可以特地繞去 grenier 吃布丁或其他甜點，當作「壽星下午茶」，吃完再回到梅田逛街路線上。
+                  下午在 Grand Front、LUCUA、阪急百貨一帶逛到一半的時候，可以特地繞去
+                  grenier 吃布丁或其他甜點，當作「壽星下午茶」，吃完再回到梅田逛街路線上。
                 </li>
               </ul>
 
               <p style="margin-top:8px;">
-                <strong>小結：</strong>Day 2 是甜點最密集的一天：早上今昔館、午餐前後在天神橋吃貝果＋在地小吃，下午梅田吃 grenier 布丁，晚上心齋橋買可頌；Day 3 晚上如果還有力氣，也可以再去一次 LE CROISSANT 補吃。
+                <strong>小結：</strong>Day 2 是甜點最密集的一天：早上今昔館、午餐前後在天神橋吃貝果＋在地小吃，下午梅田吃
+                grenier 布丁，晚上心齋橋買可頌；Day 3 晚上如果還有力氣，也可以再去一次 LE
+                CROISSANT 補吃。
               </p>
             </div>
           </article>
@@ -1087,9 +1421,15 @@
                   <tr><td>12/11（四）</td><td>12°C</td><td>6°C</td><td>多雲，略回暖</td></tr>
                 </tbody>
               </table>
-              <p style="margin-top:6px;"><strong>男生：</strong>發熱衣 + 長袖 + 輕量羽絨 / 防風外套，下身長褲，配圍巾與帽子。</p>
-              <p><strong>女生：</strong>發熱衣 + 毛衣 / 針織 + 外套，下身長褲或厚裙＋褲襪，怕冷可以加手套。</p>
-              <p>USJ＆海遊館那兩天都接近海邊或開闊空間，風會比較冷，記得帶好外套。</p>
+              <p style="margin-top:6px;">
+                <strong>男生：</strong>發熱衣 + 長袖 + 輕量羽絨 / 防風外套，下身長褲，配圍巾與帽子。
+              </p>
+              <p>
+                <strong>女生：</strong>發熱衣 + 毛衣 / 針織 + 外套，下身長褲或厚裙＋褲襪，怕冷可以加手套。
+              </p>
+              <p>
+                USJ＆海遊館那兩天都接近海邊或開闊空間，風會比較冷，記得帶好外套。
+              </p>
             </div>
           </article>
 
@@ -1097,16 +1437,6 @@
             <div class="card-header">
               <div class="card-label">Check List</div>
               <div class="card-title">每日交通費 & 票券小抄</div>
-              <div class="info-card">
-  <h4>大阪地鐵總覽（外部連結）</h4>
-  <p>
-    想快速確認大阪地鐵所有路線、轉乘方式、主要景點位置，可使用這個官方外部網站的完整路線圖：
-  </p>
-  <a href="https://metronine.osaka/tw/fullpage-course/" target="_blank" class="external-link">
-    👉 大阪 Metro 全區路線圖（Metro Nine）
-  </a>
-</div>
-
               <div class="card-sub">已付項目＋大概交通預算</div>
             </div>
             <div class="card-body">
@@ -1116,14 +1446,46 @@
                 </thead>
                 <tbody>
                   <tr><td>Day 1</td><td>關西機場 → 難波 + 住宿</td><td>約 1,000–1,200 円</td></tr>
-                  <tr><td>Day 2</td><td>大阪城・今昔館・梅田・難波</td><td>周遊卡內含</td></tr>
+                  <tr><td>Day 2</td><td>大阪城・今昔館・天神橋・梅田・難波</td><td>周遊卡內含</td></tr>
                   <tr><td>Day 3</td><td>通天閣・阿倍野・難波</td><td>周遊卡內含</td></tr>
                   <tr><td>Day 4</td><td>日本橋 ⇄ USJ</td><td>約 850–900 円</td></tr>
                   <tr><td>Day 5</td><td>日本橋 ⇄ 大阪港</td><td>約 600–800 円</td></tr>
                   <tr><td>Day 6</td><td>日本橋 ⇄ 關西機場</td><td>約 1,000–1,200 円</td></tr>
                 </tbody>
               </table>
-              <p style="margin-top:6px;"><strong>已付款：</strong>機票、住宿、網卡、大阪周遊卡兩日券、USJ 入場票都已完成，現場主要只要準備吃喝玩樂與購物預算。</p>
+              <p style="margin-top:6px;">
+                <strong>已付款：</strong>機票、住宿、網卡、大阪周遊卡兩日券、USJ 入場票都已完成，現場主要只要準備吃喝玩樂與購物預算。
+              </p>
+              <p style="margin-top:6px;">
+                <strong>大阪 Metro 路線總覽：</strong>
+                <a
+                  class="pill-link"
+                  href="https://metronine.osaka/tw/fullpage-course/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span>🚇</span><span>大阪 Metro 全區路線圖（Metro Nine）</span>
+                </a>
+              </p>
+              <p style="margin-top:6px;">
+                <strong>大阪周遊卡相關：</strong>
+              </p>
+              <a
+                class="pill-link"
+                href="https://osaka-amazing-pass.com/cht/service_free.html"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>🎫</span><span>周遊卡免費設施一覽</span>
+              </a>
+              <a
+                class="pill-link"
+                href="https://osaka-amazing-pass.com/cht/howto_guide.html"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>📖</span><span>周遊卡使用方式說明</span>
+              </a>
             </div>
           </article>
         </div>
@@ -1202,5 +1564,75 @@
       宏逸大阪生日旅行 · 6 天 5 夜 · 日本橋基地 · 由小肥豬精心策劃
     </footer>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const body = document.body;
+      const intro = document.getElementById("intro-screen");
+      const enterBtn = document.getElementById("enter-trip-btn");
+      const sliderTrack = document.querySelector(".intro-slider-track");
+      const slides = document.querySelectorAll(".intro-slide");
+      const prevBtn = document.getElementById("intro-prev");
+      const nextBtn = document.getElementById("intro-next");
+
+      let currentIndex = 0;
+
+      function updateSlider() {
+        if (!sliderTrack || !slides.length) return;
+        const offset = -currentIndex * 100;
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+      }
+
+      function goToSlide(idx) {
+        if (!slides.length) return;
+        if (idx < 0) idx = slides.length - 1;
+        if (idx >= slides.length) idx = 0;
+        currentIndex = idx;
+        updateSlider();
+      }
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
+        nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+      }
+
+      // 手機左右滑
+      let startX = null;
+      if (sliderTrack) {
+        sliderTrack.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+        sliderTrack.addEventListener(
+          "touchend",
+          (e) => {
+            if (startX === null) return;
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) {
+              if (dx < 0) goToSlide(currentIndex + 1);
+              else goToSlide(currentIndex - 1);
+            }
+            startX = null;
+          },
+          { passive: true }
+        );
+      }
+
+      if (enterBtn && intro) {
+        enterBtn.addEventListener("click", () => {
+          intro.classList.add("intro-hide");
+          setTimeout(() => {
+            body.classList.remove("has-intro");
+          }, 450);
+        });
+      }
+
+      // 初始化
+      updateSlider();
+    });
+  </script>
 </body>
 </html>
