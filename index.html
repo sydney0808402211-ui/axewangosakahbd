@@ -6,16 +6,18 @@
   <title>宏逸大阪生日旅行 · 6 天 5 夜卡片式行程</title>
   <style>
     :root {
-      --bg: #f5f5f7;
-      --card-bg: #ffffff;
-      --accent: #ff715b;
-      --accent-soft: #ffe3dd;
-      --accent-deep: #ff4c3a;
-      --text-main: #1f2933;
-      --text-muted: #6b7280;
-      --border-soft: #e5e7eb;
-      --radius-lg: 20px;
-      --shadow-soft: 0 14px 36px rgba(15, 23, 42, 0.12);
+      /* 無印良品感：低飽和暖色系 */
+      --bg: #f4f1ea;
+      --bg-soft: #f7f4ee;
+      --card-bg: #fcfaf6;
+      --accent: #8b6b4a;
+      --accent-soft: #e4d7c3;
+      --accent-deep: #5f4b34;
+      --text-main: #3a3125;
+      --text-muted: #7b7266;
+      --border-soft: #ded6c8;
+      --radius-lg: 16px;
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
 
     * {
@@ -25,10 +27,11 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background: radial-gradient(circle at top, #ffffff 0, #f5f5f7 50%, #e5edf7 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Hiragino Sans", "PingFang TC", sans-serif;
+      background: var(--bg);
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -40,22 +43,22 @@
     .app-shell {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 16px 18px 32px;
+      padding: 18px 20px 32px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(245, 245, 247, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+      background: rgba(244, 241, 234, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(222, 214, 200, 0.9);
     }
 
     .nav {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 10px 18px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -64,71 +67,72 @@
     }
 
     .logo {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-deep);
     }
 
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       font-size: 12px;
     }
 
     .nav-links a {
-      padding: 5px 10px;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      background: rgba(252, 250, 246, 0.9);
+      border: 1px solid rgba(222, 214, 200, 0.9);
       color: var(--text-muted);
-      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      transition: background 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease;
     }
 
     .nav-links a:hover {
       background: var(--accent-soft);
       color: var(--accent-deep);
-      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
-      transform: translateY(-1px);
+      border-color: var(--accent-deep);
     }
 
     .hero {
-      margin-top: 18px;
+      margin-top: 20px;
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
       gap: 18px;
-      align-items: center;
+      align-items: stretch;
     }
 
     .hero-left h1 {
-      font-size: clamp(26px, 3vw, 30px);
-      margin-bottom: 8px;
+      font-size: clamp(24px, 3vw, 28px);
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent-deep);
-      font-size: 12px;
+      font-size: 11px;
       margin-bottom: 10px;
     }
 
     .hero-sub {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 10px;
     }
 
     .hero-meta {
       font-size: 13px;
-      color: #4b5563;
-      margin-bottom: 14px;
+      color: var(--text-main);
+      margin-bottom: 12px;
     }
 
     .hero-meta strong {
@@ -138,53 +142,50 @@
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .btn-primary, .btn-secondary {
-      font-size: 13px;
-      padding: 8px 14px;
+    .btn-primary,
+    .btn-secondary {
+      font-size: 12px;
+      padding: 7px 14px;
       border-radius: 999px;
       border: 1px solid transparent;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, border-color 0.2s ease;
       text-decoration: none;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ff9c7b);
-      color: #ffffff;
-      box-shadow: 0 12px 30px rgba(255, 113, 91, 0.5);
+      background: var(--accent-deep);
+      color: #fdfbf6;
+      border-color: var(--accent-deep);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 36px rgba(255, 113, 91, 0.65);
+      background: #4a3a28;
+      border-color: #4a3a28;
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.92);
+      background: transparent;
       border-color: var(--border-soft);
       color: var(--text-main);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     }
 
     .btn-secondary:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-      border-color: #d1d5db;
+      background: rgba(252, 250, 246, 0.9);
+      border-color: var(--accent);
     }
 
     .hero-right {
-      background: radial-gradient(circle at top left, #ffe6df 0, #ffece6 34%, #ffffff 100%);
-      border-radius: 26px;
-      padding: 16px 16px 14px;
+      background: var(--bg-soft);
+      border-radius: 18px;
+      padding: 14px 14px 12px;
       box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(248, 250, 252, 0.95);
+      border: 1px solid rgba(222, 214, 200, 0.9);
     }
 
     .hero-card-header {
@@ -192,19 +193,21 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
-      font-size: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
     }
 
     .chip {
       padding: 3px 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(255, 255, 255, 0.98);
+      background: rgba(252, 250, 246, 0.96);
+      border: 1px solid rgba(222, 214, 200, 0.9);
       font-size: 11px;
+      color: var(--text-main);
     }
 
     .hero-city {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -215,39 +218,41 @@
     }
 
     .hero-bullets {
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 12px;
-      color: #374151;
+      color: var(--text-main);
       display: grid;
       gap: 4px;
     }
 
     .hero-bullets span::before {
-      content: "• ";
+      content: "・";
       color: var(--accent-deep);
+      margin-right: 2px;
     }
 
     .hero-tags {
-      margin-top: 10px;
+      margin-top: 8px;
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
       font-size: 11px;
     }
 
     .hero-tag-pill {
-      padding: 3px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.98);
+      background: rgba(252, 250, 246, 0.96);
+      border: 1px solid rgba(222, 214, 200, 0.9);
+      color: var(--text-muted);
     }
 
     main {
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .section-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       margin-bottom: 12px;
       display: flex;
@@ -265,32 +270,32 @@
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 12px 13px 11px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
     }
 
     .card-header {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .card-label {
       font-size: 11px;
-      text-transform: uppercase;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--accent-deep);
       margin-bottom: 2px;
     }
 
     .card-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
     }
 
@@ -302,8 +307,8 @@
 
     .card-body {
       font-size: 13px;
-      color: #374151;
-      margin-top: 6px;
+      color: var(--text-main);
+      margin-top: 4px;
     }
 
     .card-body p + p {
@@ -330,18 +335,18 @@
     .badge {
       padding: 3px 7px;
       border-radius: 999px;
-      background: #f3f4f6;
-      color: #4b5563;
+      background: #ebe4d8;
+      color: var(--text-main);
     }
 
     .pill-link {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 8px;
+      gap: 5px;
+      padding: 4px 9px;
       border-radius: 999px;
-      background: #eef2ff;
-      color: #4338ca;
+      background: #ebe4d8;
+      color: var(--accent-deep);
       font-size: 11px;
       margin-top: 6px;
     }
@@ -352,11 +357,12 @@
 
     .card-image {
       width: 100%;
-      border-radius: 16px;
+      border-radius: 12px;
       margin-top: 8px;
       display: block;
       object-fit: cover;
       max-height: 260px;
+      border: 1px solid rgba(222, 214, 200, 0.8);
     }
 
     .info-table {
@@ -368,17 +374,17 @@
 
     .info-table th,
     .info-table td {
-      border: 1px solid rgba(229, 231, 235, 0.98);
+      border: 1px solid rgba(222, 214, 200, 0.9);
       padding: 5px 6px;
       text-align: left;
     }
 
     .info-table thead {
-      background: #f3f4f6;
+      background: #eee5d7;
     }
 
     .info-table tbody tr:nth-child(even) {
-      background: #fafafa;
+      background: #f7f2ea;
     }
 
     .timeline {
@@ -406,16 +412,17 @@
     details {
       margin-top: 6px;
       border-radius: 12px;
-      background: #f9fafb;
+      background: #f7f4ee;
       padding: 6px 8px;
       font-size: 12px;
+      border: 1px solid rgba(222, 214, 200, 0.9);
     }
 
     summary {
       list-style: none;
       cursor: pointer;
       font-weight: 500;
-      color: #374151;
+      color: var(--text-main);
     }
 
     summary::marker,
@@ -430,12 +437,8 @@
       font-weight: 400;
     }
 
-    details[open] summary {
-      color: var(--accent-deep);
-    }
-
     details[open] {
-      background: #fef3f2;
+      background: #f0e6d8;
     }
 
     details > div {
@@ -443,10 +446,12 @@
     }
 
     footer {
-      margin-top: 16px;
+      margin-top: 18px;
       font-size: 11px;
       text-align: center;
       color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+      padding-top: 10px;
     }
 
     @media (max-width: 768px) {
@@ -466,6 +471,7 @@
       }
     }
   </style>
+
 </head>
 <body>
   <header>
