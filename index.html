@@ -398,18 +398,50 @@
       background: #f7f2ea;
     }
 
+     /* 時間軸：加上直線 + 節點 */
+
     .timeline {
       margin-top: 6px;
       display: grid;
-      gap: 4px;
+      gap: 8px;
+      position: relative;
+      padding-left: 12px;      /* 留空給左側直線 */
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      bottom: 4px;
+      width: 1px;
+      background: rgba(139, 107, 74, 0.3); /* 大地色系直線 */
     }
 
     .timeline-item {
+      position: relative;
       display: grid;
       grid-template-columns: 70px minmax(0, 1fr);
       gap: 6px;
       align-items: flex-start;
       font-size: 12px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f4f1ea; /* 背景色 */
+      border: 1px solid rgba(139, 107, 74, 0.6); /* 節點 */
+    }
+
+    .time {
+      color: var(--text-muted);
+      padding-left: 6px; /* 時間數字往右移一點，避免撞到節點 */
     }
 
     .time {
