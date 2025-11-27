@@ -398,53 +398,55 @@
       background: #f7f2ea;
     }
 
-     /* 時間軸：加上直線 + 節點 */
-
-/* —— 無印風·時間軸 —— */
+  /* —— 無印手帳風·細刻度時間軸（完全不擋字版） —— */
 
 .timeline {
   margin-top: 10px;
   display: grid;
-  gap: 14px;
+  gap: 16px;
   position: relative;
-  padding-left: 22px; /* 左邊空出更多距離，避免遮字 */
+
+  /* 整體往右縮一點，左邊給時間軸玩 */
+  padding-left: 30px;
 }
 
+/* 左側主直線：靠最左邊，不碰時間文字 */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 10px;     /* 垂直線位置 */
+  left: 10px;          /* 線在整個卡片左側 */
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: rgba(139, 107, 74, 0.25); /* 大地色・淡線 */
+  width: 1.5px;
+  background: rgba(139, 107, 74, 0.28); /* 大地色淡線 */
 }
 
 .timeline-item {
   position: relative;
   display: grid;
-  grid-template-columns: 70px minmax(0, 1fr);
+  /* 把「時間欄」再加寬一點，文字更往右 */
+  grid-template-columns: 80px minmax(0, 1fr);
   gap: 10px;
   font-size: 13px;
   line-height: 1.6;
 }
 
+/* 細長小刻度：完全待在線旁邊，不靠近時間數字 */
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: 6px;      /* 對齊左側直線 */
-  top: 4px;
-
-  /* 方圓型節點（圓角矩形） */
-  width: 8px;
-  height: 8px;
-  background: #8b6b4a;  /* 大地色・實心 */
+  left: 6px;          /* 緊貼主直線，遠離時間文字 */
+  top: 9px;
+  width: 10px;        /* 細長水平刻度 */
+  height: 2px;
+  background: #8b6b4a;
   border-radius: 2px;
 }
 
+/* 時間數字整欄往右移，離開刻度安全距離 */
 .time {
   color: var(--text-muted);
-  padding-left: 4px;
+  padding-left: 8px;   /* 把時間數字再往右推一點 */
 }
 
     .activity strong {
