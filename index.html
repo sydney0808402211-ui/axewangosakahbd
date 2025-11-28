@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>宏逸大阪生日旅行 · 6天5夜卡片行程</title>
+  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v6</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -133,39 +133,38 @@
       background: #f5e7d6;
     }
 
-    /* 新增：Active chip 樣式 */
     .chip-nav button.active-chip {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
-        font-weight: 600;
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 600;
     }
 
-    /* Cards - 所有 section 都套用這個樣式 */
+    /* Cards */
+
     .card {
       background: var(--card);
       border-radius: 18px;
       padding: 18px 16px 18px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(139, 107, 74, 0.1);
-      margin-top: 0; /* 統一由 .page-section 控制間距 */
+      margin-top: 0;
     }
-    
-    /* 1. 卡片分離：控制 section 顯示與隱藏（新增） */
+
     .page-section {
-        display: none; /* 預設隱藏所有卡片 */
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        padding-top: 14px; /* 與上方導覽列的間距 */
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      padding-top: 14px;
     }
 
     .page-section.active {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
-    
+
     .card-header {
       margin-bottom: 8px;
     }
@@ -179,23 +178,25 @@
       color: var(--text-muted);
     }
 
-    /* 內嵌行程卡：Day Card 視覺化（美化） */
+    /* Day Card */
+
     .day-card {
-        padding: 12px 16px;
-        border-radius: 12px;
-        background: rgba(139, 107, 74, 0.04); /* 非常淺的背景色來區分 */
-        margin-bottom: 12px;
-        position: relative;
+      padding: 12px 16px 14px;
+      border-radius: 12px;
+      background: rgba(139, 107, 74, 0.04);
+      margin-bottom: 14px;
+      position: relative;
     }
+
     .day-card + .day-card {
-        margin-top: 18px;
+      margin-top: 18px;
     }
 
     .day-title {
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 4px;
-      color: var(--accent); /* 使用主題色 */
+      color: var(--accent);
     }
 
     .day-subtitle {
@@ -212,30 +213,28 @@
       margin-bottom: 4px;
     }
 
-    /* —— 無印良品風 · 細長刻度時間軸（不擋到字版） —— */
+    /* ===== v6：直線 + 黑方塊時間軸 ===== */
 
- .timeline {
+    .timeline {
       margin-top: 10px;
-      display: grid;
-      gap: 16px;
       position: relative;
-
-      /* 左側留出空間給時間軸直線 */
-      padding-left: 78px;
+      padding-left: 80px;   /* 給直線＋時間欄位空間 */
+      display: grid;
+      gap: 18px;
     }
 
-    /* 主直線 */
+    /* 垂直主線（全黑） */
     .timeline::before {
       content: "";
       position: absolute;
-      left: 34px;
+      left: 32px;
       top: 0;
       bottom: 0;
       width: 2px;
-      background: rgba(139, 107, 74, 0.25);
+      background: #111;
     }
 
-    /* 每一個時間點 */
+    /* 每個節點列 */
     .timeline-item {
       position: relative;
       display: grid;
@@ -245,19 +244,17 @@
       font-size: 13px;
     }
 
-    /* 小圓點節點 */
+    /* 黑色小方塊節點 */
     .timeline-item::before {
       content: "";
       position: absolute;
-      left: 34px;
+      left: 32px;
       top: 4px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #fffbf7;
-      border: 2px solid #b77a44;
+      width: 10px;
+      height: 10px;
+      background: #111;
+      border-radius: 2px;
       transform: translateX(-50%);
-      box-shadow: 0 0 0 2px rgba(255, 251, 247, 0.8);
     }
 
     .time {
@@ -268,12 +265,12 @@
       padding-top: 2px;
     }
 
- .timeline-item strong {
+    .timeline-item strong {
       font-weight: 600;
       color: #5a4738;
     }
 
-    /* Lists */
+    /* Lists & text */
 
     ul {
       padding-left: 18px;
@@ -342,7 +339,7 @@
       margin-top: 10px;
     }
 
-    /* Intro overlay with photos */
+    /* Intro overlay */
 
     .intro-overlay {
       position: fixed;
@@ -382,7 +379,6 @@
       text-align: center;
     }
 
-    /* 3. 照片滑動優化（美化） */
     .intro-slider {
       width: 100%;
       max-width: 360px;
@@ -392,12 +388,12 @@
       scroll-snap-type: x mandatory;
       padding-bottom: 6px;
       margin-bottom: 8px;
-      /* 隱藏滾動條 */
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
+
     .intro-slider::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+      display: none;
     }
 
     .intro-slider img {
@@ -407,14 +403,13 @@
       border-radius: 18px;
       object-fit: cover;
       scroll-snap-align: center;
-      /* 新增雜誌/拍立得效果 */
       border: 4px solid #fff;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
       transition: transform 0.5s ease;
     }
-    
+
     .intro-slider img:hover {
-        transform: scale(1.05); /* 滑鼠懸停時放大 */
+      transform: scale(1.05);
     }
 
     .intro-tip {
@@ -443,7 +438,7 @@
       box-shadow: 0 4px 10px rgba(139, 107, 74, 0.3);
     }
 
-    /* Responsive tweaks */
+    /* Responsive */
 
     @media (min-width: 720px) {
       .page {
@@ -458,10 +453,31 @@
         font-size: 22px;
       }
     }
+
+    @media (max-width: 720px) {
+      .timeline {
+        padding-left: 72px;
+      }
+
+      .timeline::before,
+      .timeline-item::before {
+        left: 28px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 72px minmax(0, 1fr);
+        column-gap: 12px;
+      }
+
+      .time {
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 
 <body class="has-intro">
+  <!-- Intro overlay -->
   <div class="intro-overlay" id="intro">
     <div style="text-align:center; margin-bottom: 8px;">
       <div class="intro-title">AXE WANG OSAKA BIRTHDAY TRIP</div>
@@ -479,7 +495,7 @@
 
     <div class="intro-tip">送你帥照。</div>
 
-    <button class="intro-btn" id="enterTrip"> 一緒に旅行へ行きましょう</button>
+    <button class="intro-btn" id="enterTrip">一緒に旅行へ行きましょう</button>
   </div>
 
   <audio id="bgm" src="bgm.mp3" loop></audio>
@@ -508,12 +524,14 @@
       <button data-target="account">記帳</button>
     </div>
 
+    <!-- 行程卡片 -->
     <section id="itinerary" class="card page-section">
       <div class="card-header">
         <h2>行程卡片</h2>
         <div class="card-tag">每天一張卡 · 地鐵路線 + 大阪周遊卡資訊都寫好</div>
       </div>
 
+      <!-- Day 1 -->
       <div class="day-card">
         <div class="day-title">DAY 1 · 12/6（六）</div>
         <div class="day-subtitle">抵達大阪 · 日本橋基地報到</div>
@@ -523,8 +541,7 @@
           <div class="timeline-item">
             <div class="time">18:10–21:40</div>
             <div>
-              <strong>桃園 → 關西機場（GK54）</strong>：抵達後先補水、上洗手間，慢慢通關不用
-              趕。<br />
+              <strong>桃園 → 關西機場（GK54）</strong>：抵達後先補水、上洗手間，慢慢通關不用趕。<br />
               行李：手提 7kg + 托運 20kg，記得確認行李牌與下一段行程。
             </div>
           </div>
@@ -550,6 +567,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 2 -->
       <div class="day-card">
         <div class="day-title">DAY 2 · 12/7（日）</div>
         <div class="day-subtitle">經典市區景點 + 梅田購物線 + 天神橋吃好吃滿</div>
@@ -580,10 +598,8 @@
             <div class="time">12:00–13:30</div>
             <div>
               <strong>天神橋筋商店街午餐＋小吃</strong>：在地鰻魚飯、可樂餅、章魚燒任選組合，吃到開心再出發。<br />
-              可考慮
-              <strong>炭燒鰻魚魚伊</strong>、<strong>中村屋可樂餅</strong>、
-              <strong>章魚燒 UMAI 屋</strong>。<br />
-              想吃貝果可以順路去
+              可考慮<strong>炭燒鰻魚魚伊</strong>、<strong>中村屋可樂餅</strong>、
+              <strong>章魚燒 UMAI 屋</strong>。想吃貝果可以順路去
               <strong>Happy Camper Bagel</strong>。
             </div>
           </div>
@@ -610,8 +626,7 @@
             <div>
               <strong>壽星專屬梅田逛街攻略</strong>：<br />
               Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &
-              Zoff → 視體力安排
-              grenier 甜點。<br />
+              Zoff → 視體力安排 grenier 甜點。<br />
               這段是 AXE 的時尚與鞋櫃補給時間。
             </div>
           </div>
@@ -635,28 +650,26 @@
             免費設施列表（官方）：<a
               href="https://osaka-amazing-pass.com/cht/service_free.html"
               target="_blank"
-              >大阪周遊卡 · 免費景點一覽</a
-            >
+              >大阪周遊卡 · 免費景點一覽</a>
           </li>
           <li>
             使用方式教學（官方）：<a
               href="https://osaka-amazing-pass.com/cht/howto_guide.html"
               target="_blank"
-              >大阪周遊卡 · 使用指南</a
-            >
+              >大阪周遊卡 · 使用指南</a>
           </li>
           <li>
             兩日券 KKDAY 憑證：<a
               href="https://t3.linktivity.io/issueticket/suruttokansai/OFH9Srto6mXqVkoQ/KKDAY-20251119-KEXY?lang=ZT"
               target="_blank"
-              >我的周遊卡憑證（Linktivity）</a
-            >
+              >我的周遊卡憑證（Linktivity）</a>
           </li>
         </ul>
       </div>
 
       <div class="section-divider"></div>
 
+      <!-- Day 3 -->
       <div class="day-card">
         <div class="day-title">DAY 3 · 12/8（一）</div>
         <div class="day-subtitle">通天閣 + 摔角小店 + HARUKAS</div>
@@ -708,28 +721,26 @@
             免費設施列表（官方）：<a
               href="https://osaka-amazing-pass.com/cht/service_free.html"
               target="_blank"
-              >大阪周遊卡 · 免費景點一覽</a
-            >
+              >大阪周遊卡 · 免費景點一覽</a>
           </li>
           <li>
             使用方式教學（官方）：<a
               href="https://osaka-amazing-pass.com/cht/howto_guide.html"
               target="_blank"
-              >大阪周遊卡 · 使用指南</a
-            >
+              >大阪周遊卡 · 使用指南</a>
           </li>
           <li>
             兩日券 KKDAY 憑證：<a
               href="https://t3.linktivity.io/issueticket/suruttokansai/OFH9Srto6mXqVkoQ/KKDAY-20251119-KEXY?lang=ZT"
               target="_blank"
-              >我的周遊卡憑證（Linktivity）</a
-            >
+              >我的周遊卡憑證（Linktivity）</a>
           </li>
         </ul>
       </div>
 
       <div class="section-divider"></div>
 
+      <!-- Day 4 -->
       <div class="day-card">
         <div class="day-title">DAY 4 · 12/9（二）</div>
         <div class="day-subtitle">環球影城 USJ 一日暢玩</div>
@@ -766,13 +777,13 @@
           園區地圖可先看這裡：<a
             href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj"
             target="_blank"
-            >USJ 園區官方地圖</a
-          >
+            >USJ 園區官方地圖</a>
         </p>
       </div>
 
       <div class="section-divider"></div>
 
+      <!-- Day 5 -->
       <div class="day-card">
         <div class="day-title">DAY 5 · 12/10（三）</div>
         <div class="day-subtitle">海遊館 + 港區散步 + 摔角主題酒吧</div>
@@ -793,8 +804,7 @@
             <div>
               <strong>海遊館</strong>：慢慢看魚魚放空，補充內心療癒值。<br />
               官方資訊：<a href="https://www.kaiyukan.com/" target="_blank"
-                >海遊館網站</a
-              >
+                >海遊館網站</a>
             </div>
           </div>
 
@@ -818,6 +828,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 6 -->
       <div class="day-card">
         <div class="day-title">DAY 6 · 12/11（四）</div>
         <div class="day-subtitle">退房 + 回程 · 帶著痠痛跟回憶回台灣</div>
@@ -847,6 +858,7 @@
       </div>
     </section>
 
+    <!-- 住宿 & 周邊 -->
     <section id="stay" class="card page-section">
       <div class="card-header">
         <h2>住宿 & 周邊</h2>
@@ -912,7 +924,7 @@
       </p>
     </section>
 
-
+    <!-- 梅田逛街 -->
     <section id="umeda" class="card page-section">
       <div class="card-header">
         <h2>梅田逛街攻略</h2>
@@ -958,6 +970,7 @@
       </ul>
     </section>
 
+    <!-- 點心 -->
     <section id="snacks" class="card page-section">
       <div class="card-header">
         <h2>想吃點心清單</h2>
@@ -986,6 +999,7 @@
       </ul>
     </section>
 
+    <!-- USJ -->
     <section id="usj" class="card page-section">
       <div class="card-header">
         <h2>USJ 攻略小抄</h2>
@@ -995,9 +1009,7 @@
       <ul>
         <li>提前下載 USJ APP，查看即時排隊時間與整理券抽選。</li>
         <li>入園後直衝「瑪利歐世界」，或先抽取整理券再安排其他設施。</li>
-        <li>
-          刺激設施可善用「單人通道」，兩個人可以分開排、出來再會合。
-        </li>
+        <li>刺激設施可善用「單人通道」，兩個人可以分開排、出來再會合。</li>
         <li>晚上記得預留時間看霍格華茲燈光秀。</li>
         <li>身上準備一些 100 日圓硬幣，以防需要使用置物櫃。</li>
       </ul>
@@ -1006,10 +1018,11 @@
       <ul>
         <li>輕便小包（能放手機、錢包、護唇膏、行動電源）。</li>
         <li>輕便雨衣或摺疊外套（遇到下雨或飛濺設施很好用）。</li>
-        <li>12 月注意保暖，帽 T + 外套是神 combo。</li>
+        <li>12 月注意保暖，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
       </ul>
     </section>
 
+    <!-- 小提醒 -->
     <section id="tips" class="card page-section">
       <div class="card-header">
         <h2>小提醒</h2>
@@ -1024,6 +1037,7 @@
       </ul>
     </section>
 
+    <!-- 機票 -->
     <section id="flight" class="card page-section">
       <div class="card-header">
         <h2>機票資訊</h2>
@@ -1047,6 +1061,7 @@
       </ul>
     </section>
 
+    <!-- 兌換券 -->
     <section id="coupons" class="card page-section">
       <div class="card-header">
         <h2>旅程專屬兌換券</h2>
@@ -1069,6 +1084,7 @@
       </p>
     </section>
 
+    <!-- 記帳 -->
     <section id="account" class="card page-section">
       <div class="card-header">
         <h2>記帳小本本</h2>
@@ -1092,61 +1108,50 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
-    // ----------------------------------------------------------------
-    // 頁面切換邏輯 (View Switching)
-    // ----------------------------------------------------------------
-    
-    // 處理卡片顯示與隱藏
+    // 切換卡片
     function switchSection(targetId) {
-        // 1. 隱藏所有區塊並移除 active 樣式
-        const allSections = document.querySelectorAll(".page-section");
-        allSections.forEach(section => {
-            section.classList.remove("active");
-            section.style.display = "none";
-        });
+      const allSections = document.querySelectorAll(".page-section");
+      allSections.forEach((section) => {
+        section.classList.remove("active");
+        section.style.display = "none";
+      });
 
-        document.querySelectorAll(".chip-nav button").forEach(btn => {
-            btn.classList.remove("active-chip");
-        });
+      document.querySelectorAll(".chip-nav button").forEach((btn) => {
+        btn.classList.remove("active-chip");
+      });
 
-        // 2. 顯示目標區塊並加入 active 樣式 (利用 setTimeout 確保淡入動態能觸發)
-        const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-            targetEl.style.display = "block"; 
-            setTimeout(() => {
-                targetEl.classList.add("active");
-            }, 50); // 短暫延遲讓 display: block 生效
-        }
-        
-        // 3. 點擊的導覽鈕也加上 active 樣式
-        document.querySelector(`.chip-nav button[data-target="${targetId}"]`).classList.add("active-chip");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.style.display = "block";
+        setTimeout(() => {
+          targetEl.classList.add("active");
+        }, 50);
+      }
+
+      const activeBtn = document.querySelector(
+        `.chip-nav button[data-target="${targetId}"]`
+      );
+      if (activeBtn) activeBtn.classList.add("active-chip");
     }
 
-    // 更新 chip nav 導覽的監聽事件
     document.querySelectorAll(".chip-nav button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-target");
         switchSection(targetId);
-        
-        // 點擊後平滑滾動到內容區塊上方
-        const contentStart = document.getElementById('itinerary');
-        if(contentStart) {
-             contentStart.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        const topSection = document.getElementById("top");
+        if (topSection) {
+          topSection.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
     });
 
-    // 頁面載入時，預設顯示第一個區塊 (itinerary)
     document.addEventListener("DOMContentLoaded", () => {
-        switchSection("itinerary");
+      switchSection("itinerary");
     });
 
-
-    // ----------------------------------------------------------------
-    // 倒數計時（原功能保留）
-    // ----------------------------------------------------------------
+    // 倒數計時
     function updateCountdown() {
-      // 2025/12/06 18:10:00 (使用 +08:00 確保時區正確)
       const target = new Date("2025-12-06T18:10:00+08:00").getTime();
       const now = Date.now();
       const diff = target - now;
@@ -1167,19 +1172,15 @@
       el.textContent = `距離出發還有：${days} 天 ${hours} 小時 ${mins} 分`;
     }
     updateCountdown();
-    // 降低更新頻率為每分鐘一次
-    setInterval(updateCountdown, 60000); 
+    setInterval(updateCountdown, 60000);
 
-    // ----------------------------------------------------------------
-    // Intro & Confetti & BGM（原功能保留）
-    // ----------------------------------------------------------------
+    // Intro + confetti + BGM
     const intro = document.getElementById("intro");
     const enterBtn = document.getElementById("enterTrip");
     const body = document.body;
 
     if (enterBtn && intro) {
       enterBtn.addEventListener("click", () => {
-        // 彩帶
         confetti({
           particleCount: 150,
           spread: 70,
@@ -1187,13 +1188,10 @@
           colors: ["#8b6b4a", "#e4d7c3", "#5f4b34", "#ffffff"],
         });
 
-        // BGM
         const audio = document.getElementById("bgm");
         if (audio) {
           audio.volume = 0.5;
-          audio
-            .play()
-            .catch(() => console.log("需要使用者互動才能播放音樂"));
+          audio.play().catch(() => {});
         }
 
         intro.classList.add("intro-hide");
