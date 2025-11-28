@@ -213,7 +213,7 @@
       margin-bottom: 4px;
     }
 
-    /* ===== v6：直線 + 黑方塊時間軸 ===== */
+    /* ===== v6：直線 ===== */
 
     .timeline {
       margin-top: 10px;
@@ -232,42 +232,6 @@
       bottom: 0;
       width: 2px;
       background: #111;
-    }
-
-    /* 每個節點列 */
-    .timeline-item {
-      position: relative;
-      display: grid;
-      grid-template-columns: 80px minmax(0, 1fr);
-      column-gap: 16px;
-      align-items: flex-start;
-      font-size: 13px;
-    }
-
-    /* 黑色小方塊節點 */
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 32px;
-      top: 4px;
-      width: 10px;
-      height: 10px;
-      background: #111;
-      border-radius: 2px;
-      transform: translateX(-50%);
-    }
-
-    .time {
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-      color: #7a5b3f;
-      text-align: right;
-      padding-top: 2px;
-    }
-
-    .timeline-item strong {
-      font-weight: 600;
-      color: #5a4738;
     }
 
     /* Lists & text */
