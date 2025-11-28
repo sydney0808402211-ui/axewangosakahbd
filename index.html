@@ -214,67 +214,63 @@
 
     /* —— 無印良品風 · 細長刻度時間軸（不擋到字版） —— */
 
-.timeline {
-  margin-top: 10px;
-  display: grid;
-  gap: 18px;
-  position: relative;
+ .timeline {
+      margin-top: 10px;
+      display: grid;
+      gap: 16px;
+      position: relative;
 
-  /* 左邊留給主直線＋刻度，右邊是時間＋內容 */
-  padding-left: 88px; /* 讓時間跟內容整排往右移一點 */
-  padding-top: 8px;
-}
+      /* 左側留出空間給時間軸直線 */
+      padding-left: 78px;
+    }
 
-/* 主直線（淡色，不搶戲） */
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 44px;                 /* 線在很左邊，不會靠近文字 */
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--accent-soft);
-}
+    /* 主直線 */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 34px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(139, 107, 74, 0.25);
+    }
 
-/* 每一行的版面配置 */
-.timeline-item {
-  position: relative;
-  display: grid;
+    /* 每一個時間點 */
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      column-gap: 16px;
+      align-items: flex-start;
+      font-size: 13px;
+    }
 
-  /* 左邊是時間欄，右邊是文字欄 */
-  grid-template-columns: 72px 1fr;
-  gap: 12px;
-  line-height: 1.7;
-  font-size: 14px;
-}
+    /* 小圓點節點 */
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 34px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fffbf7;
+      border: 2px solid #b77a44;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 2px rgba(255, 251, 247, 0.8);
+    }
 
-/* 細長矩形刻度（像手帳的小刻度） */
-.timeline-item::before {
-  content: "";
-  position: absolute;
-
-  /* 刻度放在主線右邊一點點，不會碰到時間字 */
-  left: 36px;
-  top: 14px;
-  width: 18px;
-  height: 2px;
-
-  background: var(--accent);
-  border-radius: 999px;
-}
-
-/* 時間文字：完全在自己的欄位裡，不會跟線打架 */
-.time {
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 13px;
-  text-align: right;
-  padding-right: 4px;  /* 右邊留一點呼吸空間 */
-}
-
-
-    .timeline strong {
+    .time {
+      font-variant-numeric: tabular-nums;
       font-weight: 600;
+      color: #7a5b3f;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+ .timeline-item strong {
+      font-weight: 600;
+      color: #5a4738;
     }
 
     /* Lists */
