@@ -2,162 +2,151 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v7 (優化版)</title>
+  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /*
-     * 1. 變數與基礎樣式 (Variables & Base Styles)
-     */
     :root {
-      /* 溫暖的咖啡棕色系 */
-      --bg: #f8f6f4;
-      --card: #ffffff;
-      --accent: #9a6e4d; /* 更飽和的棕色 */
-      --accent-soft: rgba(154, 110, 77, 0.1);
-      --text-main: #362c21;
+      --bg: #f7f2ea;
+      --card: #fffaf3;
+      --accent: #8b6b4a;
+      --accent-soft: rgba(139, 107, 74, 0.16);
+      --text-main: #3c3024;
       --text-muted: #8c7b65;
-      --chip-bg: #e9e4df; /* 柔和的淺灰 */
-      --chip-border: #d6cfc7;
+      --chip-bg: #f0e4d5;
+      --chip-border: #ddcdb8;
       --danger: #b35b5b;
 
-      /* 陰影設計 (Soft Shadows for 3D effect) */
-      --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
-      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.03);
+      /* 時間軸 X 座標（線 + 圓點都用這個） */
+      --timeline-x: 22px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth; /* 優化：平滑滾動 */
-    }
-
     body {
       margin: 0;
-      /* 字體微調：標題嘗試引入襯線體，內文維持無襯線體 */
-      font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-main);
-      line-height: 1.6; /* 行距微增，提高閱讀舒適度 */
+      line-height: 1.7;
       padding-bottom: 40px;
     }
 
     .page {
       max-width: 960px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 16px 16px 40px;
     }
 
     h1, h2, h3, h4 {
       margin: 0;
       font-weight: 700;
-      letter-spacing: 0.05em;
-      /* 標題嘗試引入襯線字體，增加設計感 */
-      font-family: serif, "Noto Serif TC", "Noto Sans TC", system-ui, sans-serif;
+      letter-spacing: 0.06em;
     }
 
-    h1 { font-size: 24px; }
-    h2 { font-size: 20px; }
-    h3 { font-size: 18px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 16px; }
 
     p { margin: 0; }
 
-    /*
-     * 2. Hero 區塊樣式 (Hero Section)
-     */
+    /* Hero */
+
     .hero-title {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent); /* 使用強調色，更突出 */
-      margin-bottom: 4px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
     }
 
     .trip-main-title {
-      font-size: 26px; /* 放大主標題 */
-      margin-bottom: 8px;
+      font-size: 20px;
+      margin-bottom: 6px;
     }
 
     .trip-sub {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .trip-meta, .trip-tagline {
       font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 6px;
-      line-height: 1.5;
+    }
+
+    .trip-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .trip-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
     #countdown {
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--accent);
-      padding: 8px 14px;
+      padding: 8px 10px;
       display: inline-block;
       border-radius: 999px;
-      background: var(--accent-soft); /* 使用 accent-soft 作為背景 */
-      border: 1px solid rgba(154, 110, 77, 0.2);
-      margin-top: 10px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(255, 255, 255, 0.7);
+      margin-bottom: 14px;
     }
 
-    /*
-     * 3. Chip 導航 (Chip Navigation)
-     */
+    /* Chip nav */
+
     .chip-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 16px;
+      gap: 8px;
+      margin: 16px 0 10px;
     }
 
     .chip-nav button {
       border-radius: 999px;
       border: 1px solid var(--chip-border);
       background: var(--chip-bg);
-      padding: 8px 18px; /* 稍微放大點擊區域 */
-      font-size: 14px;
+      padding: 6px 14px;
+      font-size: 13px;
       color: var(--text-main);
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
-      font-weight: 500;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
 
     .chip-nav button:hover {
-      background: #f5f0eb;
+      background: #f5e7d6;
     }
 
     .chip-nav button.active-chip {
       background: var(--accent);
       color: #fff;
       border-color: var(--accent);
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(154, 110, 77, 0.2);
+      font-weight: 600;
     }
 
-    /*
-     * 4. 卡片容器與切換效果 (Card Container & Toggle)
-     */
+    /* Cards */
+
     .card {
       background: var(--card);
-      border-radius: 20px; /* 圓角加大 */
-      padding: 24px 20px;
-      box-shadow: var(--shadow-card); /* 質感陰影 */
-      /* 移除原有的硬邊框 */
+      border-radius: 18px;
+      padding: 18px 16px 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(139, 107, 74, 0.1);
       margin-top: 0;
     }
 
     .page-section {
       display: none;
       opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.4s ease, transform 0.4s ease; /* 動畫時間微調 */
-      padding-top: 0; /* 移除冗餘內邊距 */
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      padding-top: 14px;
     }
 
     .page-section.active {
@@ -167,309 +156,317 @@
     }
 
     .card-header {
-      margin-bottom: 12px;
-    }
-
-    .card-header h2 {
-      margin-bottom: 4px;
-    }
-
-    .card-tag {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /*
-     * 5. 行程卡片 (Day Card)
-     */
-    .day-card {
-      padding: 16px;
-      border-radius: 14px;
-      background: #fff8f3; /* 淺米色背景，與主卡片區隔 */
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(154, 110, 77, 0.1);
-      margin-bottom: 18px;
-    }
-
-    .day-card + .day-card {
-      margin-top: 20px;
-    }
-
-    .day-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-    }
-
-    .day-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
       margin-bottom: 8px;
     }
 
-    .small-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    .card-header h2 {
+      margin-bottom: 2px;
+    }
+
+    .card-tag {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Day Card */
+
+    .day-card {
+      padding: 12px 16px 14px;
+      border-radius: 12px;
+      background: rgba(139, 107, 74, 0.04);
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .day-card + .day-card {
+      margin-top: 18px;
+    }
+
+    .day-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    .day-subtitle {
+      font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 6px;
     }
 
     .section-label {
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    /* ===== 時間軸（重置好的版本） ===== */
+
+    .timeline {
+      margin-top: 10px;
+      position: relative;
+      padding-left: 70px;          /* 左邊留空間：線 + 時間 */
+      display: grid;
+      gap: 18px;
+    }
+
+    /* 垂直主線 */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: var(--timeline-x);     /* 線的 X 座標 */
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent-soft);
+      border-radius: 1px;
+    }
+
+    /* 每一行：左 50px 放時間，右邊放文字 */
+    .timeline-item {
+      position: relative;
+      padding-bottom: 0;
+      display: grid;
+      grid-template-columns: 50px minmax(0, 1fr); /* 時間 vs. 內容 */
+      column-gap: 30px;
+    }
+
+    /* 小圓點指示器，貼在直線上 */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: var(--timeline-x);     /* 跟線同一個 X */
+      top: 6px;                    /* 垂直微調 */
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid var(--card);
+      z-index: 1;
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+
+    /* 左邊時間欄 */
+    .time {
+      grid-column: 1 / 2;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 6px;
+      color: var(--accent);
+      text-align: right;
+      transform: translateY(-2px);
     }
 
-    /* ===== v7：優化後的直線時間軸 ===== */
-
-/* 給時間軸一個共同的 X 座標 */
-:root {
-  --timeline-x: 22px;   /* 想整組往左/往右移就改這一個數字 */
-}
-
-/* 時間軸容器 */
-.timeline {
-  margin-top: 10px;
-  position: relative;
-  padding-left: 70px;   /* 左邊預留空間：線 + 時間欄位 */
-  display: grid;
-  gap: 18px;
-}
-
-/* 垂直主線 */
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: var(--timeline-x);   /* 線的位置 */
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--accent-soft); /* 柔和的線條 */
-  border-radius: 1px;
-}
-
-/* 每一列：左 50px 放時間，右邊放內容 */
-.timeline-item {
-  position: relative;
-  padding-bottom: 0;
-  display: grid;
-  grid-template-columns: 50px minmax(0, 1fr); /* 時間 vs. 內容 */
-  column-gap:
-
-    /*
-     * 6. 其他元素 (Lists, Links, Notes)
-     */
-    ul {
-      padding-left: 20px;
-      margin: 8px 0 0;
+    /* 右邊內容欄 */
+    .timeline-item > div:last-child {
+      grid-column: 2 / 3;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    li + li {
-      margin-top: 5px;
+    .timeline-item strong {
+      font-weight: 700;
+      color: var(--text-main);
     }
+
+    /* 基本文字 */
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+
+    li + li { margin-top: 3px; }
 
     a {
-      color: var(--accent);
+      color: #6a4d2f;
       text-decoration: underline;
-      text-decoration-thickness: 1.5px;
-      text-underline-offset: 3px;
-      transition: color 0.15s;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
     }
 
-    a:hover {
-      color: #6a4d2f;
-    }
+    a:hover { text-decoration-thickness: 2px; }
 
     .note {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-muted);
-      margin-top: 8px;
-      padding-left: 2px;
-      font-style: italic;
+      margin-top: 4px;
     }
 
     .section-divider {
-      border-top: 1px solid var(--chip-border); /* 實線分隔，更整潔 */
-      margin: 20px 0;
+      border-top: 1px dashed rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
     }
 
     .sub-heading {
-      font-size: 16px;
-      font-weight: 700;
-      margin-top: 16px;
-      margin-bottom: 8px;
-      border-left: 3px solid var(--accent); /* 小標題裝飾 */
-      padding-left: 10px;
-      line-height: 1.3;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .small-label {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
     .img-inline {
       width: 100%;
-      border-radius: 16px;
-      margin: 12px 0;
+      border-radius: 12px;
+      margin: 6px 0;
       display: block;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     }
 
     .footer-note {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-muted);
-      margin-top: 20px;
-      text-align: center;
-      padding-top: 10px;
-      border-top: 1px dashed var(--chip-border);
+      margin-top: 10px;
     }
 
-    /*
-     * 7. Intro 區塊 (Intro Overlay)
-     */
+    /* Intro overlay */
+
     .intro-overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top, #fef7ec, #e8dccb);
+      background: radial-gradient(circle at top, #fefaf4, #e3d4c2);
       z-index: 999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 40px 16px 24px;
+      padding: 32px 16px 24px;
       overflow-y: auto;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    body.has-intro {
+      overflow: hidden;
     }
 
     .intro-hide {
       opacity: 0;
-      transform: translateY(-20px); /* 向上淡出 */
+      transform: translateY(12px);
       pointer-events: none;
     }
 
     .intro-title {
-      font-size: 16px;
-      letter-spacing: 0.18em;
+      font-size: 18px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .intro-sub {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       text-align: center;
-      line-height: 1.5;
     }
 
     .intro-slider {
       width: 100%;
       max-width: 360px;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
 
-    .intro-slider::-webkit-scrollbar {
-      display: none;
-    }
+    .intro-slider::-webkit-scrollbar { display: none; }
 
     .intro-slider img {
-      min-width: 280px; /* 確保圖片大小一致 */
-      height: 380px; /* 固定高度，優化佈局 */
-      border-radius: 20px;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      border-radius: 18px;
       object-fit: cover;
       scroll-snap-align: center;
-      border: 6px solid #fff;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* 更深的陰影 */
+      border: 4px solid #fff;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
       transition: transform 0.5s ease;
+    }
+
+    .intro-slider img:hover {
+      transform: scale(1.05);
+    }
+
+    .intro-tip {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
     }
 
     .intro-btn {
       border-radius: 999px;
       border: none;
-      padding: 12px 30px;
-      background: var(--accent);
+      padding: 10px 26px;
+      background: #8b6b4a;
       color: #fff;
-      font-size: 15px;
-      letter-spacing: 0.15em;
+      font-size: 14px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-top: 10px;
+      margin-top: 4px;
       cursor: pointer;
-      box-shadow: 0 10px 20px rgba(154, 110, 77, 0.4);
-      transition: all 0.2s ease;
-      font-weight: 600;
+      box-shadow: 0 8px 16px rgba(139, 107, 74, 0.35);
+      transition: all 0.1s ease;
     }
 
     .intro-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 10px rgba(154, 110, 77, 0.3);
+      transform: translateY(1px);
+      box-shadow: 0 4px 10px rgba(139, 107, 74, 0.3);
     }
 
-    /*
-     * 8. RWD (Responsive Design)
-     */
+    /* Responsive */
+
     @media (min-width: 720px) {
       .page {
-        padding: 24px;
+        padding: 24px 24px 40px;
       }
 
       .card {
-        padding: 30px 26px;
+        padding: 20px 22px 22px;
       }
 
       .trip-main-title {
-        font-size: 28px;
+        font-size: 22px;
       }
     }
-    
-    /* 確保在小螢幕上時間軸不會太擠 */
-    @media (max-width: 500px) {
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 16px 12px 32px;
+      }
+
+      .card {
+        padding: 16px 14px 18px;
+      }
+
+      /* 行動版：整個時間軸再略往右、節點再靠左一點 */
       .timeline {
-        padding-left: 70px;
+        padding-left: 62px;
         gap: 16px;
       }
-      
-      .timeline::before {
-        left: 20px;
-      }
-      
-      .timeline-item::before {
-        left: 14px;
-        width: 12px;
-        height: 12px;
+
+      :root {
+        --timeline-x: 18px;
       }
 
       .time {
         font-size: 12px;
-        text-align: left;
-        grid-column: 1 / 3; /* 在極小螢幕上，時間回到左邊 */
-      }
-      
-      .timeline-item > div:last-child {
-        grid-column: 1 / 3;
-        margin-left: 20px; /* 與圓點保持距離 */
-      }
-      
-      .intro-slider img {
-        min-width: 240px;
-        height: 340px;
       }
     }
   </style>
 </head>
 
 <body class="has-intro">
+  <!-- Intro overlay -->
   <div class="intro-overlay" id="intro">
     <div style="text-align:center; margin-bottom: 8px;">
       <div class="intro-title">AXE WANG OSAKA BIRTHDAY TRIP</div>
@@ -485,7 +482,7 @@
       <img src="axe-photo3.jpg" alt="AXE Photo 3" />
     </div>
 
-    <div class="intro-tip">滑動觀看更多帥照。</div>
+    <div class="intro-tip">送你帥照。</div>
 
     <button class="intro-btn" id="enterTrip">一緒に旅行へ行きましょう</button>
   </div>
@@ -505,7 +502,7 @@
     </div>
 
     <div class="chip-nav">
-      <button data-target="itinerary" class="active-chip">行程卡片</button>
+      <button data-target="itinerary">行程卡片</button>
       <button data-target="stay">住宿 & 周邊</button>
       <button data-target="umeda">梅田逛街</button>
       <button data-target="snacks">點心</button>
@@ -516,12 +513,14 @@
       <button data-target="account">記帳</button>
     </div>
 
-    <section id="itinerary" class="card page-section active">
+    <!-- 行程卡片 -->
+    <section id="itinerary" class="card page-section">
       <div class="card-header">
         <h2>行程卡片</h2>
         <div class="card-tag">每天一張卡 · 地鐵路線 + 大阪周遊卡資訊都寫好</div>
       </div>
 
+      <!-- Day 1 -->
       <div class="day-card">
         <div class="day-title">DAY 1 · 12/6（六）</div>
         <div class="day-subtitle">抵達大阪 · 日本橋基地報到</div>
@@ -557,6 +556,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 2 -->
       <div class="day-card">
         <div class="day-title">DAY 2 · 12/7（日）</div>
         <div class="day-subtitle">經典市區景點 + 梅田購物線 + 天神橋吃好吃滿</div>
@@ -658,6 +658,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 3 -->
       <div class="day-card">
         <div class="day-title">DAY 3 · 12/8（一）</div>
         <div class="day-subtitle">通天閣 + 摔角小店 + HARUKAS</div>
@@ -728,6 +729,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 4 -->
       <div class="day-card">
         <div class="day-title">DAY 4 · 12/9（二）</div>
         <div class="day-subtitle">環球影城 USJ 一日暢玩</div>
@@ -770,6 +772,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 5 -->
       <div class="day-card">
         <div class="day-title">DAY 5 · 12/10（三）</div>
         <div class="day-subtitle">海遊館 + 港區散步 + 摔角主題酒吧</div>
@@ -814,6 +817,7 @@
 
       <div class="section-divider"></div>
 
+      <!-- Day 6 -->
       <div class="day-card">
         <div class="day-title">DAY 6 · 12/11（四）</div>
         <div class="day-subtitle">退房 + 回程 · 帶著痠痛跟回憶回台灣</div>
@@ -843,6 +847,7 @@
       </div>
     </section>
 
+    <!-- 住宿 & 周邊 -->
     <section id="stay" class="card page-section">
       <div class="card-header">
         <h2>住宿 & 周邊</h2>
@@ -908,6 +913,7 @@
       </p>
     </section>
 
+    <!-- 梅田逛街 -->
     <section id="umeda" class="card page-section">
       <div class="card-header">
         <h2>梅田逛街攻略</h2>
@@ -953,6 +959,7 @@
       </ul>
     </section>
 
+    <!-- 點心 -->
     <section id="snacks" class="card page-section">
       <div class="card-header">
         <h2>想吃點心清單</h2>
@@ -981,6 +988,7 @@
       </ul>
     </section>
 
+    <!-- USJ -->
     <section id="usj" class="card page-section">
       <div class="card-header">
         <h2>USJ 攻略小抄</h2>
@@ -1003,6 +1011,7 @@
       </ul>
     </section>
 
+    <!-- 小提醒 -->
     <section id="tips" class="card page-section">
       <div class="card-header">
         <h2>小提醒</h2>
@@ -1017,6 +1026,7 @@
       </ul>
     </section>
 
+    <!-- 機票 -->
     <section id="flight" class="card page-section">
       <div class="card-header">
         <h2>機票資訊</h2>
@@ -1025,14 +1035,14 @@
 
       <p><strong>預約編號：</strong>HW7QYW</p>
 
-      <div class="sub-heading">去程：2025 年 12 月 6 日（六）</div>
+      <p class="sub-heading">去程：2025 年 12 月 6 日（六）</p>
       <ul>
         <li>18:10（台北桃園）→ 21:40（關西 1 號航站樓）</li>
         <li>航班：GK54（Airbus A320） · 座位：8A、8B</li>
         <li>行李：手提 7kg + 托運 20kg</li>
       </ul>
 
-      <div class="sub-heading">回程：2025 年 12 月 11 日（四）</div>
+      <p class="sub-heading">回程：2025 年 12 月 11 日（四）</p>
       <ul>
         <li>14:50（關西 1 號航站樓）→ 17:10（台北桃園）</li>
         <li>航班：GK55（Airbus A320） · 座位：9A、9B</li>
@@ -1040,6 +1050,7 @@
       </ul>
     </section>
 
+    <!-- 兌換券 -->
     <section id="coupons" class="card page-section">
       <div class="card-header">
         <h2>旅程專屬兌換券</h2>
@@ -1062,6 +1073,7 @@
       </p>
     </section>
 
+    <!-- 記帳 -->
     <section id="account" class="card page-section">
       <div class="card-header">
         <h2>記帳小本本</h2>
@@ -1102,27 +1114,24 @@
         targetEl.style.display = "block";
         setTimeout(() => {
           targetEl.classList.add("active");
-        }, 50); // 短暫延遲確保 display block 生效
+        }, 50);
       }
 
       const activeBtn = document.querySelector(
         `.chip-nav button[data-target="${targetId}"]`
       );
       if (activeBtn) activeBtn.classList.add("active-chip");
-      
-      // 優化：只在點擊時滾動到頂部，且因為 body/html 設置了 scroll-behavior: smooth，這裡不再需要 JS 滾動邏輯。
     }
 
     document.querySelectorAll(".chip-nav button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-target");
         switchSection(targetId);
-        
-        // 點擊後滾動到主標題下方
-        document.getElementById("top").scrollIntoView({ 
-            behavior: "smooth", 
-            block: "start" 
-        });
+
+        const topSection = document.getElementById("top");
+        if (topSection) {
+          topSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
     });
 
@@ -1163,22 +1172,21 @@
       enterBtn.addEventListener("click", () => {
         confetti({
           particleCount: 150,
-          spread: 80,
+          spread: 70,
           origin: { y: 0.6 },
-          colors: ["#9a6e4d", "#f8f6f4", "#5f4b34", "#ffffff"],
+          colors: ["#8b6b4a", "#e4d7c3", "#5f4b34", "#ffffff"],
         });
 
         const audio = document.getElementById("bgm");
         if (audio) {
-          audio.volume = 0.4; /* 音量微調 */
+          audio.volume = 0.5;
           audio.play().catch(() => {});
         }
 
         intro.classList.add("intro-hide");
         setTimeout(() => {
           body.classList.remove("has-intro");
-          intro.remove(); /* 移除 Intro 元素以釋放資源 */
-        }, 500); /* 配合 CSS 0.5s 動畫時間 */
+        }, 450);
       });
     }
   </script>
