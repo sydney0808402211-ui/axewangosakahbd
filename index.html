@@ -212,57 +212,66 @@
       margin-bottom: 4px;
     }
 
-    /* 2. Timeline —— 美化設計 */
+    /* —— 無印良品風 · 細長刻度時間軸（不擋到字版） —— */
 
-    .timeline {
-      margin-top: 10px;
-      display: grid;
-      gap: 18px;
-      position: relative;
-      padding-left: 64px; /* 右移，給時間軸線留空間 */
-      padding-top: 8px;
-    }
+.timeline {
+  margin-top: 10px;
+  display: grid;
+  gap: 18px;
+  position: relative;
 
-    /* 淡淡直線 */
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 32px;
-      top: 0;
-      bottom: 0;
-      width: 1px; /* 線條變細 */
-      background: var(--accent-soft); /* 使用淺色線條 */
-    }
+  /* 左邊留給主直線＋刻度，右邊是時間＋內容 */
+  padding-left: 88px; /* 讓時間跟內容整排往右移一點 */
+  padding-top: 8px;
+}
 
-    .timeline-item {
-      position: relative;
-      display: grid;
-      grid-template-columns: 60px 1fr; /* 調整時間欄寬度 */
-      gap: 12px;
-      line-height: 1.65;
-      font-size: 14px;
-    }
+/* 主直線（淡色，不搶戲） */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 44px;                 /* 線在很左邊，不會靠近文字 */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-soft);
+}
 
-    /* 實心圓點刻度（美化） */
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 29px; 
-      top: 10px;
-      width: 8px; /* 圓點大小 */
-      height: 8px;
-      background: var(--accent); /* 實心主題色 */
-      border-radius: 50%;
-      border: 2px solid var(--card); /* 圓點外圍加一層卡片背景色，讓它更立體 */
-    }
+/* 每一行的版面配置 */
+.timeline-item {
+  position: relative;
+  display: grid;
 
-    .time {
-      color: var(--accent); /* 使用主題色 */
-      padding-left: 0;
-      font-weight: 700;
-      font-size: 13px; /* 字體變小 */
-      text-align: right;
-    }
+  /* 左邊是時間欄，右邊是文字欄 */
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* 細長矩形刻度（像手帳的小刻度） */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+
+  /* 刻度放在主線右邊一點點，不會碰到時間字 */
+  left: 36px;
+  top: 14px;
+  width: 18px;
+  height: 2px;
+
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+/* 時間文字：完全在自己的欄位裡，不會跟線打架 */
+.time {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 13px;
+  text-align: right;
+  padding-right: 4px;  /* 右邊留一點呼吸空間 */
+}
+
 
     .timeline strong {
       font-weight: 600;
