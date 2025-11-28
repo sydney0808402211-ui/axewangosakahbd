@@ -126,23 +126,46 @@
       color: var(--text-main);
       cursor: pointer;
       white-space: nowrap;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
 
     .chip-nav button:hover {
       background: #f5e7d6;
     }
 
-    /* Cards */
+    /* 新增：Active chip 樣式 */
+    .chip-nav button.active-chip {
+        background: var(--accent);
+        color: white;
+        border-color: var(--accent);
+        font-weight: 600;
+    }
 
+    /* Cards - 所有 section 都套用這個樣式 */
     .card {
       background: var(--card);
       border-radius: 18px;
       padding: 18px 16px 18px;
-      margin-top: 14px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(139, 107, 74, 0.1);
+      margin-top: 0; /* 統一由 .page-section 控制間距 */
+    }
+    
+    /* 1. 卡片分離：控制 section 顯示與隱藏（新增） */
+    .page-section {
+        display: none; /* 預設隱藏所有卡片 */
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        padding-top: 14px; /* 與上方導覽列的間距 */
     }
 
+    .page-section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     .card-header {
       margin-bottom: 8px;
     }
@@ -156,10 +179,23 @@
       color: var(--text-muted);
     }
 
+    /* 內嵌行程卡：Day Card 視覺化（美化） */
+    .day-card {
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(139, 107, 74, 0.04); /* 非常淺的背景色來區分 */
+        margin-bottom: 12px;
+        position: relative;
+    }
+    .day-card + .day-card {
+        margin-top: 18px;
+    }
+
     .day-title {
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: var(--accent); /* 使用主題色 */
     }
 
     .day-subtitle {
@@ -176,14 +212,15 @@
       margin-bottom: 4px;
     }
 
-    /* Timeline —— 無印良品手帳風 */
+    /* 2. Timeline —— 美化設計 */
 
     .timeline {
       margin-top: 10px;
       display: grid;
       gap: 18px;
       position: relative;
-      padding-left: 72px; /* 右移避免打架 */
+      padding-left: 64px; /* 右移，給時間軸線留空間 */
+      padding-top: 8px;
     }
 
     /* 淡淡直線 */
@@ -193,35 +230,38 @@
       left: 32px;
       top: 0;
       bottom: 0;
-      width: 2px;
-      background: rgba(139, 107, 74, 0.25);
+      width: 1px; /* 線條變細 */
+      background: var(--accent-soft); /* 使用淺色線條 */
     }
 
     .timeline-item {
       position: relative;
       display: grid;
-      grid-template-columns: 100px 1fr;
+      grid-template-columns: 60px 1fr; /* 調整時間欄寬度 */
       gap: 12px;
       line-height: 1.65;
       font-size: 14px;
     }
 
-    /* 小刻度 */
+    /* 實心圓點刻度（美化） */
     .timeline-item::before {
       content: "";
       position: absolute;
-      left: 26px;
-      top: 11px;
-      width: 14px;
-      height: 2px;
-      background: #8b6b4a;
-      border-radius: 2px;
+      left: 29px; 
+      top: 10px;
+      width: 8px; /* 圓點大小 */
+      height: 8px;
+      background: var(--accent); /* 實心主題色 */
+      border-radius: 50%;
+      border: 2px solid var(--card); /* 圓點外圍加一層卡片背景色，讓它更立體 */
     }
 
     .time {
-      color: var(--text-muted);
-      padding-left: 10px;
-      font-weight: 500;
+      color: var(--accent); /* 使用主題色 */
+      padding-left: 0;
+      font-weight: 700;
+      font-size: 13px; /* 字體變小 */
+      text-align: right;
     }
 
     .timeline strong {
@@ -337,6 +377,7 @@
       text-align: center;
     }
 
+    /* 3. 照片滑動優化（美化） */
     .intro-slider {
       width: 100%;
       max-width: 360px;
@@ -346,6 +387,12 @@
       scroll-snap-type: x mandatory;
       padding-bottom: 6px;
       margin-bottom: 8px;
+      /* 隱藏滾動條 */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .intro-slider::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
     }
 
     .intro-slider img {
@@ -355,7 +402,14 @@
       border-radius: 18px;
       object-fit: cover;
       scroll-snap-align: center;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      /* 新增雜誌/拍立得效果 */
+      border: 4px solid #fff;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.5s ease;
+    }
+    
+    .intro-slider img:hover {
+        transform: scale(1.05); /* 滑鼠懸停時放大 */
     }
 
     .intro-tip {
@@ -376,6 +430,7 @@
       margin-top: 4px;
       cursor: pointer;
       box-shadow: 0 8px 16px rgba(139, 107, 74, 0.35);
+      transition: all 0.1s ease;
     }
 
     .intro-btn:active {
@@ -402,7 +457,6 @@
 </head>
 
 <body class="has-intro">
-  <!-- Intro overlay with AXE 寫真 -->
   <div class="intro-overlay" id="intro">
     <div style="text-align:center; margin-bottom: 8px;">
       <div class="intro-title">AXE WANG OSAKA BIRTHDAY TRIP</div>
@@ -423,7 +477,6 @@
     <button class="intro-btn" id="enterTrip">開始生日旅行</button>
   </div>
 
-  <!-- BGM（你之後可以把 mp3 檔名換掉） -->
   <audio id="bgm" src="bgm.mp3" loop></audio>
 
   <div class="page" id="top">
@@ -438,7 +491,6 @@
       <div id="countdown">距離出發還有：計算中...</div>
     </div>
 
-    <!-- 導覽 chip -->
     <div class="chip-nav">
       <button data-target="itinerary">行程卡片</button>
       <button data-target="stay">住宿 & 周邊</button>
@@ -451,14 +503,12 @@
       <button data-target="account">記帳</button>
     </div>
 
-    <!-- 行程卡片 -->
-    <section id="itinerary" class="card">
+    <section id="itinerary" class="card page-section">
       <div class="card-header">
         <h2>行程卡片</h2>
         <div class="card-tag">每天一張卡 · 地鐵路線 + 大阪周遊卡資訊都寫好</div>
       </div>
 
-      <!-- Day 1 -->
       <div class="day-card">
         <div class="day-title">DAY 1 · 12/6（六）</div>
         <div class="day-subtitle">抵達大阪 · 日本橋基地報到</div>
@@ -495,7 +545,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- Day 2 -->
       <div class="day-card">
         <div class="day-title">DAY 2 · 12/7（日）</div>
         <div class="day-subtitle">經典市區景點 + 梅田購物線 + 天神橋吃好吃滿</div>
@@ -555,7 +604,7 @@
             <div class="time">15:00–18:00</div>
             <div>
               <strong>壽星專屬梅田逛街攻略</strong>：<br />
-              Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &amp;
+              Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &
               Zoff → 視體力安排
               grenier 甜點。<br />
               這段是 AXE 的時尚與鞋櫃補給時間。
@@ -603,7 +652,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- Day 3 -->
       <div class="day-card">
         <div class="day-title">DAY 3 · 12/8（一）</div>
         <div class="day-subtitle">通天閣 + 摔角小店 + HARUKAS</div>
@@ -613,7 +661,7 @@
           <div class="timeline-item">
             <div class="time">10:00–12:00</div>
             <div>
-              <strong>通天閣展望台＋溜滑梯＋ Dive &amp; Walk</strong>：<br />
+              <strong>通天閣展望台＋溜滑梯＋ Dive & Walk</strong>：<br />
               日本橋站（堺筋線）→ 惠美須町站（2 站，約 4 分鐘），步行 5 分鐘到通天閣。<br />
               周遊卡可免費入場，可以視心情加價玩溜滑梯，壽星想玩就玩。
             </div>
@@ -677,7 +725,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- Day 4 -->
       <div class="day-card">
         <div class="day-title">DAY 4 · 12/9（二）</div>
         <div class="day-subtitle">環球影城 USJ 一日暢玩</div>
@@ -721,7 +768,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- Day 5 -->
       <div class="day-card">
         <div class="day-title">DAY 5 · 12/10（三）</div>
         <div class="day-subtitle">海遊館 + 港區散步 + 摔角主題酒吧</div>
@@ -767,7 +813,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- Day 6 -->
       <div class="day-card">
         <div class="day-title">DAY 6 · 12/11（四）</div>
         <div class="day-subtitle">退房 + 回程 · 帶著痠痛跟回憶回台灣</div>
@@ -797,9 +842,7 @@
       </div>
     </section>
 
-    <!-- 住宿 & 周邊 -->
-    <!-- 住宿 & 周邊 -->
-    <section id="stay" class="card">
+    <section id="stay" class="card page-section">
       <div class="card-header">
         <h2>住宿 & 周邊</h2>
         <div class="card-tag">日本橋基地 · 方便往返難波、心齋橋與梅田</div>
@@ -865,8 +908,7 @@
     </section>
 
 
-    <!-- 梅田逛街 -->
-    <section id="umeda" class="card">
+    <section id="umeda" class="card page-section">
       <div class="card-header">
         <h2>梅田逛街攻略</h2>
         <div class="card-tag">壽星專屬購物動線 · 男裝 & 球鞋主戰場</div>
@@ -911,8 +953,7 @@
       </ul>
     </section>
 
-    <!-- 想吃點心 -->
-    <section id="snacks" class="card">
+    <section id="snacks" class="card page-section">
       <div class="card-header">
         <h2>想吃點心清單</h2>
         <div class="card-tag">排進每天行程，心情好才是重點</div>
@@ -940,8 +981,7 @@
       </ul>
     </section>
 
-    <!-- USJ -->
-    <section id="usj" class="card">
+    <section id="usj" class="card page-section">
       <div class="card-header">
         <h2>USJ 攻略小抄</h2>
         <div class="card-tag">壽星激嗨日的作戰計畫</div>
@@ -965,8 +1005,7 @@
       </ul>
     </section>
 
-    <!-- 小提醒 -->
-    <section id="tips" class="card">
+    <section id="tips" class="card page-section">
       <div class="card-header">
         <h2>小提醒</h2>
         <div class="card-tag">給旅行中的我們的備忘錄</div>
@@ -980,8 +1019,7 @@
       </ul>
     </section>
 
-    <!-- 機票 -->
-    <section id="flight" class="card">
+    <section id="flight" class="card page-section">
       <div class="card-header">
         <h2>機票資訊</h2>
         <div class="card-tag">所有班機與行李一次看</div>
@@ -1004,8 +1042,7 @@
       </ul>
     </section>
 
-    <!-- 兌換券 -->
-    <section id="coupons" class="card">
+    <section id="coupons" class="card page-section">
       <div class="card-header">
         <h2>旅程專屬兌換券</h2>
         <div class="card-tag">這一頁只有宏逸可以使用</div>
@@ -1027,8 +1064,7 @@
       </p>
     </section>
 
-    <!-- 記帳 -->
-    <section id="account" class="card">
+    <section id="account" class="card page-section">
       <div class="card-header">
         <h2>記帳小本本</h2>
         <div class="card-tag">每天花多少 · 一目了然</div>
@@ -1048,23 +1084,64 @@
     </section>
   </div>
 
-  <!-- Confetti 套件 -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
-    // Smooth scroll 導覽
+    // ----------------------------------------------------------------
+    // 頁面切換邏輯 (View Switching)
+    // ----------------------------------------------------------------
+    
+    // 處理卡片顯示與隱藏
+    function switchSection(targetId) {
+        // 1. 隱藏所有區塊並移除 active 樣式
+        const allSections = document.querySelectorAll(".page-section");
+        allSections.forEach(section => {
+            section.classList.remove("active");
+            section.style.display = "none";
+        });
+
+        document.querySelectorAll(".chip-nav button").forEach(btn => {
+            btn.classList.remove("active-chip");
+        });
+
+        // 2. 顯示目標區塊並加入 active 樣式 (利用 setTimeout 確保淡入動態能觸發)
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            targetEl.style.display = "block"; 
+            setTimeout(() => {
+                targetEl.classList.add("active");
+            }, 50); // 短暫延遲讓 display: block 生效
+        }
+        
+        // 3. 點擊的導覽鈕也加上 active 樣式
+        document.querySelector(`.chip-nav button[data-target="${targetId}"]`).classList.add("active-chip");
+    }
+
+    // 更新 chip nav 導覽的監聽事件
     document.querySelectorAll(".chip-nav button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-target");
-        const el = document.getElementById(targetId);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        switchSection(targetId);
+        
+        // 點擊後平滑滾動到內容區塊上方
+        const contentStart = document.getElementById('itinerary');
+        if(contentStart) {
+             contentStart.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
     });
 
-    // 倒數計時（每分鐘更新）
+    // 頁面載入時，預設顯示第一個區塊 (itinerary)
+    document.addEventListener("DOMContentLoaded", () => {
+        switchSection("itinerary");
+    });
+
+
+    // ----------------------------------------------------------------
+    // 倒數計時（原功能保留）
+    // ----------------------------------------------------------------
     function updateCountdown() {
+      // 2025/12/06 18:10:00 (使用 +08:00 確保時區正確)
       const target = new Date("2025-12-06T18:10:00+08:00").getTime();
       const now = Date.now();
       const diff = target - now;
@@ -1085,9 +1162,12 @@
       el.textContent = `距離出發還有：${days} 天 ${hours} 小時 ${mins} 分`;
     }
     updateCountdown();
-    setInterval(updateCountdown, 60000);
+    // 降低更新頻率為每分鐘一次
+    setInterval(updateCountdown, 60000); 
 
-    // Intro & Confetti & BGM
+    // ----------------------------------------------------------------
+    // Intro & Confetti & BGM（原功能保留）
+    // ----------------------------------------------------------------
     const intro = document.getElementById("intro");
     const enterBtn = document.getElementById("enterTrip");
     const body = document.body;
