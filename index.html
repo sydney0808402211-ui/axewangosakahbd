@@ -2,1166 +2,1121 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
   <title>宏逸大阪生日旅行 · 6天5夜卡片行程</title>
-
-  <!-- 字體：一點無印感＋中文好讀 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Shippori+Mincho:wght@500;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
       --bg: #f7f2ea;
-      --bg-card: #fbf7f1;
+      --card: #fffaf3;
       --accent: #8b6b4a;
-      --accent-soft: #c5a88a;
-      --border-soft: #e1d4c4;
-      --text-main: #4b3a2b;
-      --text-muted: #a28d77;
-      --chip-bg: #f6efe7;
-      --chip-border: #e2d3c3;
-      --danger: #c25b4b;
-      --radius-card: 22px;
-      --shadow-soft: 0 14px 35px rgba(119, 93, 68, 0.12);
+      --accent-soft: rgba(139, 107, 74, 0.16);
+      --text-main: #3c3024;
+      --text-muted: #8c7b65;
+      --chip-bg: #f0e4d5;
+      --chip-border: #ddcdb8;
+      --danger: #b35b5b;
     }
 
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    html,
     body {
       margin: 0;
-      padding: 0;
-      font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-main);
+      line-height: 1.7;
+      padding-bottom: 40px;
     }
 
-    body.has-intro {
-      overflow: hidden;
-    }
-
-    main {
+    .page {
       max-width: 960px;
       margin: 0 auto;
       padding: 16px 16px 40px;
     }
 
-    /* ---------- Intro / 寫真封面 ---------- */
-
-    .intro {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: radial-gradient(circle at top, #fdf7f0 0, #e9ddcf 42%, #d7c7b5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 16px;
-      transition: opacity 0.45s ease, transform 0.45s ease,
-        visibility 0.45s ease;
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.06em;
     }
 
-    .intro-hide {
-      opacity: 0;
-      transform: translateY(-12px);
-      visibility: hidden;
-      pointer-events: none;
+    h1 {
+      font-size: 22px;
     }
 
-    .intro-card {
-      width: 100%;
-      max-width: 640px;
-      background: rgba(250, 245, 238, 0.95);
-      border-radius: 28px;
-      box-shadow: var(--shadow-soft);
-      padding: 18px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    h2 {
+      font-size: 18px;
     }
 
-    .intro-title {
-      font-family: "Shippori Mincho", "Noto Sans TC", serif;
-      font-size: 20px;
-      letter-spacing: 0.2em;
-      text-align: center;
-      color: var(--accent);
-      margin-bottom: 4px;
+    h3 {
+      font-size: 16px;
     }
 
-    .intro-subtitle {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+    p {
+      margin: 0;
     }
 
-    .intro-photos-wrapper {
-      border-radius: 18px;
-      overflow: hidden;
-      background: #000;
-      position: relative;
-    }
-
-    .intro-photos {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .intro-photos::-webkit-scrollbar {
-      display: none;
-    }
-
-    .intro-photo {
-      min-width: 100%;
-      height: 260px;
-      object-fit: cover;
-      scroll-snap-align: center;
-      display: block;
-    }
-
-    .intro-dots {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      pointer-events: none;
-    }
-
-    .intro-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.4);
-      transition: background 0.2s ease, width 0.2s ease;
-    }
-
-    .intro-dot.active {
-      width: 16px;
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .intro-message {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin-top: 6px;
-      text-align: justify;
-    }
-
-    .intro-cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .intro-btn {
-      border: none;
-      outline: none;
-      padding: 10px 22px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 15px;
-      letter-spacing: 0.1em;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(92, 70, 48, 0.4);
-    }
-
-    .intro-btn span {
-      font-size: 14px;
-    }
-
-    .intro-hint {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* ---------- Hero / 標題區 ---------- */
-
-    .hero {
-      padding: 8px 4px 18px;
-    }
-
-    .hero-label {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--accent-soft);
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
+    /* Hero */
 
     .hero-title {
-      font-family: "Shippori Mincho", "Noto Sans TC", serif;
-      font-size: 22px;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .hero-sub {
-      font-size: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 6px;
     }
 
-    .hero-meta {
-      font-size: 12px;
-      color: var(--accent-soft);
+    .trip-main-title {
+      font-size: 20px;
+      margin-bottom: 6px;
     }
 
-    .countdown {
-      margin-top: 8px;
+    .trip-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .trip-meta {
       font-size: 13px;
-      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .trip-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    #countdown {
+      font-size: 14px;
+      font-weight: 600;
       color: var(--accent);
+      padding: 8px 10px;
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(255, 255, 255, 0.7);
+      margin-bottom: 14px;
     }
 
-    /* ---------- 頂部導航 Pills ---------- */
+    /* Chip nav */
 
-    .pill-nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: linear-gradient(to bottom, #f7f2ea 80%, rgba(247, 242, 234, 0));
-      padding: 6px 0 12px;
-      backdrop-filter: blur(6px);
-    }
-
-    .pill-row {
+    .chip-nav {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin: 16px 0 10px;
     }
 
-    .pill-btn {
+    .chip-nav button {
       border-radius: 999px;
       border: 1px solid var(--chip-border);
       background: var(--chip-bg);
       padding: 6px 14px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-main);
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      white-space: nowrap;
     }
 
-    .pill-btn.active {
-      background: #ffffff;
-      border-color: var(--accent-soft);
-      color: var(--accent);
-      box-shadow: 0 4px 10px rgba(139, 107, 74, 0.18);
+    .chip-nav button:hover {
+      background: #f5e7d6;
     }
 
-    /* ---------- 卡片＆區塊共用 ---------- */
-
-    .section {
-      margin-top: 6px;
-    }
+    /* Cards */
 
     .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-soft);
-      padding: 16px 18px 18px;
+      background: var(--card);
+      border-radius: 18px;
+      padding: 18px 16px 18px;
       margin-top: 14px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(139, 107, 74, 0.1);
     }
 
-    .card-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
+    .card-header {
       margin-bottom: 8px;
     }
 
-    .card-title {
+    .card-header h2 {
+      margin-bottom: 2px;
+    }
+
+    .card-tag {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .day-title {
       font-size: 15px;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      font-weight: 600;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    .card-sub {
-      font-size: 11px;
+    .day-subtitle {
+      font-size: 13px;
       color: var(--text-muted);
-      text-align: right;
+      margin-bottom: 6px;
     }
 
-    .chip-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
-      background: #fff;
-      font-size: 11px;
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
       color: var(--text-muted);
-      margin-right: 6px;
-      margin-top: 4px;
+      margin-bottom: 4px;
     }
 
-    .muted {
-      color: var(--text-muted);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px dotted rgba(139, 107, 74, 0.4);
-    }
-
-    a:hover {
-      border-bottom-style: solid;
-    }
-
-    /* ---------- 手帳風時間軸 (不使用 absolute) ---------- */
+    /* Timeline —— 無印良品手帳風 */
 
     .timeline {
-      margin-top: 8px;
+      margin-top: 10px;
       display: grid;
-      gap: 14px;
-      border-left: 1.5px solid rgba(139, 107, 74, 0.28);
-      padding-left: 16px;
+      gap: 18px;
+      position: relative;
+      padding-left: 72px; /* 右移避免打架 */
+    }
+
+    /* 淡淡直線 */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(139, 107, 74, 0.25);
     }
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 90px minmax(0, 1fr);
-      gap: 10px;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .time {
       position: relative;
-      color: var(--text-muted);
-      padding-left: 22px; /* 給刻度一個位置 */
-      font-weight: 500;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      line-height: 1.65;
+      font-size: 14px;
     }
 
-    .time::before {
+    /* 小刻度 */
+    .timeline-item::before {
       content: "";
       position: absolute;
-      left: 0;
-      top: 0.78em;
+      left: 26px;
+      top: 11px;
       width: 14px;
       height: 2px;
       background: #8b6b4a;
       border-radius: 2px;
     }
 
-    .timeline-main {
-      font-size: 13px;
+    .time {
+      color: var(--text-muted);
+      padding-left: 10px;
+      font-weight: 500;
     }
 
-    .timeline-main strong {
+    .timeline strong {
       font-weight: 600;
     }
 
-    .timeline-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
+    /* Lists */
 
-    /* ---------- 其它區塊 ---------- */
-
-    .list {
-      font-size: 13px;
-      line-height: 1.7;
+    ul {
       padding-left: 18px;
+      margin: 6px 0 0;
+      font-size: 14px;
     }
 
-    .list li + li {
-      margin-top: 4px;
+    li + li {
+      margin-top: 3px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-top: 8px;
+    a {
+      color: #6a4d2f;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .note {
       font-size: 13px;
-    }
-
-    .pill-small {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--chip-border);
-      font-size: 11px;
       color: var(--text-muted);
       margin-top: 4px;
-      margin-right: 4px;
     }
 
-    .section.hidden {
-      display: none;
-    }
-
-    .photo-inline {
-      width: 100%;
-      border-radius: 16px;
-      margin-top: 8px;
-      display: block;
-    }
-
-    .coupon {
-      background: #fffdfa;
-      border-radius: 18px;
-      border: 1px dashed rgba(139, 107, 74, 0.5);
-      padding: 10px 12px;
-      font-size: 13px;
-      line-height: 1.7;
-      margin-top: 8px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .coupon::before,
-    .coupon::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--bg);
-      transform: translateY(-50%);
-    }
-
-    .coupon::before {
-      left: -8px;
-    }
-
-    .coupon::after {
-      right: -8px;
-    }
-
-    .coupon-title {
-      font-weight: 600;
-      letter-spacing: 0.14em;
+    .pill-note {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
       font-size: 12px;
-      color: var(--accent);
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .section-divider {
+      border-top: 1px dashed rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
+    }
+
+    .sub-heading {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 6px;
       margin-bottom: 4px;
     }
 
-    .link-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--chip-border);
+    .small-label {
       font-size: 12px;
-      background: #fff;
-      margin-top: 8px;
-      gap: 4px;
-    }
-
-    .link-button span {
-      font-size: 13px;
-    }
-
-    footer {
-      margin-top: 26px;
-      font-size: 11px;
       color: var(--text-muted);
+    }
+
+    .img-inline {
+      width: 100%;
+      border-radius: 12px;
+      margin: 6px 0;
+      display: block;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* Intro overlay with photos */
+
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #fefaf4, #e3d4c2);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 32px 16px 24px;
+      overflow-y: auto;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    body.has-intro {
+      overflow: hidden;
+    }
+
+    .intro-hide {
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+    }
+
+    .intro-title {
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .intro-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
       text-align: center;
     }
 
+    .intro-slider {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .intro-slider img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      border-radius: 18px;
+      object-fit: cover;
+      scroll-snap-align: center;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .intro-tip {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .intro-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 26px;
+      background: #8b6b4a;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(139, 107, 74, 0.35);
+    }
+
+    .intro-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 10px rgba(139, 107, 74, 0.3);
+    }
+
+    /* Responsive tweaks */
+
     @media (min-width: 720px) {
-      .intro-photo {
-        height: 320px;
+      .page {
+        padding: 24px 24px 40px;
       }
-      .hero {
-        padding-top: 14px;
+
+      .card {
+        padding: 20px 22px 22px;
+      }
+
+      .trip-main-title {
+        font-size: 22px;
       }
     }
   </style>
 </head>
 
 <body class="has-intro">
-  <!-- 封面：AXE 寫真滑動＋開始按鈕 -->
-  <div class="intro" id="intro">
-    <div class="intro-card">
-      <div class="intro-title">AXE Wang OSAKA BIRTHDAY TRIP</div>
-      <div class="intro-subtitle">給台灣摔角顏值巔峰Axe Wang的一趟 6 天 5 夜生日旅行</div>
-
-      <div class="intro-photos-wrapper">
-        <div class="intro-photos" id="introPhotos">
-          <img src="axe-photo1.jpg" alt="AXE Photo 1" class="intro-photo" />
-          <img src="axe-photo2.jpg" alt="AXE Photo 2" class="intro-photo" />
-          <img src="axe-photo3.jpg" alt="AXE Photo 3" class="intro-photo" />
-        </div>
-        <div class="intro-dots" id="introDots">
-          <div class="intro-dot active"></div>
-          <div class="intro-dot"></div>
-          <div class="intro-dot"></div>
-        </div>
-      </div>
-
-      <div class="intro-message">
-        這不是一般的觀光行程，而是Axe Wang專屬的生日企劃。希望在每天的旅程都可以感受到小肥豬精心排好的伏筆和驚喜。
-      </div>
-
-      <div class="intro-cta">
-        <button class="intro-btn" id="startTripBtn">
-          <span>🎉 一緒に行く</span>
-        </button>
-        <div class="intro-hint">左右滑動上方寫真，可以先複習一下自己的帥度。</div>
+  <!-- Intro overlay with AXE 寫真 -->
+  <div class="intro-overlay" id="intro">
+    <div style="text-align:center; margin-bottom: 8px;">
+      <div class="intro-title">AXE OSAKA BIRTHDAY TRIP</div>
+      <div class="intro-sub">
+        給台灣摔角顏值巔峰 Axe Wang 的專屬生日網站。<br />
+        請先欣賞一下本人的帥度，再進入行程。
       </div>
     </div>
+
+    <div class="intro-slider">
+      <img src="axe-photo1.jpg" alt="AXE Photo 1" />
+      <img src="axe-photo2.jpg" alt="AXE Photo 2" />
+      <img src="axe-photo3.jpg" alt="AXE Photo 3" />
+    </div>
+
+    <div class="intro-tip">⬅️  左右滑動照片 · 練習一下做壽星的自覺。</div>
+
+    <button class="intro-btn" id="enterTrip">開始生日旅行</button>
   </div>
 
-  <!-- BGM：請把檔名改成你自己準備的 mp3，例如 bgm.mp3 -->
+  <!-- BGM（你之後可以把 mp3 檔名換掉） -->
   <audio id="bgm" src="bgm.mp3" loop></audio>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-label">宏逸生日特別企劃</div>
-      <div class="hero-title">宏逸大阪生日旅行 · 6 天 5 夜卡片行程</div>
-      <div class="hero-sub">2025 / 12 / 6（六）～ 12 / 11（四） · 日本大阪</div>
-      <div class="hero-meta">
-        小肥豬專屬企劃 · 以 MUJI 風手帳記錄｜所有交通、票券、點心與驚喜全收錄
+  <div class="page" id="top">
+    <div class="hero">
+      <div class="hero-title">AXE OSAKA BIRTHDAY TRIP</div>
+      <div class="trip-main-title">宏逸大阪生日旅行 · 6 天 5 夜卡片行程</div>
+      <div class="trip-sub">給台灣摔角顏值巔峰王宏逸的一趟 6 天 5 夜生日旅行</div>
+      <div class="trip-meta">2025 / 12 / 6（六）～ 12 / 11（四） · 日本 · 大阪</div>
+      <div class="trip-tagline">
+        小肥豬專屬企劃 · 無印良品手帳風 · 交通、票券、點心與驚喜一次整理好
       </div>
-      <div class="countdown">
-        距離出發還有：<span id="countdownTimer">計算中...</span>
-      </div>
-    </section>
+      <div id="countdown">距離出發還有：計算中...</div>
+    </div>
 
-    <!-- 導航 Pills -->
-    <nav class="pill-nav">
-      <div class="pill-row">
-        <button class="pill-btn active" data-target="itinerary">行程卡片</button>
-        <button class="pill-btn" data-target="stay">住宿 & 周邊</button>
-        <button class="pill-btn" data-target="umeda">梅田逛街</button>
-        <button class="pill-btn" data-target="snacks">點心</button>
-        <button class="pill-btn" data-target="usj">USJ</button>
-        <button class="pill-btn" data-target="tips">小提醒</button>
-        <button class="pill-btn" data-target="flight">機票</button>
-        <button class="pill-btn" data-target="coupon">兌換券</button>
-        <button class="pill-btn" data-target="account">記帳</button>
-      </div>
-    </nav>
+    <!-- 導覽 chip -->
+    <div class="chip-nav">
+      <button data-target="itinerary">行程卡片</button>
+      <button data-target="stay">住宿 & 周邊</button>
+      <button data-target="umeda">梅田逛街</button>
+      <button data-target="snacks">點心</button>
+      <button data-target="usj">USJ</button>
+      <button data-target="tips">小提醒</button>
+      <button data-target="flight">機票</button>
+      <button data-target="coupons">兌換券</button>
+      <button data-target="account">記帳</button>
+    </div>
 
     <!-- 行程卡片 -->
-    <section class="section" id="section-itinerary">
+    <section id="itinerary" class="card">
+      <div class="card-header">
+        <h2>行程卡片</h2>
+        <div class="card-tag">每天一張卡 · 地鐵路線 + 大阪周遊卡資訊都寫好</div>
+      </div>
+
       <!-- Day 1 -->
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 1 · 12/6（六）</div>
-          <div class="card-sub">抵達大阪 · 日本橋基地報到</div>
-        </div>
-        <div class="muted" style="font-size: 13px; margin-bottom: 6px;">
-          桃園 → 關西機場 → 南海電鐵 → 難波 → 日本橋住宿
-        </div>
+      <div class="day-card">
+        <div class="day-title">DAY 1 · 12/6（六）</div>
+        <div class="day-subtitle">抵達大阪 · 日本橋基地報到</div>
+        <p class="small-label">路線概覽：桃園 → 關西機場 → 南海電鐵 → 難波 → 日本橋住宿</p>
 
         <div class="timeline">
           <div class="timeline-item">
             <div class="time">18:10–21:40</div>
-            <div class="timeline-main">
-              <strong>桃園 → 關西機場（GK54）</strong>：抵達後先補水、上洗手間，慢慢通關不用趕。
-              <div class="timeline-note">行李：手提 7kg + 托運 20kg，記得確認行李牌與下一段行程。</div>
+            <div>
+              <strong>桃園 → 關西機場（GK54）</strong>：抵達後先補水、上洗手間，慢慢通關不用
+              趕。<br />
+              行李：手提 7kg + 托運 20kg，記得確認行李牌與下一段行程。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">22:00</div>
-            <div class="timeline-main">
-              <strong>南海電鐵 Airport Express</strong>：關西空港 → 南海難波，約 45 分鐘。
-              <div class="timeline-note">有座位就坐下好好休息，順便預習接下來幾天的行程。</div>
+            <div>
+              <strong>南海電鐵 Airport Express</strong>：關西空港 → 南海難波，約 45 分鐘，有座位就坐下好好休息，
+              順便預習接下來幾天的行程。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">22:45–23:00</div>
-            <div class="timeline-main">
-              <strong>難波 → 住宿</strong>：可步行 12–15 分鐘，或搭一小段地鐵抵達日本橋站再走。
-              <div class="timeline-note">入住後簡單洗澡整理行李，第一天就先當成「到達＋安頓日」。</div>
+            <div>
+              <strong>難波 → 日本橋住宿</strong>：可步行 12–15 分鐘，或搭一小段地鐵到
+              「日本橋站」再走。<br />
+              入住後簡單洗澡整理行李，第一天就先當成「到達＋安頓日」。
             </div>
           </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Day 2：經典市區景點＋梅田購物＋天神橋吃好吃滿 -->
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 2 · 12/7（日）</div>
-          <div class="card-sub">經典市區景點 + 壽星梅田購物路線 + 天神橋吃好吃滿</div>
-        </div>
-        <div class="chip-tag">大阪周遊卡 · 第 1 天</div>
+      <div class="section-divider"></div>
+
+      <!-- Day 2 -->
+      <div class="day-card">
+        <div class="day-title">DAY 2 · 12/7（日）</div>
+        <div class="day-subtitle">經典市區景點 + 梅田購物線 + 天神橋吃好吃滿</div>
+        <p class="small-label">大阪周遊卡 · 第 1 天（從日本橋站啟用）</p>
 
         <div class="timeline">
           <div class="timeline-item">
             <div class="time">09:00–10:30</div>
-            <div class="timeline-main">
-              <strong>大阪城天守閣</strong>：日本橋（千日前線）→ 谷町九丁目 → 谷町四丁目，下車步行進大阪城公園。
-              <div class="timeline-note">拍服部平次風照片，壽星帥照任拍。</div>
+            <div>
+              <strong>大阪城天守閣</strong>：<br />
+              日本橋（千日前線）→ 谷町九丁目（1 站，約 2 分鐘）<br />
+              → 轉乘谷町線往「大日」方向 → 谷町四丁目（2 站，約 4 分鐘）<br />
+              → 步行約 10 分鐘進大阪城公園。<br />
+              拍服部平次風照片，壽星帥照任拍。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">11:00–12:00</div>
-            <div class="timeline-main">
-              <strong>大阪生活今昔館</strong>：谷町線北上至天神橋筋六丁目，出站直結大樓。
-              <div class="timeline-note">用周遊卡免費入場，體驗復古大阪街景。</div>
+            <div>
+              <strong>大阪生活今昔館</strong>：<br />
+              谷町四丁目 → 谷町線北上 → 天神橋筋六丁目站（約 10 分鐘），出站直結大樓。<br />
+              用周遊卡免費入場，體驗復古大阪街景。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">12:00–13:30</div>
-            <div class="timeline-main">
-              <strong>天神橋筋商店街午餐＋小吃</strong>：在地鰻魚飯、可樂餅、章魚燒任選組合，吃到開心再出發。
-              <div class="timeline-note">可考慮炭燒鰻魚魚伊、中村屋可樂餅、章魚燒 UMAI 屋。</div>
+            <div>
+              <strong>天神橋筋商店街午餐＋小吃</strong>：在地鰻魚飯、可樂餅、章魚燒任選組合，吃到開心再出發。<br />
+              可考慮
+              <strong>炭燒鰻魚魚伊</strong>、<strong>中村屋可樂餅</strong>、
+              <strong>章魚燒 UMAI 屋</strong>。<br />
+              想吃貝果可以順路去
+              <strong>Happy Camper Bagel</strong>。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">13:30–14:00</div>
-            <div class="timeline-main">
-              <strong>大阪天滿宮小景點</strong>：從天神橋步行到大阪天滿宮，順便參拜學問之神、拍拍照片。
+            <div>
+              <strong>大阪天滿宮小景點</strong>：從天神橋筋六丁目或南森町步行至
+              <strong>大阪天滿宮</strong>，參拜學問之神，拍幾張可愛照片。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">14:00–15:00</div>
-            <div class="timeline-main">
-              <strong>梅田空中庭園展望台</strong>：從天滿／南森町一帶搭地鐵往梅田，上去免費入場（周遊卡）。
-              <div class="timeline-note">高空看整個大阪，風可能偏大，要記得圍巾或外套。</div>
+            <div>
+              <strong>梅田空中庭園展望台</strong>：<br />
+              天滿／南森町一帶 → 搭地鐵往「梅田／大阪」站（約 10–15 分鐘），再步行至空中庭園。<br />
+              用周遊卡免費入場，高空看整個大阪，風可能偏大，要記得圍巾或外套。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">15:00–18:00</div>
-            <div class="timeline-main">
-              <strong>壽星專屬梅田逛街攻略</strong>：Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &amp; Zoff → 視體力安排
-              grenier 布丁等甜點。
+            <div>
+              <strong>壽星專屬梅田逛街攻略</strong>：<br />
+              Grand Front → LUCUA 1100 → Onitsuka Tiger（阪急）→ 大丸梅田 &amp;
+              Zoff → 視體力安排
+              grenier 甜點。<br />
+              這段是 AXE 的時尚與鞋櫃補給時間。
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="time">晚上</div>
-            <div class="timeline-main">
-              <strong>御堂筋線 梅田 → 難波</strong>，再走去道頓堀／心齋橋夜遊＋晚餐，有體力就順便路買 LE CROISSANT 可頌，最後慢慢散步回住宿。
+            <div>
+              <strong>御堂筋線 梅田 → 難波</strong>：<br />
+              從「梅田站」搭御堂筋線南下到「難波」（約 10 分鐘），再走去
+              道頓堀／心齋橋夜遊＋晚餐。<br />
+              有體力就順便去買 <strong>LE CROISSANT</strong> 可頌，再慢慢散步回住宿。
             </div>
           </div>
         </div>
-      </article>
 
-      <!-- Day 3 / Day 4 / Day 5 / Day 6 可以依照你現在網站內容繼續補（結構一樣） -->
-      <!-- 這裡先留架構，你可以照 copy & paste 修改文字 -->
+        <div class="section-divider"></div>
 
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 3 · 12/8（一）</div>
-          <div class="card-sub">通天閣 + 摔角小店 + HARUKAS</div>
-        </div>
-        <div class="chip-tag">大阪周遊卡 · 第 2 天</div>
+        <div class="sub-heading">大阪周遊卡小抄 · Day 2</div>
+        <ul>
+          <li>
+            免費設施列表（官方）：<a
+              href="https://osaka-amazing-pass.com/cht/service_free.html"
+              target="_blank"
+              >大阪周遊卡 · 免費景點一覽</a
+            >
+          </li>
+          <li>
+            使用方式教學（官方）：<a
+              href="https://osaka-amazing-pass.com/cht/howto_guide.html"
+              target="_blank"
+              >大阪周遊卡 · 使用指南</a
+            >
+          </li>
+          <li>
+            兩日券 KKDAY 憑證：<a
+              href="https://t3.linktivity.io/issueticket/suruttokansai/OFH9Srto6mXqVkoQ/KKDAY-20251119-KEXY?lang=ZT"
+              target="_blank"
+              >我的周遊卡憑證（Linktivity）</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Day 3 -->
+      <div class="day-card">
+        <div class="day-title">DAY 3 · 12/8（一）</div>
+        <div class="day-subtitle">通天閣 + 摔角小店 + HARUKAS</div>
+        <p class="small-label">大阪周遊卡 · 第 2 天（以新世界 & HARUKAS 為主）</p>
+
         <div class="timeline">
           <div class="timeline-item">
             <div class="time">10:00–12:00</div>
-            <div class="timeline-main">
-              <strong>通天閣展望台＋溜滑梯＋Dive &amp; Walk</strong>（周遊卡免費）。
-              <div class="timeline-note">可以看心情加價玩滑梯，壽星想玩就玩。</div>
+            <div>
+              <strong>通天閣展望台＋溜滑梯＋ Dive &amp; Walk</strong>：<br />
+              日本橋站（堺筋線）→ 惠美須町站（2 站，約 4 分鐘），步行 5 分鐘到通天閣。<br />
+              周遊卡可免費入場，可以視心情加價玩溜滑梯，壽星想玩就玩。
             </div>
           </div>
+
           <div class="timeline-item">
-            <div class="time">午餐</div>
-            <div class="timeline-main">
-              <strong>燒肉或壽喜燒</strong>：附近多家選擇，看當天狀態決定。
+            <div class="time">中午</div>
+            <div>
+              <strong>新世界周邊燒肉或壽喜燒</strong>：附近多家選擇，依當天狀態決定。<br />
+              吃完可以在新世界商店街晃晃，再慢慢移動。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">下午</div>
-            <div class="timeline-main">
-              <strong>阿倍野 HARUKAS</strong>：逛街＋高樓景色，視體力安排。
+            <div>
+              <strong>阿倍野 HARUKAS</strong>：<br />
+              惠美須町／動物園前站 → 搭地鐵到「天王寺／阿倍野」一帶，逛百貨＋欣賞高樓景色。<br />
+              周遊卡可選擇使用在相關景點票券上（視實際方案）。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">晚上</div>
-            <div class="timeline-main">
-              <strong>難波夜逛</strong>：Isami 難波店、其他摔角／格鬥相關小店。
+            <div>
+              <strong>難波夜逛</strong>：<br />
+              從天王寺／阿倍野搭御堂筋線回「難波」，安排
+              <strong>Isami 難波店</strong> 等摔角／格鬥用品小店。<br />
+              逛完再慢慢走回日本橋基地。
             </div>
           </div>
         </div>
-      </article>
 
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 4 · 12/9（二）</div>
-          <div class="card-sub">環球影城 USJ 一日暢玩</div>
-        </div>
+        <div class="section-divider"></div>
+
+        <div class="sub-heading">大阪周遊卡小抄 · Day 3</div>
+        <ul>
+          <li>
+            免費設施列表（官方）：<a
+              href="https://osaka-amazing-pass.com/cht/service_free.html"
+              target="_blank"
+              >大阪周遊卡 · 免費景點一覽</a
+            >
+          </li>
+          <li>
+            使用方式教學（官方）：<a
+              href="https://osaka-amazing-pass.com/cht/howto_guide.html"
+              target="_blank"
+              >大阪周遊卡 · 使用指南</a
+            >
+          </li>
+          <li>
+            兩日券 KKDAY 憑證：<a
+              href="https://t3.linktivity.io/issueticket/suruttokansai/OFH9Srto6mXqVkoQ/KKDAY-20251119-KEXY?lang=ZT"
+              target="_blank"
+              >我的周遊卡憑證（Linktivity）</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Day 4 -->
+      <div class="day-card">
+        <div class="day-title">DAY 4 · 12/9（二）</div>
+        <div class="day-subtitle">環球影城 USJ 一日暢玩</div>
+
         <div class="timeline">
           <div class="timeline-item">
-            <div class="time">早上</div>
-            <div class="timeline-main">
-              <strong>07:00 出發 → 08:00 抵達 USJ</strong>：日本橋 → 近鐵日本橋 → 西九條 → 夢咲線 → 環球城。
-              <div class="timeline-note">
-                可直接衝瑪利歐世界，或使用 APP 抽整理券。刺激設施可以善用單人通道。
-              </div>
+            <div class="time">07:00–08:00</div>
+            <div>
+              <strong>前往 USJ</strong>：<br />
+              日本橋 → 步行至近鐵日本橋站 → 搭近鐵奈良線到「西九條」<br />
+              → 轉乘 JR 夢咲線到「環球城」站，總車程約 35–40 分鐘。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">整天</div>
-            <div class="timeline-main">
-              <strong>園區遊玩</strong>：AXE 想玩的：好萊塢美夢、咚奇剛礦車、瑪利歐卡丁車；Sydney 喜歡：大白鯊、水世界、侏羅紀。
+            <div>
+              <strong>園區遊玩</strong>：<br />
+              AXE 想玩的：好萊塢美夢、咚奇剛礦車、瑪利歐卡丁車。<br />
+              Sydney 愛的：大白鯊、水世界、侏羅紀公園等。<br />
+              刺激設施可以多善用「單人通道」，兩個人分開排隊、玩完再會合。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">晚上</div>
-            <div class="timeline-main">
-              <strong>霍格華茲冬季燈光秀</strong>：看完再慢慢回程，結束壽星超嗨的一天。
+            <div>
+              <strong>霍格華茲冬季燈光秀</strong>：記得預留時間看完再離開園區，收在這個魔法畫面裡。
             </div>
           </div>
         </div>
-        <a
-          class="link-button"
-          href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>🗺 查看 USJ 園區地圖（官方）</span>
-        </a>
-      </article>
 
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 5 · 12/10（三）</div>
-          <div class="card-sub">海遊館 + 港區散步 + 摔角主題酒吧</div>
-        </div>
+        <p class="note">
+          園區地圖可先看這裡：<a
+            href="https://www.usj.co.jp/web/zh/tw/service-guide/parkmap?mapFilters=;&mapCard=usj.usj"
+            target="_blank"
+            >USJ 園區官方地圖</a
+          >
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Day 5 -->
+      <div class="day-card">
+        <div class="day-title">DAY 5 · 12/10（三）</div>
+        <div class="day-subtitle">海遊館 + 港區散步 + 摔角主題酒吧</div>
 
         <div class="timeline">
           <div class="timeline-item">
             <div class="time">上午</div>
-            <div class="timeline-main">
-              <strong>日本橋 → 大阪港</strong>：搭地鐵前往海遊館。
+            <div>
+              <strong>日本橋 → 大阪港</strong>：<br />
+              日本橋站（堺筋線）→ 堺筋本町（1 站）<br />
+              → 轉乘中央線往「コスモスクエア」方向 → 大阪港站（約 20 分鐘）。<br />
+              出站後步行即可抵達海遊館區域。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">10:00–12:00</div>
-            <div class="timeline-main">
-              <strong>海遊館</strong>：慢慢看魚魚放空。
-              <div class="timeline-note">
-                官方網站：
-                <a href="https://www.kaiyukan.com/" target="_blank" rel="noopener"
-                  >https://www.kaiyukan.com/</a
-                >
-              </div>
+            <div>
+              <strong>海遊館</strong>：慢慢看魚魚放空，補充內心療癒值。<br />
+              官方資訊：<a href="https://www.kaiyukan.com/" target="_blank"
+                >海遊館網站</a
+              >
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">下午</div>
-            <div class="timeline-main">
-              <strong>天保山商場午餐＋港區散步＋摩天輪</strong>：看海、吹風、聊天。
+            <div>
+              <strong>天保山商場午餐 + 港區散步 + 摩天輪</strong>：<br />
+              看海、吹風、聊天，如果天氣好可以拍一堆假網美照。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">晚上</div>
-            <div class="timeline-main">
-              <strong>Count 2.99 Bar</strong>：摔角主題酒吧，壽星專屬放風時間。
-              <div class="timeline-note">不可以喝到爬不起來，因為要一起走回家。</div>
+            <div>
+              <strong>Count 2.99 Bar</strong>：摔角主題酒吧，壽星專屬放風時間。<br />
+              不可以喝到需要人扛，因為要一起走回家。
             </div>
           </div>
         </div>
-      </article>
+      </div>
 
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">DAY 6 · 12/11（四）</div>
-          <div class="card-sub">退房＋回程 · 帶著肌肉痠痛和滿滿回憶回台灣</div>
-        </div>
+      <div class="section-divider"></div>
+
+      <!-- Day 6 -->
+      <div class="day-card">
+        <div class="day-title">DAY 6 · 12/11（四）</div>
+        <div class="day-subtitle">退房 + 回程 · 帶著痠痛跟回憶回台灣</div>
+
         <div class="timeline">
           <div class="timeline-item">
             <div class="time">10:00 前</div>
-            <div class="timeline-main">
+            <div>
               <strong>退房</strong>：行李確認、房間巡一圈，確定沒有遺漏 AXE 的任何帥氣小物。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">13:00</div>
-            <div class="timeline-main">
-              <strong>抵達關西機場</strong>：預留吃飯＋逛免稅店時間。
+            <div>
+              <strong>抵達關西機場</strong>：預留吃飯＋逛免稅店時間，買最後一輪伴手禮。
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="time">14:50–17:10</div>
-            <div class="timeline-main">
-              <strong>GK55 關西 → 桃園</strong>：帶著新照片和小肥豬的愛一起回家。
+            <div>
+              <strong>GK55 關西 → 桃園</strong>：帶著新照片與小肥豬的愛一起回家。
             </div>
           </div>
         </div>
-      </article>
+      </div>
     </section>
 
     <!-- 住宿 & 周邊 -->
-    <section class="section hidden" id="section-stay">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">住宿 &amp; 周邊</div>
-          <div class="card-sub">Grants Arita Nipponbashi · 日本橋基地</div>
-        </div>
-        <p style="font-size: 13px; line-height: 1.6;">
-          地址：542-0073 大阪府大阪市中央区日本橋 2-18-17。鄰近難波、日本橋站，步行約 8 分鐘可達。
-        </p>
+    <!-- 住宿 & 周邊 -->
+    <section id="stay" class="card">
+      <div class="card-header">
+        <h2>住宿 & 周邊</h2>
+        <div class="card-tag">日本橋基地 · 方便往返難波、心齋橋與梅田</div>
+      </div>
 
-        <img
-          src="hotel-exterior.jpg"
-          alt="Grants Arita Nipponbashi 外觀"
-          class="photo-inline"
-        />
-
-        <div class="grid-2">
-          <div>
-            <strong style="font-size: 12px;">附近便利商店 &amp; 超市</strong>
-            <ul class="list">
-              <li>全家、7-11：步行約 1–3 分鐘</li>
-              <li>超市（視實際查詢）：可補貨飲料、零食、早餐。</li>
-            </ul>
-          </div>
-          <div>
-            <strong style="font-size: 12px;">最近地鐵站</strong>
-            <ul class="list">
-              <li>日本橋站：可搭千日前線、堺筋線</li>
-              <li>難波站：御堂筋線、南海電鐵等</li>
-            </ul>
-          </div>
-        </div>
-
+      <div class="sub-heading">Grants Arita Nipponbashi · 日本橋基地</div>
+      <p>
+        地址：542-0073 大阪府大阪市中央區日本橋 2-18-17。鄰近難波、日本橋站，步行約 8 分鐘可達。
+      </p>
+      <img
+        src="圖片/飯店外觀.jpg"
+        alt="Grants Arita Nipponbashi 外觀"
+        class="img-inline"
+      />
+      <p>
         <a
-          class="link-button"
-          href="https://maps.app.goo.gl/"
+          href="https://share.google/iH41o32AntPprDViH"
           target="_blank"
-          rel="noopener"
         >
-          <span>📍 在 Google Maps 開啟住宿定位</span>
+          在 Google Maps 開啟住宿定位
         </a>
-      </article>
+      </p>
 
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">大阪地鐵總覽</div>
-          <div class="card-sub">搭錯方向時，可以冷靜打開這一頁</div>
-        </div>
-        <p class="muted" style="font-size: 13px;">
-          大阪地鐵圖與一日券、周遊卡的路線說明，可以參考官方整理頁：
-        </p>
-        <a
-          class="link-button"
-          href="https://metronine.osaka/tw/fullpage-course/"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>🚇 大阪 Metro 線路總覽 &amp; 教學</span>
+      <div class="sub-heading">附近便利商店 & 超市</div>
+      <ul>
+        <li>
+          <strong>FamilyMart 日本橋二丁目店</strong><br />
+          最近的全家，走路幾分鐘就到，適合補貨飲料、零食、早餐麵包。<br />
+          <a
+            href="https://maps.app.goo.gl/mtjM3ZSHYkJ4fNpf6"
+            target="_blank"
+          >
+            在 Google Maps 開啟全家 日本橋二丁目店
+          </a>
+        </li>
+        <li>週邊還有 7-11、其他超商與小型超市，可隨時採買宵夜與飲料。</li>
+      </ul>
+
+      <div class="sub-heading">附近宵夜選擇</div>
+      <ul>
+        <li>
+          <strong>居酒屋焼き鳥 よしみ</strong><br />
+          地址：2 Chome-17-16 Nipponbashi, Chuo Ward, Osaka, 542-0073 日本<br />
+          營業時間：約開到 23:00，非常適合回家前來一點燒鳥＋小酒當宵夜。
+        </li>
+      </ul>
+
+      <div class="sub-heading">最近地鐵站</div>
+      <ul>
+        <li>日本橋站：可搭千日前線、堺筋線，適合前往大阪城、新世界、天王寺等地。</li>
+        <li>難波站：御堂筋線、南海電鐵等，適合往返機場與梅田。</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <div class="sub-heading">大阪地鐵總覽</div>
+      <p>
+        搭錯方向時，可以冷靜打開這一頁，確認路線再調整：
+        <a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">
+          大阪 Metro 線路總覽 & 教學
         </a>
-      </article>
+      </p>
     </section>
+
 
     <!-- 梅田逛街 -->
-    <section class="section hidden" id="section-umeda">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">梅田逛街攻略</div>
-          <div class="card-sub">壽星專屬購物動線</div>
-        </div>
+    <section id="umeda" class="card">
+      <div class="card-header">
+        <h2>梅田逛街攻略</h2>
+        <div class="card-tag">壽星專屬購物動線 · 男裝 & 球鞋主戰場</div>
+      </div>
 
-        <p style="font-size: 13px; line-height: 1.7;">
-          主要集中在 JR 大阪站周邊：Grand Front Osaka、LUCUA 1100、大丸梅田、阪急梅田本店等。可以依照當天體力決定逛的深度。
-        </p>
+      <p class="section-label">整體動線</p>
+      <p>
+        主要集中在 JR 大阪站周邊：Grand Front Osaka、LUCUA 1100、大丸梅田、阪急梅田本店等。可以依照當天體力決定逛的深度。
+      </p>
 
-        <img
-          src="umeda-shopping-map.jpg"
-          alt="梅田逛街地圖"
-          class="photo-inline"
-        />
+      <img
+        src="umeda-shopping-map.jpg"
+        alt="梅田逛街地圖"
+        class="img-inline"
+      />
 
-        <div class="list-wrapper">
-          <ul class="list">
-            <li>在 JR 大阪站附近購物：Grand Front Osaka、LUCUA 1100、KITTE 大阪。</li>
-            <li>高級品牌採買：大丸梅田店、阪急梅田本店、HERBIS。</li>
-            <li>日用品 &amp; 零食小物：唐吉訶德 梅田本店、阪神梅田本店、Whity 梅田、阪急三番街。</li>
-            <li>年輕人時尚 &amp; 娛樂：HEP FIVE、梅田 EST。</li>
-            <li>男性時尚主戰場：阪急 Men’s Osaka、Onitsuka Tiger（阪急百貨內）。</li>
-          </ul>
-        </div>
+      <ul>
+        <li>在 JR 大阪站附近購物：Grand Front Osaka、LUCUA 1100、KITTE 大阪。</li>
+        <li>高級品牌採買：大丸梅田店、阪急梅田本店、HERBIS。</li>
+        <li>日用品 & 零食：唐吉訶德梅田本店、阪神梅田本店、Whity 梅田、阪急三番街。</li>
+        <li>年輕人時尚 & 娛樂：HEP FIVE、梅田 EST。</li>
+        <li>男性時尚主戰場：阪急 Men’s Osaka、Onitsuka Tiger、Dickies 等。</li>
+      </ul>
 
-        <div class="pill-small">👟 Onitsuka Tiger Hankyu Umeda</div>
-        <div class="pill-small">👓 Zoff（大丸梅田店 5F）</div>
-      </article>
+      <div class="section-divider"></div>
+
+      <div class="sub-heading">重點店家資訊</div>
+      <ul>
+        <li>
+          <strong>Onitsuka Tiger Hankyu Umeda</strong><br />
+          地址：大阪市北區角田町 8-7 阪急梅田總店 4F／8F<br />
+          營業時間：約 10:00–20:00
+        </li>
+        <li>
+          <strong>Dickies HEP FIVE 店</strong><br />
+          地址：大阪市北區角田町 5-15 HEP FIVE 1F<br />
+          營業時間：約 11:00–21:00
+        </li>
+        <li>
+          <strong>Zoff（大丸梅田店 5F）</strong>：可以一起看眼鏡與小物。
+        </li>
+      </ul>
     </section>
 
-    <!-- 點心 -->
-    <section class="section hidden" id="section-snacks">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">想吃點心清單</div>
-          <div class="card-sub">排進每天行程，心情好才是重點</div>
-        </div>
+    <!-- 想吃點心 -->
+    <section id="snacks" class="card">
+      <div class="card-header">
+        <h2>想吃點心清單</h2>
+        <div class="card-tag">排進每天行程，心情好才是重點</div>
+      </div>
 
-        <p class="muted" style="font-size: 13px;">
-          這些是「看到就一定會想停下來」的店，所以不強求全部吃到，但有順路就立刻衝。
-        </p>
+      <p>
+        這些是「看到就一定會想停下來」的店，所以不強求全部吃到，但有順路就立刻衝。
+      </p>
 
-        <ul class="list">
-          <li>
-            <strong>Happy Camper Bagel（貝果）</strong><br />
-            大阪市北區天神橋 3-7-24 · 11:00–18:00（周日公休）<br />
-            ➜ 可安排在天神橋筋商店街附近的 Day 2 中午／下午。
-          </li>
-          <li>
-            <strong>LE CROISSANT</strong><br />
-            大阪市中央区心斎橋筋 2-7-25-1F · 11:30–20:30<br />
-            ➜ 可安排在心齋橋夜逛（Day 2 或 Day 5 晚上）。
-          </li>
-          <li>
-            <strong>grenier 梅田店（布丁等甜點）</strong><br />
-            ➜ 可安排在梅田逛街行程內（Day 2 下午）。
-          </li>
-        </ul>
-      </article>
+      <ul>
+        <li>
+          <strong>Happy Camper Bagel（貝果）</strong><br />
+          大阪市北區天神橋 3-7-24 · 11:00–18:00（周日公休）<br />
+          ➜ 可安排在 Day 2 天神橋筋商店街附近午餐或下午點心。
+        </li>
+        <li>
+          <strong>LE CROISSANT（可頌）</strong><br />
+          大阪市中央區心齋橋筋 2-7-25-1F · 11:30–20:30<br />
+          ➜ 可安排在心齋橋夜逛（Day 2 或 Day 5 晚上）。
+        </li>
+        <li>
+          <strong>grenier 梅田店（布丁等甜點）</strong><br />
+          ➜ 可安排在 Day 2 梅田逛街行程中，當作壽星專屬甜點補給。
+        </li>
+      </ul>
     </section>
 
     <!-- USJ -->
-    <section class="section hidden" id="section-usj">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">USJ 攻略小抄</div>
-          <div class="card-sub">壽星激嗨日的作戰計畫</div>
-        </div>
-        <ul class="list">
-          <li>提前下載 USJ APP，查看即時排隊時間與整理券抽選。</li>
-          <li>一進園：直衝「瑪利歐世界」或使用 APP 抽整理券。</li>
-          <li>刺激設施可善用「單人通道」，兩個人可以分開排、出來再會合。</li>
-          <li>晚上記得預留時間看霍格華茲燈光秀。</li>
-          <li>身上準備少量 100 日圓硬幣，以防需要使用置物櫃。</li>
-        </ul>
-        <div class="pill-small">🎒 輕便小包</div>
-        <div class="pill-small">🌂 輕便雨衣</div>
-        <div class="pill-small">🧤 12 月注意保暖</div>
-      </article>
+    <section id="usj" class="card">
+      <div class="card-header">
+        <h2>USJ 攻略小抄</h2>
+        <div class="card-tag">壽星激嗨日的作戰計畫</div>
+      </div>
+
+      <ul>
+        <li>提前下載 USJ APP，查看即時排隊時間與整理券抽選。</li>
+        <li>入園後直衝「瑪利歐世界」，或先抽取整理券再安排其他設施。</li>
+        <li>
+          刺激設施可善用「單人通道」，兩個人可以分開排、出來再會合。
+        </li>
+        <li>晚上記得預留時間看霍格華茲燈光秀。</li>
+        <li>身上準備一些 100 日圓硬幣，以防需要使用置物櫃。</li>
+      </ul>
+
+      <p class="sub-heading">當天攜帶建議</p>
+      <ul>
+        <li>輕便小包（能放手機、錢包、護唇膏、行動電源）。</li>
+        <li>輕便雨衣或摺疊外套（遇到下雨或飛濺設施很好用）。</li>
+        <li>12 月注意保暖，帽 T + 外套是神 combo。</li>
+      </ul>
     </section>
 
     <!-- 小提醒 -->
-    <section class="section hidden" id="section-tips">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">小提醒</div>
-          <div class="card-sub">給旅行中的我們的備忘錄</div>
-        </div>
-        <ul class="list">
-          <li>每天出門前確認：護照、錢包、房卡、手機、行動電源。</li>
-          <li>天氣偏冷，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
-          <li>港區、展望台等地方風大，可以準備圍巾和毛帽。</li>
-          <li>吃得太撐、走得太累，都可以當下調整行程，這趟旅行不是作業。</li>
-        </ul>
-      </article>
+    <section id="tips" class="card">
+      <div class="card-header">
+        <h2>小提醒</h2>
+        <div class="card-tag">給旅行中的我們的備忘錄</div>
+      </div>
+
+      <ul>
+        <li>每天出門前確認：護照、錢包、房卡、手機、行動電源。</li>
+        <li>天氣偏冷，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
+        <li>港區、展望台等地方風大，可以準備圍巾和毛帽。</li>
+        <li>吃得太撐、走得太累，都可以當下調整行程，這趟旅行不是作業。</li>
+      </ul>
     </section>
 
     <!-- 機票 -->
-    <section class="section hidden" id="section-flight">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">機票資訊</div>
-          <div class="card-sub">預約編號：HW7QYW</div>
-        </div>
-        <p style="font-size: 13px; line-height: 1.7;">
-          <strong>去程</strong>：2025 年 12 月 6 日（六）<br />
-          18:10（台北桃園）→ 21:40（關西 1 號航站樓）<br />
-          航班：GK54（Airbus A320） · 座位：8A、8B · 行李：手提 7kg + 托運 20kg
-        </p>
-        <p style="font-size: 13px; line-height: 1.7; margin-top: 6px;">
-          <strong>回程</strong>：2025 年 12 月 11 日（四）<br />
-          14:50（關西 1 號航站樓）→ 17:10（台北桃園）<br />
-          航班：GK55（Airbus A320） · 座位：9A、9B · 行李：手提 7kg + 托運 20kg
-        </p>
-      </article>
+    <section id="flight" class="card">
+      <div class="card-header">
+        <h2>機票資訊</h2>
+        <div class="card-tag">所有班機與行李一次看</div>
+      </div>
+
+      <p><strong>預約編號：</strong>HW7QYW</p>
+
+      <p class="sub-heading">去程：2025 年 12 月 6 日（六）</p>
+      <ul>
+        <li>18:10（台北桃園）→ 21:40（關西 1 號航站樓）</li>
+        <li>航班：GK54（Airbus A320） · 座位：8A、8B</li>
+        <li>行李：手提 7kg + 托運 20kg</li>
+      </ul>
+
+      <p class="sub-heading">回程：2025 年 12 月 11 日（四）</p>
+      <ul>
+        <li>14:50（關西 1 號航站樓）→ 17:10（台北桃園）</li>
+        <li>航班：GK55（Airbus A320） · 座位：9A、9B</li>
+        <li>行李：手提 7kg + 托運 20kg</li>
+      </ul>
     </section>
 
     <!-- 兌換券 -->
-    <section class="section hidden" id="section-coupon">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">旅程專屬兌換券</div>
-          <div class="card-sub">這一頁只有宏逸可以使用</div>
-        </div>
+    <section id="coupons" class="card">
+      <div class="card-header">
+        <h2>旅程專屬兌換券</h2>
+        <div class="card-tag">這一頁只有宏逸可以使用</div>
+      </div>
 
-        <div class="coupon">
-          <div class="coupon-title">USJ 排隊專用 · 肩頸按摩券</div>
-          <div>在 USJ 排隊超過 40 分鐘時，可兌換一次肩頸按摩服務 5 分鐘。</div>
-        </div>
+      <div class="sub-heading">USJ 排隊專用 · 肩頸按摩券</div>
+      <p>
+        在 USJ 排隊超過 40 分鐘時，可兌換一次肩頸按摩服務 5 分鐘（由小肥豬親自提供）。
+      </p>
 
-        <div class="coupon">
-          <div class="coupon-title">迷路保固 · 不生氣券</div>
-          <div>只要是小肥豬帶路，即使走錯路或繞遠路，本人不得生氣，僅能說「好啦當散步」。</div>
-        </div>
+      <div class="sub-heading">迷路保固 · 不生氣券</div>
+      <p>
+        只要是壽星負責帶路，即使走錯路或繞遠路，本人不得生氣，只能說：「好啦當散步。」。
+      </p>
 
-        <div class="coupon">
-          <div class="coupon-title">隨時親親券</div>
-          <div>在不妨礙他人與交通安全的情況下，壽星可以隨時提出「我要親親」的要求一次。</div>
-        </div>
-      </article>
+      <div class="sub-heading">隨時親親券</div>
+      <p>
+        在不妨礙他人與交通安全的情況下，壽星可以隨時提出一次「我要親親」的要求，本券終身有效（但只能由小肥豬兌換）。
+      </p>
     </section>
 
     <!-- 記帳 -->
-    <section class="section hidden" id="section-account">
-      <article class="card">
-        <div class="card-title-row">
-          <div class="card-title">記帳小本本</div>
-          <div class="card-sub">每天花多少 · 一目了然</div>
-        </div>
-        <p class="muted" style="font-size: 13px;">
-          這個網站版本先把「記帳」放在另一個頁面，之後可以再慢慢做更完整。
-        </p>
-        <a class="link-button" href="account.html">
-          <span>📒 前往記帳頁面（account.html）</span>
-        </a>
-      </article>
+    <section id="account" class="card">
+      <div class="card-header">
+        <h2>記帳小本本</h2>
+        <div class="card-tag">每天花多少 · 一目了然</div>
+      </div>
+
+      <p>
+        記帳功能先放在另外一個頁面，之後可以慢慢升級成完整的旅費儀表板。
+      </p>
+      <p>
+        <a href="account.html" target="_blank">前往記帳頁面（account.html）</a>
+      </p>
+
+      <p class="footer-note">
+        這趟大阪 6 日旅程，是送給台灣摔角顏值巔峰王宏逸的生日禮物。<br />
+        希望你在每一張卡片、每一段路線裡，都感受到小肥豬滿滿的愛。
+      </p>
     </section>
+  </div>
 
-    <footer>
-      這趟大阪 6 日旅程，是送給台灣摔角顏值巔峰王宏逸的生日禮物。<br />
-      希望你在每一張卡片、每一段路線裡，都感受到小肥豬滿滿的愛。
-    </footer>
-  </main>
-
-  <!-- 彩帶效果套件 -->
+  <!-- Confetti 套件 -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
-    // -------- Intro 寫真點點同步（純視覺，不用很精準） --------
-    (function () {
-      const photos = document.getElementById("introPhotos");
-      const dots = Array.from(document.querySelectorAll("#introDots .intro-dot"));
-      if (!photos || !dots.length) return;
-
-      photos.addEventListener("scroll", () => {
-        const width = photos.clientWidth;
-        const index = Math.round(photos.scrollLeft / width);
-        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+    // Smooth scroll 導覽
+    document.querySelectorAll(".chip-nav button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-target");
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
-    })();
+    });
 
-    // -------- Tabs 切換 --------
-    (function () {
-      const pills = document.querySelectorAll(".pill-btn");
-      const sections = {
-        itinerary: document.getElementById("section-itinerary"),
-        stay: document.getElementById("section-stay"),
-        umeda: document.getElementById("section-umeda"),
-        snacks: document.getElementById("section-snacks"),
-        usj: document.getElementById("section-usj"),
-        tips: document.getElementById("section-tips"),
-        flight: document.getElementById("section-flight"),
-        coupon: document.getElementById("section-coupon"),
-        account: document.getElementById("section-account"),
-      };
-
-      pills.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const target = btn.dataset.target;
-          // nav
-          pills.forEach((b) => b.classList.toggle("active", b === btn));
-          // section 顯示/隱藏
-          Object.entries(sections).forEach(([key, el]) => {
-            if (!el) return;
-            el.classList.toggle("hidden", key !== target);
-          });
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-    })();
-
-    // -------- 倒數計時 --------
-    (function () {
-      const el = document.getElementById("countdownTimer");
+    // 倒數計時（每分鐘更新）
+    function updateCountdown() {
+      const target = new Date("2025-12-06T18:10:00+08:00").getTime();
+      const now = Date.now();
+      const diff = target - now;
+      const el = document.getElementById("countdown");
       if (!el) return;
 
-      function updateCountdown() {
-        const target = new Date("2025-12-06T18:10:00+08:00").getTime();
-        const now = Date.now();
-        const diff = target - now;
-
-        if (diff <= 0) {
-          el.textContent = "旅程進行中或已結束，請改看照片回味。";
-          return;
-        }
-
-        const dayMs = 1000 * 60 * 60 * 24;
-        const hourMs = 1000 * 60 * 60;
-        const minMs = 1000 * 60;
-
-        const days = Math.floor(diff / dayMs);
-        const hours = Math.floor((diff % dayMs) / hourMs);
-        const minutes = Math.floor((diff % hourMs) / minMs);
-
-        el.textContent = `${days} 天 ${hours} 小時 ${minutes} 分`;
+      if (diff <= 0) {
+        el.textContent = "旅程進行中（或已結束）！";
+        return;
       }
 
-      updateCountdown();
-      setInterval(updateCountdown, 60000);
-    })();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-    // -------- Intro 按鈕：彩帶 + BGM + 關閉 Intro --------
-    (function () {
-      const btn = document.getElementById("startTripBtn");
-      const intro = document.getElementById("intro");
-      const body = document.body;
-      const bgm = document.getElementById("bgm");
+      el.textContent = `距離出發還有：${days} 天 ${hours} 小時 ${mins} 分`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
 
-      if (!btn || !intro) return;
+    // Intro & Confetti & BGM
+    const intro = document.getElementById("intro");
+    const enterBtn = document.getElementById("enterTrip");
+    const body = document.body;
 
-      btn.addEventListener("click", () => {
+    if (enterBtn && intro) {
+      enterBtn.addEventListener("click", () => {
         // 彩帶
-        if (typeof confetti === "function") {
-          confetti({
-            particleCount: 180,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ["#8b6b4a", "#e4d7c3", "#5f4b34", "#ffffff"],
-          });
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#8b6b4a", "#e4d7c3", "#5f4b34", "#ffffff"],
+        });
+
+        // BGM
+        const audio = document.getElementById("bgm");
+        if (audio) {
+          audio.volume = 0.5;
+          audio
+            .play()
+            .catch(() => console.log("需要使用者互動才能播放音樂"));
         }
 
-        // 播放 BGM（若瀏覽器擋，就當沒發生）
-        if (bgm) {
-          bgm.volume = 0.5;
-          bgm.play().catch(() => {});
-        }
-
-        // 關閉 Intro
         intro.classList.add("intro-hide");
         setTimeout(() => {
           body.classList.remove("has-intro");
         }, 450);
       });
-    })();
+    }
   </script>
 </body>
 </html>
