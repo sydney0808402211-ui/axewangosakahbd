@@ -228,68 +228,39 @@
 
     /* ===== v7：優化後的直線時間軸 ===== */
 
-    .timeline {
-      margin-top: 14px;
-      position: relative;
-      padding-left: 60px;   /* 增加時間欄位空間 */
-      display: grid;
-      gap: 20px;
-    }
+/* 給時間軸一個共同的 X 座標 */
+:root {
+  --timeline-x: 22px;   /* 想整組往左/往右移就改這一個數字 */
+}
 
-    /* 垂直主線 (使用強調色) */
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 22px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent-soft); /* 柔和的線條 */
-      border-radius: 1px;
-    }
+/* 時間軸容器 */
+.timeline {
+  margin-top: 10px;
+  position: relative;
+  padding-left: 70px;   /* 左邊預留空間：線 + 時間欄位 */
+  display: grid;
+  gap: 18px;
+}
 
-    .timeline-item {
-      position: relative;
-      padding-bottom: 0;
-      display: grid;
-      grid-template-columns: 50px minmax(0, 1fr); /* 時間 vs. 內容 */
-      column-gap: 30px;
-    }
+/* 垂直主線 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: var(--timeline-x);   /* 線的位置 */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-soft); /* 柔和的線條 */
+  border-radius: 1px;
+}
 
-    .timeline-item::before {
-        /* 圓點指示器 */
-        content: '';
-        position: absolute;
-        left: 22px;
-        top: 4px; /* 與文字基線對齊 */
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: var(--accent);
-        border: 1px solid var(--card); /* 讓圓點從卡片背景中凸顯 */
-        z-index: 1;
-        box-shadow: 0 0 0 1px var(--accent-soft);
-    }
-
-    .time {
-      grid-column: 1 / 2;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      text-align: right;
-      transform: translateY(-2px);
-    }
-
-    .timeline-item > div:last-child {
-      grid-column: 2 / 3;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .timeline-item strong {
-      font-weight: 700;
-      color: var(--text-main);
-    }
+/* 每一列：左 50px 放時間，右邊放內容 */
+.timeline-item {
+  position: relative;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr); /* 時間 vs. 內容 */
+  column-gap:
 
     /*
      * 6. 其他元素 (Lists, Links, Notes)
