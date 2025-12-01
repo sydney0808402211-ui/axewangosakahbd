@@ -352,11 +352,12 @@
       text-align: center;
     }
 
+    /* Intro 照片滑動區：10 張照片＋註解 */
     .intro-slider {
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       display: flex;
-      gap: 10px;
+      gap: 14px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       padding-bottom: 6px;
@@ -365,23 +366,43 @@
       scrollbar-width: none;
     }
 
-    .intro-slider::-webkit-scrollbar { display: none; }
+    .intro-slider::-webkit-scrollbar {
+      display: none;
+    }
 
-    .intro-slider img {
+    .intro-slide {
+      flex: 0 0 78%;
+      scroll-snap-align: center;
+      text-align: center;
+    }
+
+    .intro-slide img {
       width: 100%;
-      max-width: 260px;
       height: auto;
       border-radius: 18px;
       object-fit: cover;
-      scroll-snap-align: center;
       border: 4px solid #fff;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
       transition: transform 0.5s ease;
     }
 
-    .intro-slider img:hover {
+    .intro-slide img:hover {
       transform: scale(1.05);
     }
+
+    .intro-caption {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (min-width: 768px) {
+      .intro-slide {
+        flex: 0 0 60%;
+      }
+    }
+
 
     .intro-tip {
       font-size: 13px;
@@ -462,11 +483,58 @@
       </div>
     </div>
 
-    <div class="intro-slider">
-      <img src="axe-photo1.jpg" alt="AXE Photo 1" />
-      <img src="axe-photo2.jpg" alt="AXE Photo 2" />
-      <img src="axe-photo3.jpg" alt="AXE Photo 3" />
+       <div class="intro-slider">
+      <div class="intro-slide">
+        <img src="axe-photo1.jpg" alt="AXE Photo 1" />
+        <div class="intro-caption">這趟大阪生日旅行的主角，請多多指教。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo2.jpg" alt="AXE Photo 2" />
+        <div class="intro-caption">準備出發去大阪的男人，帥度已經超標。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo3.jpg" alt="AXE Photo 3" />
+        <div class="intro-caption">帥到必須做一個專屬網站記錄這趟旅程。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo4.jpg" alt="AXE Photo 4" />
+        <div class="intro-caption">笑起來的樣子，是我決定辦生日旅行的原因之一。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo5.jpg" alt="AXE Photo 5" />
+        <div class="intro-caption">精心研究的 OOTD，每一件都想拍滿記憶卡。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo6.jpg" alt="AXE Photo 6" />
+        <div class="intro-caption">這張是我的私藏心臟爆擊照，終於有機會拿出來用。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo7.jpg" alt="AXE Photo 7" />
+        <div class="intro-caption">覺得自己很帥沒錯，就是要這種自信才適合去環球影城。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo8.jpg" alt="AXE Photo 8" />
+        <div class="intro-caption">大阪街頭最亮的那一個，請準備好被路人多看兩眼。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo9.jpg" alt="AXE Photo 9" />
+        <div class="intro-caption">摔角場外的溫柔一面，也要被好好收藏起來。</div>
+      </div>
+
+      <div class="intro-slide">
+        <img src="axe-photo10.jpg" alt="AXE Photo 10" />
+        <div class="intro-caption">生日快樂，這次換我幫你安排舞台和每一個驚喜。</div>
+      </div>
     </div>
+
 
     <div class="intro-tip">送你帥照。</div>
 
