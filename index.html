@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v9 (最終修復版)</title>
+  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v10 (最終版本)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
@@ -30,8 +30,8 @@
       --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.05),
         0 0 0 1px rgba(0, 0, 0, 0.03);
 
-      /* 時間軸 X 座標 */
-      --timeline-x: 36px;
+      /* 時間軸 X 座標 (已移除圓點與線，此變數已無用) */
+      --timeline-x: 0;
     }
 
     * {
@@ -244,45 +244,22 @@
     .timeline {
       margin-top: 14px;
       position: relative;
-      padding-left: 90px;   /* 增加時間欄位空間 */
+      padding-left: 10px;   /* 減少左側填充，整體往左移 */
       display: grid;
-      gap: 20px;
+      gap: 16px; /* 縮小間距 */
     }
 
-    /* 垂直主線 (使用強調色) */
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: var(--timeline-x);
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--accent-soft); /* 柔和的線條 */
-      border-radius: 1px;
-    }
-
+    /* 垂直主線 (已移除) */
+    
     .timeline-item {
       position: relative;
       padding-bottom: 0;
-      display: grid;
-      grid-template-columns: 50px minmax(0, 1fr); /* 時間 vs. 內容 */
-      column-gap: 30px;
+      /* 調整時間和內容的欄位寬度 */
+      grid-template-columns: 55px minmax(0, 1fr); /* 時間 (55px) vs. 內容 */
+      column-gap: 10px; /* 縮小欄位間距 */
     }
 
-    .timeline-item::before {
-        /* 圓點指示器 */
-        content: '';
-        position: absolute;
-        left: calc(var(--timeline-x) - 6px); /* 圓點居中 */
-        top: 4px; /* 與文字基線對齊 */
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--accent);
-        border: 2px solid var(--card); /* 讓圓點從卡片背景中凸顯 */
-        z-index: 1;
-        box-shadow: 0 0 0 2px var(--accent-soft);
-    }
+    /* 圓點指示器 (已移除) */
 
     .time {
       grid-column: 1 / 2;
@@ -458,7 +435,7 @@
       height: 320px; /* 固定高度，優化佈局 */
       border-radius: 20px;
       object-fit: cover;
-      object-position: 50% 30%;
+      object-position: 50% 30%; /* 向上微調裁切位置 */
       border: 6px solid #fff;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* 更深的陰影 */
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -595,16 +572,13 @@
     /* 確保在小螢幕上時間軸不會太擠 */
     @media (max-width: 500px) {
       .timeline {
-        padding-left: 70px;
+        padding-left: 0; /* 讓內容靠左 */
         gap: 16px;
       }
       
-      :root {
-        --timeline-x: 20px;
-      }
-
-      .timeline-item::before {
-        left: calc(var(--timeline-x) - 6px);
+      .timeline-item {
+        /* 調整時間和內容的欄位寬度 */
+        grid-template-columns: 50px minmax(0, 1fr);
       }
 
       .time {
@@ -707,13 +681,14 @@
     <div class="chip-nav">
       <button data-target="itinerary" class="active-chip">行程卡片</button>
       <button data-target="stay">住宿 & 周邊</button>
-      <button data-target="weather">天氣 & 穿搭</button> <button data-target="umeda">梅田逛街</button>
+      <button data-target="weather">天氣 & 穿搭</button>
+      <button data-target="umeda">梅田逛街</button>
       <button data-target="snacks">點心</button>
       <button data-target="usj">USJ</button>
-      <button data-target="nankai">南海電鐵</button> <button data-target="tips">小提醒</button>
+      <button data-target="tips">小提醒</button>
       <button data-target="flight">機票</button>
-      <button data-target="surprise">生日驚喜</button> <button data-target="account">記帳</button>
-    </div>
+      <button data-target="nankai">南海電鐵</button> <button data-target="account">記帳</button>
+      <button data-target="surprise">生日驚喜</button> </div>
 
     <section id="itinerary" class="card page-section active">
       <div class="card-header">
@@ -752,9 +727,12 @@
             </div>
           </div>
         </div>
+        
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
+        </p>
       </div>
-
-      <div class="section-divider"></div>
 
       <div class="day-card">
         <div class="day-title">DAY 2 · 12/7（日）</div>
@@ -856,9 +834,11 @@
             >
           </li>
         </ul>
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
+        </p>
       </div>
-
-      <div class="section-divider"></div>
 
       <div class="day-card">
         <div class="day-title">DAY 3 · 12/8（一）</div>
@@ -929,6 +909,10 @@
             >
           </li>
         </ul>
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
+        </p>
       </div>
 
       <div class="section-divider"></div>
@@ -971,6 +955,10 @@
             target="_blank"
             >USJ 園區官方地圖</a
           >
+        </p>
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
         </p>
       </div>
 
@@ -1017,6 +1005,10 @@
             </div>
           </div>
         </div>
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
+        </p>
       </div>
 
       <div class="section-divider"></div>
@@ -1047,6 +1039,10 @@
             </div>
           </div>
         </div>
+        <div class="section-divider"></div>
+        <p class="note" style="margin-top: 10px;">
+          <strong>👉 地鐵路線查詢：</strong><a href="https://metronine.osaka/tw/fullpage-course/" target="_blank">大阪 Metro 線路總覽 & 教學</a>
+        </p>
       </div>
     </section>
 
@@ -1286,6 +1282,20 @@
           ➜ 可安排在 Day 2 梅田逛街行程中，當作壽星專屬甜點補給。
         </li>
       </ul>
+
+      <div class="section-divider"></div>
+      
+      <div class="sub-heading">晚餐或午餐拉麵加碼</div>
+      <ul>
+        <li>
+          <strong>中華そば 桐麺 梅田店 (拉麵)</strong><br />
+          📍 大阪府大阪市北区大深町1-1<br />
+          ➜ 可安排在 Day 2 梅田逛街行程中，作為午餐或晚餐加碼選擇。<br />
+          <a href="https://maps.app.goo.gl/cBvnC1aCdWQ6nncPA?g_st=ipc" target="_blank">
+            在 Google Maps 開啟定位
+          </a>
+        </li>
+      </ul>
     </section>
 
     <section id="usj" class="card page-section">
@@ -1307,6 +1317,43 @@
         <li>輕便小包（能放手機、錢包、護唇膏、行動電源）。</li>
         <li>輕便雨衣或摺疊外套（遇到下雨或飛濺設施很好用）。</li>
         <li>12 月注意保暖，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
+      </ul>
+    </section>
+
+    <section id="tips" class="card page-section">
+      <div class="card-header">
+        <h2>小提醒</h2>
+        <div class="card-tag">給旅行中的我們的備忘錄</div>
+      </div>
+
+      <ul>
+        <li>每天出門前確認：護照、錢包、房卡、手機、行動電源。</li>
+        <li>天氣偏冷，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
+        <li>港區、展望台等地方風大，可以準備圍巾和毛帽。</li>
+        <li>吃得太撐、走得太累，都可以當下調整行程，這趟旅行不是作業。</li>
+      </ul>
+    </section>
+
+    <section id="flight" class="card page-section">
+      <div class="card-header">
+        <h2>機票資訊</h2>
+        <div class="card-tag">所有班機與行李一次看</div>
+      </div>
+
+      <p><strong>預約編號：</strong>HW7QYW</p>
+
+      <div class="sub-heading">去程：2025 年 12 月 6 日（六）</div>
+      <ul>
+        <li>18:10（台北桃園）→ 21:40（關西 1 號航站樓）</li>
+        <li>航班：GK54（Airbus A320） · 座位：8A、8B</li>
+        <li>行李：手提 7kg + 托運 20kg</li>
+      </ul>
+
+      <div class="sub-heading">回程：2025 年 12 月 11 日（四）</div>
+      <ul>
+        <li>14:50（關西 1 號航站樓）→ 17:10（台北桃園）</li>
+        <li>航班：GK55（Airbus A320） · 座位：9A、9B</li>
+        <li>行李：手提 7kg + 托運 20kg</li>
       </ul>
     </section>
 
@@ -1369,41 +1416,23 @@
       </p>
     </section>
 
-    <section id="tips" class="card page-section">
+    <section id="account" class="card page-section">
       <div class="card-header">
-        <h2>小提醒</h2>
-        <div class="card-tag">給旅行中的我們的備忘錄</div>
+        <h2>記帳小本本</h2>
+        <div class="card-tag">每天花多少 · 一目了然</div>
       </div>
 
-      <ul>
-        <li>每天出門前確認：護照、錢包、房卡、手機、行動電源。</li>
-        <li>天氣偏冷，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
-        <li>港區、展望台等地方風大，可以準備圍巾和毛帽。</li>
-        <li>吃得太撐、走得太累，都可以當下調整行程，這趟旅行不是作業。</li>
-      </ul>
-    </section>
+      <p>
+        記帳功能先放在另外一個頁面，之後可以慢慢升級成完整的旅費儀表板。
+      </p>
+      <p>
+        <a href="account.html" target="_blank">前往記帳頁面（account.html）</a>
+      </p>
 
-    <section id="flight" class="card page-section">
-      <div class="card-header">
-        <h2>機票資訊</h2>
-        <div class="card-tag">所有班機與行李一次看</div>
-      </div>
-
-      <p><strong>預約編號：</strong>HW7QYW</p>
-
-      <div class="sub-heading">去程：2025 年 12 月 6 日（六）</div>
-      <ul>
-        <li>18:10（台北桃園）→ 21:40（關西 1 號航站樓）</li>
-        <li>航班：GK54（Airbus A320） · 座位：8A、8B</li>
-        <li>行李：手提 7kg + 托運 20kg</li>
-      </ul>
-
-      <div class="sub-heading">回程：2025 年 12 月 11 日（四）</div>
-      <ul>
-        <li>14:50（關西 1 號航站樓）→ 17:10（台北桃園）</li>
-        <li>航班：GK55（Airbus A320） · 座位：9A、9B</li>
-        <li>行李：手提 7kg + 托運 20kg</li>
-      </ul>
+      <p class="footer-note">
+        這趟大阪 6 日旅程，是送給台灣摔角顏值巔峰王宏逸的生日禮物。<br />
+        希望你在每一張卡片、每一段路線裡，都感受到小肥豬滿滿的愛。
+      </p>
     </section>
 
     <section id="surprise" class="card page-section">
@@ -1434,25 +1463,6 @@
             </div>
         </div>
       </div>
-    </section>
-
-    <section id="account" class="card page-section">
-      <div class="card-header">
-        <h2>記帳小本本</h2>
-        <div class="card-tag">每天花多少 · 一目了然</div>
-      </div>
-
-      <p>
-        記帳功能先放在另外一個頁面，之後可以慢慢升級成完整的旅費儀表板。
-      </p>
-      <p>
-        <a href="account.html" target="_blank">前往記帳頁面（account.html）</a>
-      </p>
-
-      <p class="footer-note">
-        這趟大阪 6 日旅程，是送給台灣摔角顏值巔峰王宏逸的生日禮物。<br />
-        希望你在每一張卡片、每一段路線裡，都感受到小肥豬滿滿的愛。
-      </p>
     </section>
   </div>
 
@@ -1521,7 +1531,7 @@
       el.textContent = `距離出發還有：${days} 天 ${hours} 小時 ${mins} 分`;
     }
 
-    // 生日驚喜解鎖 (新增)
+    // 生日驚喜解鎖
     function checkBirthdaySurprise() {
         // 設定目標日期時間：2025/12/09 00:00:00 (本地時間)
         const targetDate = new Date("2025-12-09T00:00:00").getTime();
