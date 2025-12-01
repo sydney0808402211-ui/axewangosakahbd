@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v8 (修復版)</title>
+  <title>宏逸大阪生日旅行 · 6天5夜卡片行程 v9 (最終修復版)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
@@ -305,7 +305,7 @@
     }
 
     /*
-     * 6. 其他元素 (Lists, Links, Notes)
+     * 6. 其他元素 (Lists, Links, Notes, Tables)
      */
     ul {
       padding-left: 20px;
@@ -369,6 +369,23 @@
       padding-top: 10px;
       border-top: 1px dashed var(--chip-border);
     }
+    
+    /* 表格樣式 (南海電鐵) */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+    td {
+        padding: 10px;
+        border: 1px solid var(--chip-border);
+        text-align: center;
+    }
+    thead tr {
+        background-color: var(--accent-soft);
+        color: var(--text-main);
+    }
+
 
     /*
      * 7. Intro 區塊 (Intro Overlay) - 視覺優化與結合
@@ -487,6 +504,74 @@
     .intro-btn:active {
       transform: translateY(2px);
       box-shadow: 0 4px 10px rgba(154, 110, 77, 0.3);
+    }
+    
+    /* ===== 天氣穿搭卡片樣式 (MUJI 風) ===== */
+    .outfit-card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* RWD 網格 */
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .outfit-card {
+      background: var(--bg); /* 使用主背景色，更貼近 MUJI */
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: none; /* 移除陰影 */
+      border: 1px solid var(--chip-border); /* 加上極淺的邊框 */
+      transition: transform 0.2s;
+    }
+
+    .outfit-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .weather-day-info {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .weather-icon {
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .temp-range {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .outfit-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .outfit-icon {
+      font-size: 18px;
+      margin-right: 10px;
+      color: var(--accent);
+      width: 20px;
+      text-align: center;
+    }
+
+    .advice-note {
+        font-size: 13px;
+        color: var(--danger);
+        font-weight: 500;
+        margin-top: 10px;
+        padding: 8px 0 0;
+        border-top: 1px dashed var(--chip-border);
     }
 
     /*
@@ -621,13 +706,12 @@
     <div class="chip-nav">
       <button data-target="itinerary" class="active-chip">行程卡片</button>
       <button data-target="stay">住宿 & 周邊</button>
-      <button data-target="umeda">梅田逛街</button>
+      <button data-target="weather">天氣 & 穿搭</button> <button data-target="umeda">梅田逛街</button>
       <button data-target="snacks">點心</button>
       <button data-target="usj">USJ</button>
-      <button data-target="tips">小提醒</button>
+      <button data-target="nankai">南海電鐵</button> <button data-target="tips">小提醒</button>
       <button data-target="flight">機票</button>
-      <button data-target="coupons">兌換券</button>
-      <button data-target="account">記帳</button>
+      <button data-target="surprise">生日驚喜</button> <button data-target="account">記帳</button>
     </div>
 
     <section id="itinerary" class="card page-section active">
@@ -1031,6 +1115,105 @@
       </p>
     </section>
 
+    <section id="weather" class="card page-section">
+      <div class="card-header">
+        <h2>天氣 & 穿搭建議</h2>
+        <div class="card-tag">MUJI 奶茶風格圖像版 · 每日穿搭指引（參考大阪 12 月氣溫）</div>
+      </div>
+      
+      <div class="outfit-card-container">
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">☀️</span> 12/6（六）· 抵達日
+            </div>
+            <div class="temp-range">最高 14°C / 最低 6°C · 晴天</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">🧥</span> 長袖發熱衣 + 輕薄針織 + <strong>輕羽絨外套</strong></div>
+            <div class="outfit-item"><span class="outfit-icon">👖</span> <strong>保暖長褲</strong>（早晚溫差大）</div>
+            <div class="outfit-item"><span class="outfit-icon">🧣</span> <strong>薄圍巾</strong>（強烈建議，晚上 6°C 很冷）</div>
+            <div class="outfit-item"><span class="outfit-icon">👟</span> 保暖球鞋或走路靴</div>
+        </div>
+        
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">⛅</span> 12/7（日）· 周遊卡 Day 1
+            </div>
+            <div class="temp-range">最高 17°C / 最低 8°C · 晴到多雲</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">👕</span> 輕長袖 / 襯衫 + <strong>薄外套 / 皮衣</strong></div>
+            <div class="outfit-item"><span class="outfit-icon">👖</span> 正常長褲（或內搭褲）</div>
+            <div class="outfit-item"><span class="outfit-icon">🧣</span> 不用圍巾，或帶薄披肩即可</div>
+            <div class="advice-note">
+                💡 這天最暖，可換上輕便的穿搭，但仍要注意保暖。
+            </div>
+        </div>
+        
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">⛅</span> 12/8（一）· 周遊卡 Day 2
+            </div>
+            <div class="temp-range">最高 17°C / 最低 6°C · 晴到多雲</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">🧥</span> 長袖內搭 + <strong>輕羽絨/厚外套</strong></div>
+            <div class="outfit-item"><span class="outfit-icon">💡</span> <strong>注意晚上！</strong> 最低 6°C，建議帶上能防寒的厚外套。</div>
+            <div class="outfit-item"><span class="outfit-icon">🧣</span> 圍巾可備著，隨時可保暖。</div>
+            <div class="outfit-item"><span class="outfit-icon">👟</span> 舒適保暖的鞋子。</div>
+        </div>
+
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">☀️</span> 12/9（二）· USJ 日
+            </div>
+            <div class="temp-range">最高 16°C / 最低 7°C · 晴</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">🎢</span> <strong>園區內會很冷！</strong> 建議穿發熱衣 + 長袖 + <strong>羽絨外套</strong>。</div>
+            <div class="outfit-item"><span class="outfit-icon">👖</span> 保暖長褲，鞋子要好走、舒適。</div>
+            <div class="outfit-item"><span class="outfit-icon">🧤</span> <strong>毛帽、手套</strong> 建議準備，排隊時會很有用。</div>
+            <div class="advice-note">
+                清爽的一天，但園區海風強，務必穿暖。
+            </div>
+        </div>
+        
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">🥶</span> 12/10（三）· 海遊館日
+            </div>
+            <div class="temp-range">最高 12°C / 最低 5°C · 多雲變冷</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">🔥</span> <strong>重度保暖！</strong> 發熱衣 + 毛衣 + <strong>厚羽絨外套</strong>。</div>
+            <div class="outfit-item"><span class="outfit-icon">🧣</span> 圍巾、毛帽必備。</div>
+            <div class="advice-note">
+                💡 這天溫度明顯降低，在海遊館港區吹風會更冷。
+            </div>
+        </div>
+        
+        <div class="outfit-card">
+            <div class="weather-day-info">
+                <span class="weather-icon">🌧️</span> 12/11（四）· 回程日
+            </div>
+            <div class="temp-range">最高 12°C / 最低 6°C · 雨</div>
+            
+            <p class="section-label" style="margin-bottom: 10px; color: var(--text-main);">穿搭指引</p>
+            
+            <div class="outfit-item"><span class="outfit-icon">☔</span> <strong>務必帶傘</strong>，建議外套外層有防水功能。</div>
+            <div class="outfit-item"><span class="outfit-icon">👟</span> 不建議穿易濕的布鞋或露腳的鞋子。</div>
+            <div class="advice-note">
+                💡 跟 12/10 一樣冷，注意保暖。
+            </div>
+        </div>
+      </div>
+    </section>
+
     <section id="umeda" class="card page-section">
       <div class="card-header">
         <h2>梅田逛街攻略</h2>
@@ -1113,7 +1296,7 @@
       <ul>
         <li>提前下載 USJ APP，查看即時排隊時間與整理券抽選。</li>
         <li>入園後直衝「瑪利歐世界」，或先抽取整理券再安排其他設施。</li>
-        <li>刺激設施可善用「單人通道」，兩個人可以分開排、出來再會合。</li>
+        <li>刺激設施可善用「單人通道」，兩個人分開排隊、出來再會合。</li>
         <li>晚上記得預留時間看霍格華茲燈光秀。</li>
         <li>身上準備一些 100 日圓硬幣，以防需要使用置物櫃。</li>
       </ul>
@@ -1124,6 +1307,65 @@
         <li>輕便雨衣或摺疊外套（遇到下雨或飛濺設施很好用）。</li>
         <li>12 月注意保暖，務必洋蔥式穿搭：發熱衣＋毛衣／帽 T＋外套。</li>
       </ul>
+    </section>
+
+    <section id="nankai" class="card page-section">
+      <div class="card-header">
+        <h2>南海電鐵時刻表（關西機場 KIX → 難波 Namba）</h2>
+        <div class="card-tag">Day 1 晚間抵達後的最穩搭乘方案（21:40 抵達 KIX）</div>
+      </div>
+      
+      <p class="section-label">我們的目標：搭乘末班車前 1-2 班的 Airport Express</p>
+      
+      <div style="padding: 10px 0; font-size: 15px;">
+        <p>我們的班機預計 <strong>21:40 抵達</strong>。通關和領行李大約需要 30-40 分鐘。目標是搭上 22:30 或 22:40 左右的班次。</p>
+        <p class="note" style="color: var(--text-main);">南海電鐵乘車處：T1 航站樓 2F 通道，步行 5 分鐘。</p>
+      </div>
+      
+      <div class="section-divider"></div>
+      
+      <div class="sub-heading">關西空港 KIX → 南海難波站 (平日/假日時刻表，適用 12/6 晚間)</div>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 15px;">
+        <thead>
+            <tr style="background-color: var(--accent-soft); color: var(--text-main); font-weight: 700;">
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">發車時間 (KIX)</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">車種</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">到達時間 (難波)</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">備註</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">22:05</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">空港急行 (Airport Exp.)</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">22:48</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border); color: var(--text-muted);">如果通關極快，可以嘗試。</td>
+            </tr>
+            <tr style="background-color: #fff8f3;">
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>22:25</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>特急 Rapi:t (加價)</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>23:01</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border); color: var(--accent);">最舒適選擇 (需加購特急券)。</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>22:35</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>空港急行 (Airport Exp.)</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>23:18</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);"><strong>推薦班次，時間較寬裕。</strong></td>
+            </tr>
+            <tr style="background-color: #f7e0e0;">
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">23:05</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">空港急行 (Airport Exp.)</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border);">23:48</td>
+                <td style="padding: 10px; border: 1px solid var(--chip-border); color: var(--danger);"><strong>務必趕上！</strong> 錯過只能搭 23:55 普通車。</td>
+            </tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top: 15px;">
+        <strong>小提醒：</strong> 以上時刻表為預估，請以當天關西機場南海電鐵實際時刻表為準。
+        我們目標是趕上 <strong>22:35 的空港急行</strong>，時間會比較寬裕。
+      </p>
     </section>
 
     <section id="tips" class="card page-section">
@@ -1163,27 +1405,34 @@
       </ul>
     </section>
 
-    <section id="coupons" class="card page-section">
+    <section id="surprise" class="card page-section">
       <div class="card-header">
-        <h2>旅程專屬兌換券</h2>
-        <div class="card-tag">這一頁只有宏逸可以使用</div>
+        <h2>生日驚喜</h2>
+        <div class="card-tag" id="surprise-status">等待 12/9 00:00 解鎖...</div>
       </div>
-
-      <div class="sub-heading">USJ 排隊專用 · 肩頸按摩券</div>
-      <p>
-        在 USJ 排隊超過 40 分鐘時，可兌換一次肩頸按摩服務 5
-        分鐘（由小肥豬親自提供）。
-      </p>
-
-      <div class="sub-heading">迷路保固 · 不生氣券</div>
-      <p>
-        只要是壽星負責帶路，即使走錯路或繞遠路，本人不得生氣，只能說：「好啦當散步。」。
-      </p>
-
-      <div class="sub-heading">隨時親親券</div>
-      <p>
-        在不妨礙他人與交通安全的情況下，壽星可以隨時提出一次「我要親親」的要求，本券終身有效（但只能由小肥豬兌換）。
-      </p>
+      <div id="surprise-content">
+        <div id="surprise-preview" style="text-align: center; padding: 40px 0;">
+          <h3 style="color: var(--accent);">
+            影片倒數計時中
+          </h3>
+          <p style="font-size: 16px; margin-top: 10px;">
+            請耐心等待 12 月 9 日 00:00 驚喜解鎖！<br>
+            壽星的生日願望，將在那一刻實現。
+          </p>
+        </div>
+        <div id="surprise-video-container" style="display: none; text-align: center;">
+            <p style="font-size: 15px; margin-bottom: 15px; color: var(--text-muted);">生日快樂！請點擊播放影片：</p>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+              <iframe 
+                src="https://www.youtube.com/embed/4gc31aCr6_Q" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; box-shadow: var(--shadow-card);">
+              </iframe>
+            </div>
+        </div>
+      </div>
     </section>
 
     <section id="account" class="card page-section">
@@ -1248,11 +1497,6 @@
       });
     });
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // 確保一開始「行程卡片」是活躍的
-      switchSection("itinerary");
-    });
-
     // 倒數計時
     function updateCountdown() {
       // 使用 2025/12/06 18:10 (預設的班機時間)
@@ -1275,8 +1519,53 @@
 
       el.textContent = `距離出發還有：${days} 天 ${hours} 小時 ${mins} 分`;
     }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
+
+    // 生日驚喜解鎖 (新增)
+    function checkBirthdaySurprise() {
+        // 設定目標日期時間：2025/12/09 00:00:00 (本地時間)
+        const targetDate = new Date("2025-12-09T00:00:00").getTime();
+        const now = Date.now();
+
+        const videoContainer = document.getElementById("surprise-video-container");
+        const preview = document.getElementById("surprise-preview");
+        const status = document.getElementById("surprise-status");
+        
+        if (videoContainer && preview && status) {
+            if (now >= targetDate) {
+                // 已到時間：顯示影片
+                videoContainer.style.display = "block";
+                preview.style.display = "none";
+                status.textContent = "🎁 驚喜已解鎖！生日快樂！";
+            } else {
+                // 未到時間：顯示倒數
+                videoContainer.style.display = "none";
+                preview.style.display = "block";
+                
+                const diff = targetDate - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                status.textContent = `距離解鎖：${hours} 小時 ${mins} 分 ${secs} 秒`;
+                
+                // 每秒更新一次狀態
+                setTimeout(checkBirthdaySurprise, 1000);
+            }
+        }
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 確保一開始「行程卡片」是活躍的
+      switchSection("itinerary");
+      
+      // 初始化倒數計時
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+      
+      // 初始化生日驚喜檢查
+      checkBirthdaySurprise();
+    });
 
     // Intro + confetti + BGM
     const intro = document.getElementById("intro");
